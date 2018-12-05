@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 开关 -->
+    <declare-styleable name="SwitchButton">
+        <attr name="kswThumbDrawable" format="reference"/>
+        <attr name="kswThumbColor" format="color|reference"/>
+        <attr name="kswThumbMargin" format="dimension|reference"/>
+        <attr name="kswThumbMarginTop" format="dimension|reference"/>
+        <attr name="kswThumbMarginBottom" format="dimension|reference"/>
+        <attr name="kswThumbMarginLeft" format="dimension|reference"/>
+        <attr name="kswThumbMarginRight" format="dimension|reference"/>
+        <attr name="kswThumbWidth" format="dimension|reference"/>
+        <attr name="kswThumbHeight" format="dimension|reference"/>
+        <attr name="kswThumbRadius" format="dimension|reference"/>
+        <attr name="kswBackRadius" format="dimension|reference"/>
+        <attr name="kswBackDrawable" format="reference"/>
+        <attr name="kswBackColor" format="color|reference"/>
+        <attr name="kswFadeBack" format="boolean"/>
+        <attr name="kswThumbRangeRatio" format="float"/>
+        <attr name="kswAnimationDuration" format="integer"/>
+        <attr name="kswTintColor" format="color|reference"/>
+        <attr name="kswTextOn" format="string"/>
+        <attr name="kswTextOff" format="string"/>
+        <attr name="kswTextThumbInset" format="dimension|reference"/>
+        <attr name="kswTextExtra" format="dimension|reference"/>
+        <attr name="kswTextAdjust" format="dimension|reference"/>
+    </declare-styleable>
+    
+    <!-- 圆角背景文字-->
+    <declare-styleable name="RoundTextView">
+        <attr name="rtvStrokeWidth" format="reference|dimension" />
+        <attr name="rtvCornerRadius" format="reference|dimension" />
+        <attr name="rtvNormalStrokeColor" format="reference|color" />
+        <attr name="rtvNormalStrokeWidth" format="reference|dimension" />
+        <attr name="rtvNormalTextColor" format="reference|color" />
+        <attr name="rtvNormalFillColor" format="reference|color" />
+        <attr name="rtvPressedStrokeColor" format="reference|color" />
+        <attr name="rtvPressedStrokeWidth" format="reference|dimension" />
+        <attr name="rtvPressedTextColor" format="reference|color" />
+        <attr name="rtvPressedFillColor" format="reference|color" />
+        <attr name="rtvSelectedStrokeColor" format="reference|color" />
+        <attr name="rtvSelectedStrokeWidth" format="reference|dimension" />
+        <attr name="rtvSelectedTextColor" format="reference|color" />
+        <attr name="rtvSelectedFillColor" format="reference|color" />
+        <attr name="rtvDisabledStrokeColor" format="reference|color" />
+        <attr name="rtvDisabledStrokeWidth" format="reference|dimension" />
+        <attr name="rtvDisabledTextColor" format="reference|color" />
+        <attr name="rtvDisabledFillColor" format="reference|color" />
+    </declare-styleable>
+
+    <!-- 圆角背景按钮-->
+    <declare-styleable name="RoundButton">
+        <attr name="rbTopBottomPaddingEnable" format="boolean" />
+        <attr name="rbStrokeWidth" format="reference|dimension" />
+        <attr name="rbCornerRadius" format="reference|dimension" />
+        <attr name="rbNormalStrokeColor" format="reference|color" />
+        <attr name="rbNormalStrokeWidth" format="reference|dimension" />
+        <attr name="rbNormalTextColor" format="reference|color" />
+        <attr name="rbNormalFillColor" format="reference|color" />
+        <attr name="rbPressedStrokeColor" format="reference|color" />
+        <attr name="rbPressedStrokeWidth" format="reference|dimension" />
+        <attr name="rbPressedTextColor" format="reference|color" />
+        <attr name="rbPressedFillColor" format="reference|color" />
+        <attr name="rbSelectedStrokeColor" format="reference|color" />
+        <attr name="rbSelectedStrokeWidth" format="reference|dimension" />
+        <attr name="rbSelectedTextColor" format="reference|color" />
+        <attr name="rbSelectedFillColor" format="reference|color" />
+        <attr name="rbDisabledStrokeColor" format="reference|color" />
+        <attr name="rbDisabledStrokeWidth" format="reference|dimension" />
+        <attr name="rbDisabledTextColor" format="reference|color" />
+        <attr name="rbDisabledFillColor" format="reference|color" />
+    </declare-styleable>
+    
+    <!-- 圆形图片 -->
+    <declare-styleable name="CircleImageView">
+        <attr name="civBorderWidth" format="dimension|reference" />
+        <attr name="civBorderColor" format="color|reference" />
+        <attr name="civBorderOverlay" format="boolean" />
+        <attr name="civCircleBackgroundColor" format="color|reference" />
+    </declare-styleable>
+
+    <!-- 圆角图片 -->
+    <declare-styleable name="RoundImageView">
+        <attr name="rivRound">
+            <flag name="left_top" value="0x01"/>
+            <flag name="left_bottom" value="0x02"/>
+            <flag name="right_top" value="0x04"/>
+            <flag name="right_bottom" value="0x08"/>
+            <flag name="all" value="0x0f"/>
+        </attr>
+        <attr name="rivCornerRadius" format="dimension|reference"/>
+    </declare-styleable>
+    
+    <!--进度条-->
+    <declare-styleable name="NumberProgressBar">
+        <attr name="npbProgress" format="integer"/>
+        <attr name="npbMax" format="integer"/>
+        <attr name="npbUnreachedColor" format="color|reference"/>
+        <attr name="npbReachedColor" format="color|reference"/>
+        <attr name="npbReachedBarHeight" format="dimension|reference"/>
+        <attr name="npbUnreachedBarHeight" format="dimension|reference"/>
+        <attr name="npbTextSize" format="dimension|reference"/>
+        <attr name="npbTextColor" format="color|reference"/>
+        <attr name="npbTextOffset" format="dimension|reference"/>
+        <attr name="npbTextVisibility" format="enum">
+            <enum name="visible" value="0"/>
+            <enum name="invisible" value="1"/>
+        </attr>
+    </declare-styleable>    
+    
+    <!-- 圆形进度条 -->
+    <declare-styleable name="CircleProgressBar">
+        <attr name="cpbStartColor" format="color|reference"/>
+        <attr name="cpbEndColor" format="color|reference"/>
+        <attr name="cpbTextColor" format="color|reference"/>
+        <attr name="cpbTextSize" format="dimension|reference"/>
+        <attr name="cpbMax" format="integer"/>
+        <attr name="cpbProgress" format="integer"/>
+        <attr name="cpbStartAngle" format="float"/>
+        <attr name="cpbBackgroundCircleColor" format="color|reference"/>
+        <attr name="cpbProgressCircleColor" format="color|reference"/>
+        <attr name="cpbBackgroundCircleWidth" format="dimension|reference"/>
+        <attr name="cpbProgressCircleWidth" format="dimension|reference"/>
+        <attr name="cpbDotRadius" format="dimension|reference"/>
+        <attr name="cpbCircleStyle" format="enum">
+            <enum name="FILL" value="0"/>
+            <enum name="STROKE" value="1"/>
+            <enum name="FILL_AND_STROKE" value="2"/>
+        </attr>
+        <attr name="cpbTextVisible" format="boolean"/>
+        <attr name="cpbDotVisible" format="boolean"/>
+        <attr name="cpbBackgroundCircleVisible" format="boolean"/>
+        <attr name="cpbStrokeCap" format="enum">
+            <enum name="BUTT" value="0"/>
+            <enum name="ROUND" value="1"/>
+            <enum name="SQUARE" value="2"/>
+        </attr>
+        <attr name="cpbColorStyle" format="enum">
+            <enum name="SOLID" value="0"/>
+            <enum name="GRADIENT" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>
