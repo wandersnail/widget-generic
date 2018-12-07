@@ -24,9 +24,9 @@ public class CircleProgressBar extends View {
 	//用于设置渐变色的开始色
 	private int startColor;
 	//用于设置渐变色的结束色
-	private int endColor;	
+	private int endColor;
 	//背景圆环的颜色
-	private int backgroundCircleColor;    
+	private int backgroundCircleColor;
 	//圆环进度的颜色
 	private int progressCircleColor;
 	//中间进度百分比的字符串的颜色
@@ -68,7 +68,7 @@ public class CircleProgressBar extends View {
 	private Paint.Cap cap;
 	//进度条开始角度
 	private float startAngle;
-    private DecimalFormat textFormat = new DecimalFormat("#");
+	private DecimalFormat textFormat = new DecimalFormat("#");
 
 	public CircleProgressBar(Context context) {
 		this(context, null);
@@ -80,51 +80,51 @@ public class CircleProgressBar extends View {
 
 	public CircleProgressBar(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
-        isTextVisible = typedArray.getBoolean(R.styleable.CircleProgressBar_cpbTextVisible, true);
-        textSize = typedArray.getDimension(R.styleable.CircleProgressBar_cpbTextSize, 24);
-        backgroundCircleWidth = typedArray.getDimension(R.styleable.CircleProgressBar_cpbBackgroundCircleWidth, 5);
-        max = typedArray.getInt(R.styleable.CircleProgressBar_cpbMax, 100);
-        progress = typedArray.getInt(R.styleable.CircleProgressBar_cpbProgress, 0);
-        circleStyle = intToStyle(typedArray.getInt(R.styleable.CircleProgressBar_cpbCircleStyle, 1));
-        isDotVisible = typedArray.getBoolean(R.styleable.CircleProgressBar_cpbDotVisible, false);
-        isBackgroundCircleVisible = typedArray.getBoolean(R.styleable.CircleProgressBar_cpbBackgroundCircleVisible, true);
-        startColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbStartColor, 0xFFC5D534);
-        endColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbEndColor, 0xFF52B7A2);
-        progressCircleWidth = typedArray.getDimension(R.styleable.CircleProgressBar_cpbProgressCircleWidth, backgroundCircleWidth);
-        backgroundCircleColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbBackgroundCircleColor, 0xFFEFEFEF);
-        progressCircleColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbProgressCircleColor, 0xFF90EA13);
-        textColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbTextColor, 0xFF90EA13);
-        dotRadius = typedArray.getDimension(R.styleable.CircleProgressBar_cpbDotRadius, 0);
-        startAngle = typedArray.getFloat(R.styleable.CircleProgressBar_cpbStartAngle, 0);
-        cap = intToCap(typedArray.getInt(R.styleable.CircleProgressBar_cpbStrokeCap,0));
-        colorStyle = typedArray.getInt(R.styleable.CircleProgressBar_cpbColorStyle, COLOR_STYLE_SOLID);
-        typedArray.recycle();
-        init();
+		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
+		isTextVisible = typedArray.getBoolean(R.styleable.CircleProgressBar_cpbTextVisible, true);
+		textSize = typedArray.getDimension(R.styleable.CircleProgressBar_cpbTextSize, 24);
+		backgroundCircleWidth = typedArray.getDimension(R.styleable.CircleProgressBar_cpbBackgroundCircleWidth, 5);
+		max = typedArray.getInt(R.styleable.CircleProgressBar_cpbMax, 100);
+		progress = typedArray.getInt(R.styleable.CircleProgressBar_cpbProgress, 0);
+		circleStyle = intToStyle(typedArray.getInt(R.styleable.CircleProgressBar_cpbCircleStyle, 1));
+		isDotVisible = typedArray.getBoolean(R.styleable.CircleProgressBar_cpbDotVisible, false);
+		isBackgroundCircleVisible = typedArray.getBoolean(R.styleable.CircleProgressBar_cpbBackgroundCircleVisible, true);
+		startColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbStartColor, 0xFFC5D534);
+		endColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbEndColor, 0xFF52B7A2);
+		progressCircleWidth = typedArray.getDimension(R.styleable.CircleProgressBar_cpbProgressCircleWidth, backgroundCircleWidth);
+		backgroundCircleColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbBackgroundCircleColor, 0xFFEFEFEF);
+		progressCircleColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbProgressCircleColor, 0xFF90EA13);
+		textColor = typedArray.getColor(R.styleable.CircleProgressBar_cpbTextColor, 0xFF90EA13);
+		dotRadius = typedArray.getDimension(R.styleable.CircleProgressBar_cpbDotRadius, 0);
+		startAngle = typedArray.getFloat(R.styleable.CircleProgressBar_cpbStartAngle, 0);
+		cap = intToCap(typedArray.getInt(R.styleable.CircleProgressBar_cpbStrokeCap,0));
+		colorStyle = typedArray.getInt(R.styleable.CircleProgressBar_cpbColorStyle, COLOR_STYLE_SOLID);
+		typedArray.recycle();
+		init();
 	}
 
 	private Paint.Cap intToCap(int cap) {
-        switch(cap) {
-            case 2:
-                return Paint.Cap.SQUARE;
-            case 1:
-                return Paint.Cap.ROUND;
-            default:
-                return Paint.Cap.BUTT;
-        }
-    }
-	
+		switch(cap) {
+			case 2:
+				return Paint.Cap.SQUARE;
+			case 1:
+				return Paint.Cap.ROUND;
+			default:
+				return Paint.Cap.BUTT;
+		}
+	}
+
 	private Paint.Style intToStyle(int style) {
-	    switch(style) {
-            case 2:
-                return Paint.Style.FILL_AND_STROKE;
-	        case 0:
-	            return Paint.Style.FILL;
-            default:
-                return Paint.Style.STROKE;
-	    }
-    }
-	
+		switch(style) {
+			case 2:
+				return Paint.Style.FILL_AND_STROKE;
+			case 0:
+				return Paint.Style.FILL;
+			default:
+				return Paint.Style.STROKE;
+		}
+	}
+
 	private void init() {
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		oval = new RectF();
@@ -133,7 +133,7 @@ public class CircleProgressBar extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		paint.setShader(null);
-		paint.setStyle(circleStyle); 
+		paint.setStyle(circleStyle);
 		paint.setStrokeCap(cap);
 		//画最外层的大圆环
 		float centerX = getWidth() / 2; //获取圆心的x坐标
@@ -149,6 +149,7 @@ public class CircleProgressBar extends View {
 		//画进度百分比
 		if (isTextVisible) {
 			paint.setStrokeWidth(0);
+			paint.setStyle(Paint.Style.FILL);
 			paint.setColor(textColor);
 			paint.setTextSize(textSize);
 			paint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
@@ -156,12 +157,13 @@ public class CircleProgressBar extends View {
 			Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
 			int baseline = (getHeight() - fontMetrics.bottom - fontMetrics.top) / 2;
 			paint.setTextAlign(Paint.Align.CENTER);
-            //画出进度百分比
-            canvas.drawText(text, getWidth() / 2, baseline, paint);
+			//画出进度百分比
+			canvas.drawText(text, getWidth() / 2, baseline, paint);
 		}
 
 		//画圆弧 ，画圆环的进度
 		canvas.rotate(-180 + startAngle, centerX, centerX);
+		paint.setStyle(circleStyle);
 		paint.setStrokeWidth(progressCircleWidth); //设置圆环的宽度
 
 		oval.set(centerX - radius, centerX - radius, centerX + radius, centerX + radius);
@@ -225,13 +227,13 @@ public class CircleProgressBar extends View {
 		return sweepGradient;
 	}
 
-    /**
-     * 设置百分比文本显示格式
-     */
-    public void setTextFormat(DecimalFormat format) {
-        textFormat = format;
-    }
-	
+	/**
+	 * 设置百分比文本显示格式
+	 */
+	public void setTextFormat(DecimalFormat format) {
+		textFormat = format;
+	}
+
 	public synchronized int getMax() {
 		return max;
 	}
@@ -278,14 +280,14 @@ public class CircleProgressBar extends View {
 		if (startAngle < 0) startAngle = 0;
 		this.startAngle = startAngle;
 	}
-	
+
 	/**
 	 * 进度条帽的形状
 	 */
 	public void setStrokeCap(Paint.Cap cap) {
 		this.cap = cap;
 	}
-	
+
 	/**
 	 * 设置进度圆环的颜色风格
 	 */
