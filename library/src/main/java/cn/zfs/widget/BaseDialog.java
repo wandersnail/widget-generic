@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -34,8 +33,8 @@ public class BaseDialog implements DialogInterface {
         init(activity, View.inflate(activity, redId, null), 0);
     }
 
-    public BaseDialog(@NonNull Activity context, @NonNull View view, @StyleRes int themeResId) {
-        init(context, view, themeResId);
+    public BaseDialog(@NonNull Activity activity, @NonNull View view, @StyleRes int themeResId) {
+        init(activity, view, themeResId);
     }
 
     private void init(@NonNull Activity activity, @NonNull View view, @StyleRes int themeResId) {
@@ -90,7 +89,7 @@ public class BaseDialog implements DialogInterface {
             if (Looper.getMainLooper().equals(Looper.myLooper())) {
                 dialog.show();
             } else {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                contentView.post(new Runnable() {
                     @Override
                     public void run() {
                         dialog.show();
@@ -177,9 +176,7 @@ public class BaseDialog implements DialogInterface {
      * 旋转
      */
     public void setRotation(float rotation) {
-        if (contentView != null) {
-            contentView.setRotation(rotation);
-        }
+        contentView.setRotation(rotation);
     }
     
     /**

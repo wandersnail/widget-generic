@@ -13,6 +13,7 @@ import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zfs.commons.utils.ImageUtils;
@@ -33,6 +34,7 @@ public class DefaultAlertDialog extends BaseDialog implements View.OnClickListen
     private View horizontalDivider;
     private View titleDivider;
     private LinearLayout layoutText;
+    private FrameLayout layoutContent;
     private TextView tvPositive;
     private View.OnClickListener negativeListener;
     private View.OnClickListener positiveListener;
@@ -54,6 +56,7 @@ public class DefaultAlertDialog extends BaseDialog implements View.OnClickListen
         verticalDivider = contentView.findViewById(R.id.verticalDivider);
         horizontalDivider = contentView.findViewById(R.id.horizontalDivider);
         layoutText = contentView.findViewById(R.id.layoutText);
+        layoutContent = contentView.findViewById(R.id.layoutContent);
         titleDivider = contentView.findViewById(R.id.titleDivider);
         tvPositive = contentView.findViewById(R.id.tvPositive);
         tvNegative.setOnClickListener(this);
@@ -241,6 +244,23 @@ public class DefaultAlertDialog extends BaseDialog implements View.OnClickListen
         ViewGroup.LayoutParams params = titleDivider.getLayoutParams();
         params.height = height;
         titleDivider.setLayoutParams(params);
+        return this;
+    }
+    
+    public DefaultAlertDialog setContentViewPadding(int left, int top, int right, int bottom) {
+        layoutContent.setPadding(left, top, right, bottom);
+        return this;
+    }
+    
+    public DefaultAlertDialog setContentView(@NonNull View view) {
+        layoutContent.removeAllViews();
+        layoutContent.addView(view);
+        return this;
+    }
+
+    public DefaultAlertDialog setContentView(@NonNull View view, ViewGroup.LayoutParams params) {
+        layoutContent.removeAllViews();
+        layoutContent.addView(view, params);
         return this;
     }
     

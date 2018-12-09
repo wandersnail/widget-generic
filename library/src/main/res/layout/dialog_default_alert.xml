@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="TITLE"
         android:textColor="#333"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:visibility="gone"/>
 
     <View
@@ -24,35 +24,40 @@
         android:background="#EFEFEF"
         android:visibility="gone"/>
 
-    <LinearLayout
-        android:id="@+id/layoutText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
+    <FrameLayout
+        android:id="@+id/layoutContent"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="30dp"
-        android:paddingBottom="30dp">
-
-        <TextView
-            android:id="@+id/tvMsg"
-            android:layout_width="wrap_content"
+        android:paddingBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/layoutText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TEXT"
-            android:textColor="#505050"
-            android:textSize="16dp"/>
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvSubMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="SUB_TEXT"
-            android:textColor="#989898"
-            android:textSize="14dp"
-            android:visibility="gone"/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TEXT"
+                android:textColor="#505050"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tvSubMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="SUB_TEXT"
+                android:textColor="#989898"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </FrameLayout>    
 
     <View
         android:id="@+id/horizontalDivider"
@@ -72,7 +77,7 @@
             android:gravity="center"
             android:text="Cancel"
             android:textColor="#FF1945"
-            android:textSize="16dp"/>
+            android:textSize="16sp"/>
 
         <View
             android:id="@+id/verticalDivider"
@@ -88,7 +93,7 @@
             android:gravity="center"
             android:text="OK"
             android:textColor="#588DFF"
-            android:textSize="16dp"/>
+            android:textSize="16sp"/>
     </LinearLayout>
     
 </LinearLayout>
