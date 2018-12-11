@@ -24,7 +24,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly "com.android.support:appcompat-v7:$support_lib_version"
-    compileOnly 'com.github.fszeng2011:commons:1.0.0'
+    compileOnly 'com.github.wandersnail:commons:1.0.0'
 }
 
 // 打包源码
@@ -38,10 +38,11 @@ artifacts {
 }
 
 publish {
-    userOrg = 'fszeng2017' //bintray.com用户名  
-    groupId = 'com.github.fszeng2011' //jcenter上的路径  
+    repoName="android"//仓库名
+    userOrg = 'wandersnail' //bintray.com用户名  
+    groupId = 'com.github.wandersnail' //jcenter上的路径  
     artifactId = 'widgets' //项目名称  
     publishVersion = "$lib_version" //版本号  
     desc = '自定义控件'
-    website = 'https://github.com/fszeng2011'
+    website = 'https://github.com/wandersnail'
 }

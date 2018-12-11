@@ -1,4 +1,4 @@
-package cn.zfs.widget;
+package com.snail.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

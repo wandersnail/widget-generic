@@ -1,10 +1,10 @@
-package cn.zfs.widget;
+package com.snail.widget;
 
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
-import com.zfs.commons.utils.ImageUtils;
-import com.zfs.commons.utils.UiUtils;
+import com.snail.commons.utils.ImageUtils;
+import com.snail.commons.utils.UiUtils;
 
 
 /**

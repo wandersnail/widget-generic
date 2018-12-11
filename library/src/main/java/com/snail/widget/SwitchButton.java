@@ -1,4 +1,4 @@
-package cn.zfs.widget;
+package com.snail.widget;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;

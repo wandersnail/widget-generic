@@ -1,4 +1,4 @@
-package cn.zfs.widget;
+package com.snail.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,7 +12,8 @@ import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
-import com.zfs.commons.interfaces.IString;
+
+import com.snail.commons.interfaces.IString;
 
 import java.util.List;
 

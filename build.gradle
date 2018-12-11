@@ -8,7 +8,7 @@ buildscript {
 
         kotlin_version = '1.3.11'
         support_lib_version = '28.0.0'
-        lib_version = '1.0.1'
+        lib_version = '1.0.0'
     }
 
     repositories {
@@ -29,6 +29,7 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://dl.bintray.com/wandersnail/android' }
     }
     // 指定编码
     tasks.withType(JavaCompile) {

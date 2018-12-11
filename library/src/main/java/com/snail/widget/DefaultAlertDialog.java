@@ -1,4 +1,4 @@
-package cn.zfs.widget;
+package com.snail.widget;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.zfs.commons.utils.ImageUtils;
-import com.zfs.commons.utils.UiUtils;
+import com.snail.commons.utils.ImageUtils;
+import com.snail.commons.utils.UiUtils;
 
 
 /**
