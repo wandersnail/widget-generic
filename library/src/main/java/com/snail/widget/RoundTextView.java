@@ -19,24 +19,24 @@ public class RoundTextView extends android.support.v7.widget.AppCompatTextView {
         super(context, attrs, defStyle);
         textViewHandler = new CustomRoundTextViewHandler<>(this);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundTextView);
-        textViewHandler.strokeWidth = a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvStrokeWidth, 0);
-        textViewHandler.normalStrokeWidth = a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvNormalStrokeWidth, -1);
-        textViewHandler.pressedStrokeWidth = a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvPressedStrokeWidth, -1);
-        textViewHandler.disabledStrokeWidth = a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvDisabledStrokeWidth, -1);
-        textViewHandler.selectedStrokeWidth = a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvSelectedStrokeWidth, -1);
-        textViewHandler.normalFillColor = a.getColor(R.styleable.RoundTextView_rtvNormalFillColor, Color.LTGRAY);
-        textViewHandler.cornerRadius = a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvCornerRadius, -1);
-        textViewHandler.normalStrokeColor = a.getColor(R.styleable.RoundTextView_rtvNormalStrokeColor, textViewHandler.normalFillColor);
-        textViewHandler.normalTextColor = a.getColor(R.styleable.RoundTextView_rtvNormalTextColor, getCurrentTextColor());
-        textViewHandler.pressedStrokeColor = a.getColor(R.styleable.RoundTextView_rtvPressedStrokeColor, textViewHandler.normalStrokeColor);
-        textViewHandler.pressedTextColor = a.getColor(R.styleable.RoundTextView_rtvPressedTextColor, textViewHandler.normalTextColor);
-        textViewHandler.pressedFillColor = a.getColor(R.styleable.RoundTextView_rtvPressedFillColor, textViewHandler.normalFillColor);
-        textViewHandler.selectedStrokeColor = a.getColor(R.styleable.RoundTextView_rtvSelectedStrokeColor, textViewHandler.normalStrokeColor);
-        textViewHandler.selectedTextColor = a.getColor(R.styleable.RoundTextView_rtvSelectedTextColor, textViewHandler.normalTextColor);
-        textViewHandler.selectedFillColor = a.getColor(R.styleable.RoundTextView_rtvSelectedFillColor, textViewHandler.normalFillColor);
-        textViewHandler.disabledStrokeColor = a.getColor(R.styleable.RoundTextView_rtvDisabledStrokeColor, Color.LTGRAY);
-        textViewHandler.disabledFillColor = a.getColor(R.styleable.RoundTextView_rtvDisabledFillColor, Color.LTGRAY);
-        textViewHandler.disabledTextColor = a.getColor(R.styleable.RoundTextView_rtvDisabledTextColor, getCurrentTextColor());
+        textViewHandler.setStrokeWidth(a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvStrokeWidth, 0));
+        textViewHandler.setNormalStrokeWidth(a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvNormalStrokeWidth, -1));
+        textViewHandler.setPressedStrokeWidth(a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvPressedStrokeWidth, -1));
+        textViewHandler.setDisabledStrokeWidth(a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvDisabledStrokeWidth, -1));
+        textViewHandler.setSelectedStrokeWidth(a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvSelectedStrokeWidth, -1));
+        textViewHandler.setNormalFillColor(a.getColor(R.styleable.RoundTextView_rtvNormalFillColor, Color.LTGRAY));
+        textViewHandler.setCornerRadius(a.getDimensionPixelOffset(R.styleable.RoundTextView_rtvCornerRadius, -1));
+        textViewHandler.setNormalStrokeColor(a.getColor(R.styleable.RoundTextView_rtvNormalStrokeColor, textViewHandler.getNormalFillColor()));
+        textViewHandler.setNormalTextColor(a.getColor(R.styleable.RoundTextView_rtvNormalTextColor, getCurrentTextColor()));
+        textViewHandler.setPressedStrokeColor(a.getColor(R.styleable.RoundTextView_rtvPressedStrokeColor, textViewHandler.getNormalStrokeColor()));
+        textViewHandler.setPressedTextColor(a.getColor(R.styleable.RoundTextView_rtvPressedTextColor, textViewHandler.getNormalTextColor()));
+        textViewHandler.setPressedFillColor(a.getColor(R.styleable.RoundTextView_rtvPressedFillColor, textViewHandler.getNormalFillColor()));
+        textViewHandler.setSelectedStrokeColor(a.getColor(R.styleable.RoundTextView_rtvSelectedStrokeColor, textViewHandler.getNormalStrokeColor()));
+        textViewHandler.setSelectedTextColor(a.getColor(R.styleable.RoundTextView_rtvSelectedTextColor, textViewHandler.getNormalTextColor()));
+        textViewHandler.setSelectedFillColor(a.getColor(R.styleable.RoundTextView_rtvSelectedFillColor, textViewHandler.getNormalFillColor()));
+        textViewHandler.setDisabledStrokeColor(a.getColor(R.styleable.RoundTextView_rtvDisabledStrokeColor, Color.LTGRAY));
+        textViewHandler.setDisabledFillColor(a.getColor(R.styleable.RoundTextView_rtvDisabledFillColor, Color.LTGRAY));
+        textViewHandler.setDisabledTextColor(a.getColor(R.styleable.RoundTextView_rtvDisabledTextColor, getCurrentTextColor()));
         a.recycle();
         textViewHandler.updateTextColor();
     }
@@ -73,128 +73,128 @@ public class RoundTextView extends android.support.v7.widget.AppCompatTextView {
     }
     
     public RoundTextView setStrokeWidth(int strokeWidth) {
-        textViewHandler.strokeWidth = strokeWidth;
+        textViewHandler.setStrokeWidth(strokeWidth);
         return this;
     }
 
     public RoundTextView setCornerRadius(int cornerRadius) {
-        textViewHandler.cornerRadius = cornerRadius;
+        textViewHandler.setCornerRadius(cornerRadius);
         return this;
     }
 
     public RoundTextView setNormalStrokeColor(int normalStrokeColor) {
-        textViewHandler.normalStrokeColor = normalStrokeColor;
+        textViewHandler.setNormalStrokeColor(normalStrokeColor);
         return this;
     }
 
     public RoundTextView setNormalFillColor(int normalFillColor) {
-        textViewHandler.normalFillColor = normalFillColor;
+        textViewHandler.setNormalFillColor(normalFillColor);
         return this;
     }
 
     public RoundTextView setPressedStrokeColor(int pressedStrokeColor) {
-        textViewHandler.pressedStrokeColor = pressedStrokeColor;
+        textViewHandler.setPressedStrokeColor(pressedStrokeColor);
         return this;
     }
 
     public RoundTextView setPressedFillColor(int pressedFillColor) {
-        textViewHandler.pressedFillColor = pressedFillColor;
+        textViewHandler.setPressedFillColor(pressedFillColor);
         return this;
     }
 
     public RoundTextView setDisabledStrokeColor(int disabledStrokeColor) {
-        textViewHandler.disabledStrokeColor = disabledStrokeColor;
+        textViewHandler.setDisabledStrokeColor(disabledStrokeColor);
         return this;
     }
 
     public RoundTextView setDisabledFillColor(int disabledFillColor) {
-        textViewHandler.disabledFillColor = disabledFillColor;
+        textViewHandler.setDisabledFillColor(disabledFillColor);
         return this;
     }
 
     public RoundTextView setSelectedStrokeColor(int selectedStrokeColor) {
-        textViewHandler.selectedStrokeColor = selectedStrokeColor;
+        textViewHandler.setSelectedStrokeColor(selectedStrokeColor);
         return this;
     }
 
     public RoundTextView setSelectedFillColor(int selectedFillColor) {
-        textViewHandler.selectedFillColor = selectedFillColor;
+        textViewHandler.setSelectedFillColor(selectedFillColor);
         return this;
     }
 
     public int getCornerRadius() {
-        return textViewHandler.cornerRadius;
+        return textViewHandler.getCornerRadius();
     }
 
     public int getNormalStrokeColor() {
-        return textViewHandler.normalStrokeColor;
+        return textViewHandler.getNormalStrokeColor();
     }
 
     public int getNormalFillColor() {
-        return textViewHandler.normalFillColor;
+        return textViewHandler.getNormalFillColor();
     }
 
     public int getPressedStrokeColor() {
-        return textViewHandler.pressedStrokeColor;
+        return textViewHandler.getPressedStrokeColor();
     }
 
     public int getPressedFillColor() {
-        return textViewHandler.pressedFillColor;
+        return textViewHandler.getPressedFillColor();
     }
 
     public int getDisabledStrokeColor() {
-        return textViewHandler.disabledStrokeColor;
+        return textViewHandler.getDisabledStrokeColor();
     }
 
     public int getDisabledFillColor() {
-        return textViewHandler.disabledFillColor;
+        return textViewHandler.getDisabledFillColor();
     }
 
     public int getStrokeWidth() {
-        return textViewHandler.strokeWidth;
+        return textViewHandler.getStrokeWidth();
     }
 
     public int getNormalStrokeWidth() {
-        return textViewHandler.normalStrokeWidth;
+        return textViewHandler.getNormalStrokeWidth();
     }
 
     public RoundTextView setNormalStrokeWidth(int normalStrokeWidth) {
-        textViewHandler.normalStrokeWidth = normalStrokeWidth;
+        textViewHandler.setNormalStrokeWidth(normalStrokeWidth);
         return this;
     }
 
     public int getPressedStrokeWidth() {
-        return textViewHandler.pressedStrokeWidth;
+        return textViewHandler.getPressedStrokeWidth();
     }
 
     public RoundTextView setPressedStrokeWidth(int pressedStrokeWidth) {
-        textViewHandler.pressedStrokeWidth = pressedStrokeWidth;
+        textViewHandler.setPressedStrokeWidth(pressedStrokeWidth);
         return this;
     }
 
     public int getDisabledStrokeWidth() {
-        return textViewHandler.disabledStrokeWidth;
+        return textViewHandler.getDisabledStrokeWidth();
     }
 
     public RoundTextView setDisabledStrokeWidth(int disabledStrokeWidth) {
-        textViewHandler.disabledStrokeWidth = disabledStrokeWidth;
+        textViewHandler.setDisabledStrokeWidth(disabledStrokeWidth);
         return this;
     }
 
     public int getSelectedStrokeColor() {
-        return textViewHandler.selectedStrokeColor;
+        return textViewHandler.getSelectedStrokeColor();
     }
 
     public int getSelectedStrokeWidth() {
-        return textViewHandler.selectedStrokeWidth;
+        return textViewHandler.getSelectedStrokeWidth();
     }
 
     public RoundTextView setSelectedStrokeWidth(int selectedStrokeWidth) {
-        textViewHandler.selectedStrokeWidth = selectedStrokeWidth;
+        textViewHandler.setSelectedStrokeWidth(selectedStrokeWidth);
         return this;
     }
 
     public int getSelectedFillColor() {
-        return textViewHandler.selectedFillColor;
+        return textViewHandler.getSelectedFillColor();
     }
 }
