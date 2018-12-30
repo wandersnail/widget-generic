@@ -97,7 +97,7 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
         }
     }
 
-    fun setOnSelectListener(listener: OnSelectListener) {
+    fun setOnSelectListener(listener: OnSelectListener?) {
         selectListener = listener
     }
 

@@ -79,16 +79,10 @@ class CircleImageView : android.support.v7.widget.AppCompatImageView {
         }
 
     /**
-     * Return the color drawn behind the circle-shaped drawable.
-     *
-     * @return The color drawn behind the drawable
-     *
-     */
-    /**
      * Set a color to be drawn behind the circle-shaped drawable. Note that
      * this has no effect if the drawable is opaque or no drawable is set.
      *
-     * @param fillColor The color to be drawn behind the drawable
+     * The color to be drawn behind the drawable
      *
      */
     var fillColor: Int

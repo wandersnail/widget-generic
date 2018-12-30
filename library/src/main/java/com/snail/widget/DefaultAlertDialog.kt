@@ -23,21 +23,21 @@ import android.widget.TextView
  * 作者: zengfansheng
  */
 class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dialog_default_alert), View.OnClickListener {
-    private var tvTitle: TextView? = null
-    private var tvMsg: TextView? = null
-    private var tvSubMsg: TextView? = null
-    private var tvNegative: TextView? = null
-    private var verticalDivider: View? = null
-    private var horizontalDivider: View? = null
-    private var titleDivider: View? = null
-    private var layoutText: LinearLayout? = null
-    private var layoutContent: FrameLayout? = null
-    private var tvPositive: TextView? = null
+    private var tvTitle: TextView = view.findViewById(R.id.tvTitle)
+    private var tvMsg: TextView = view.findViewById(R.id.tvMsg)
+    private var tvSubMsg: TextView = view.findViewById(R.id.tvSubMsg)
+    private var tvNegative: TextView = view.findViewById(R.id.tvNegative)
+    private var verticalDivider: View = view.findViewById(R.id.verticalDivider)
+    private var horizontalDivider: View = view.findViewById(R.id.horizontalDivider)
+    private var titleDivider: View = view.findViewById(R.id.titleDivider)
+    private var layoutText: LinearLayout = view.findViewById(R.id.layoutText)
+    private var layoutContent: FrameLayout = view.findViewById(R.id.layoutContent)
+    private var tvPositive: TextView = view.findViewById(R.id.tvPositive)
     private var negativeListener: View.OnClickListener? = null
     private var positiveListener: View.OnClickListener? = null
     private var autoDismiss: Boolean = false
     private var autoDismissDelayMillis = 1500
-    private var handler: Handler? = null
+    private var handler = Handler(Looper.getMainLooper())
     private var negativeVisible: Boolean = false //消极按钮，左
     private var positiveVisible: Boolean = false //积极按钮，右
     private var cornerRadii: Int = 0
@@ -48,18 +48,8 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
     private val dismissRunnable = Runnable { dismiss() }
 
     private fun initViews() {
-        tvTitle = view.findViewById(R.id.tvTitle)
-        tvMsg = view.findViewById(R.id.tvMsg)
-        tvSubMsg = view.findViewById(R.id.tvSubMsg)
-        tvNegative = view.findViewById(R.id.tvNegative)
-        verticalDivider = view.findViewById(R.id.verticalDivider)
-        horizontalDivider = view.findViewById(R.id.horizontalDivider)
-        layoutText = view.findViewById(R.id.layoutText)
-        layoutContent = view.findViewById(R.id.layoutContent)
-        titleDivider = view.findViewById(R.id.titleDivider)
-        tvPositive = view.findViewById(R.id.tvPositive)
-        tvNegative!!.setOnClickListener(this)
-        tvPositive!!.setOnClickListener(this)
+        tvNegative.setOnClickListener(this)
+        tvPositive.setOnClickListener(this)
         cornerRadii = Utils.dp2px(context, 8f).toInt()
         setBackgroundColor(backColor)
         setTitleBackgroundColor(titleBackColor)
@@ -68,21 +58,16 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
 
     init {
         initViews()
-        init()
-    }
-
-    private fun init() {
         val width = (Math.min(Utils.getDisplayScreenWidth(context), Utils.getDisplayScreenHeight(context)) * 0.8).toInt()
         setSize(width, ViewGroup.LayoutParams.WRAP_CONTENT)
-        setOnDismissListener(DialogInterface.OnDismissListener { handler!!.removeCallbacks(dismissRunnable) })
-        handler = Handler(Looper.getMainLooper())
+        setOnDismissListener(DialogInterface.OnDismissListener { handler.removeCallbacks(dismissRunnable) })
     }
 
     override fun show(): DefaultAlertDialog {
         super.show()
         if (autoDismiss) {
-            handler!!.removeCallbacks(dismissRunnable)
-            handler!!.postDelayed(dismissRunnable, autoDismissDelayMillis.toLong())
+            handler.removeCallbacks(dismissRunnable)
+            handler.postDelayed(dismissRunnable, autoDismissDelayMillis.toLong())
         }
         return this
     }
@@ -92,35 +77,31 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
             dismiss()
         }
         if (tvNegative == v) {
-            if (negativeListener != null) {
-                negativeListener!!.onClick(v)
-            }
+            negativeListener?.onClick(v)
         } else if (tvPositive == v) {
-            if (positiveListener != null) {
-                positiveListener!!.onClick(v)
-            }
+            positiveListener?.onClick(v)
         }
     }
 
     private fun updateButtonVisible() {
-        tvPositive!!.visibility = if (positiveVisible) View.VISIBLE else View.GONE
-        tvNegative!!.visibility = if (negativeVisible) View.VISIBLE else View.GONE
-        horizontalDivider!!.visibility = if (negativeVisible || positiveVisible) View.VISIBLE else View.GONE
-        verticalDivider!!.visibility = if (negativeVisible && positiveVisible) View.VISIBLE else View.GONE
+        tvPositive.visibility = if (positiveVisible) View.VISIBLE else View.GONE
+        tvNegative.visibility = if (negativeVisible) View.VISIBLE else View.GONE
+        horizontalDivider.visibility = if (negativeVisible || positiveVisible) View.VISIBLE else View.GONE
+        verticalDivider.visibility = if (negativeVisible && positiveVisible) View.VISIBLE else View.GONE
         updateButtonBackground()
     }
 
     private fun updateButtonBackground() {
         if (negativeVisible && positiveVisible) {
-            tvNegative!!.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
+            tvNegative.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
                     cornerRadii.toFloat(), false, false, true, false)
-            tvPositive!!.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
+            tvPositive.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
                     cornerRadii.toFloat(), false, false, false, true)
         } else if (negativeVisible) {
-            tvNegative!!.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
+            tvNegative.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
                     cornerRadii.toFloat(), false, false, true, true)
         } else if (positiveVisible) {
-            tvPositive!!.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
+            tvPositive.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
                     cornerRadii.toFloat(), false, false, true, true)
         }
     }
@@ -178,43 +159,43 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
         return this
     }
 
-    fun setTitle(text: CharSequence): DefaultAlertDialog {
-        tvTitle!!.visibility = if (TextUtils.isEmpty(text)) View.GONE else View.VISIBLE
-        titleDivider!!.visibility = if (TextUtils.isEmpty(text)) View.GONE else View.VISIBLE
-        tvTitle!!.text = text
+    fun setTitle(text: CharSequence?): DefaultAlertDialog {
+        tvTitle.visibility = if (TextUtils.isEmpty(text)) View.GONE else View.VISIBLE
+        titleDivider.visibility = if (TextUtils.isEmpty(text)) View.GONE else View.VISIBLE
+        tvTitle.text = text
         return this
     }
 
     fun setTitle(resId: Int): DefaultAlertDialog {
-        tvTitle!!.visibility = if (resId > 0) View.VISIBLE else View.GONE
-        titleDivider!!.visibility = if (resId > 0) View.VISIBLE else View.GONE
-        tvTitle!!.setText(resId)
+        tvTitle.visibility = if (resId > 0) View.VISIBLE else View.GONE
+        titleDivider.visibility = if (resId > 0) View.VISIBLE else View.GONE
+        tvTitle.setText(resId)
         return this
     }
 
     fun setTitleTextColor(@ColorInt color: Int): DefaultAlertDialog {
-        tvTitle!!.setTextColor(color)
+        tvTitle.setTextColor(color)
         return this
     }
 
-    fun setTitleTypeface(tf: Typeface): DefaultAlertDialog {
-        tvTitle!!.typeface = tf
+    fun setTitleTypeface(tf: Typeface?): DefaultAlertDialog {
+        tvTitle.typeface = tf
         return this
     }
 
     fun setTitleTextSize(unit: Int, size: Float): DefaultAlertDialog {
-        tvTitle!!.setTextSize(unit, size)
+        tvTitle.setTextSize(unit, size)
         return this
     }
 
     fun setTitleBackgroundColor(@ColorInt color: Int): DefaultAlertDialog {
         titleBackColor = color
-        tvTitle!!.background = Utils.createDrawable(color, cornerRadii.toFloat(), true, true, false, false)
+        tvTitle.background = Utils.createDrawable(color, cornerRadii.toFloat(), true, true, false, false)
         return this
     }
 
     fun setTitleDividerColor(@ColorInt color: Int): DefaultAlertDialog {
-        titleDivider!!.setBackgroundColor(color)
+        titleDivider.setBackgroundColor(color)
         return this
     }
 
@@ -223,165 +204,165 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
      * @param height 高度，像素
      */
     fun setTitleDividerHeight(height: Int): DefaultAlertDialog {
-        val params = titleDivider!!.layoutParams
+        val params = titleDivider.layoutParams
         params.height = height
-        titleDivider!!.layoutParams = params
+        titleDivider.layoutParams = params
         return this
     }
 
     fun setContentViewPadding(left: Int, top: Int, right: Int, bottom: Int): DefaultAlertDialog {
-        layoutContent!!.setPadding(left, top, right, bottom)
+        layoutContent.setPadding(left, top, right, bottom)
         return this
     }
 
     fun setContentView(view: View): DefaultAlertDialog {
-        layoutContent!!.removeAllViews()
-        layoutContent!!.addView(view)
+        layoutContent.removeAllViews()
+        layoutContent.addView(view)
         return this
     }
 
     fun setContentView(view: View, params: ViewGroup.LayoutParams): DefaultAlertDialog {
-        layoutContent!!.removeAllViews()
-        layoutContent!!.addView(view, params)
+        layoutContent.removeAllViews()
+        layoutContent.addView(view, params)
         return this
     }
 
-    fun setMessage(text: CharSequence): DefaultAlertDialog {
-        tvMsg!!.text = text
+    fun setMessage(text: CharSequence?): DefaultAlertDialog {
+        tvMsg.text = text
         return this
     }
 
     fun setMessage(@StringRes resId: Int): DefaultAlertDialog {
-        tvMsg!!.setText(resId)
+        tvMsg.setText(resId)
         return this
     }
 
     fun setMessageTextColor(@ColorInt color: Int): DefaultAlertDialog {
-        tvMsg!!.setTextColor(color)
+        tvMsg.setTextColor(color)
         return this
     }
 
-    fun setMessageTypeface(tf: Typeface): DefaultAlertDialog {
-        tvMsg!!.typeface = tf
+    fun setMessageTypeface(tf: Typeface?): DefaultAlertDialog {
+        tvMsg.typeface = tf
         return this
     }
 
     fun setMessageTextSize(unit: Int, size: Float): DefaultAlertDialog {
-        tvMsg!!.setTextSize(unit, size)
+        tvMsg.setTextSize(unit, size)
         return this
     }
 
-    fun setSubMessage(text: CharSequence): DefaultAlertDialog {
-        tvSubMsg!!.visibility = if (TextUtils.isEmpty(text)) View.GONE else View.VISIBLE
-        tvSubMsg!!.text = text
+    fun setSubMessage(text: CharSequence?): DefaultAlertDialog {
+        tvSubMsg.visibility = if (TextUtils.isEmpty(text)) View.GONE else View.VISIBLE
+        tvSubMsg.text = text
         return this
     }
 
     fun setSubMessage(resId: Int): DefaultAlertDialog {
-        tvSubMsg!!.visibility = if (resId > 0) View.VISIBLE else View.GONE
-        tvSubMsg!!.setText(resId)
+        tvSubMsg.visibility = if (resId > 0) View.VISIBLE else View.GONE
+        tvSubMsg.setText(resId)
         return this
     }
 
     fun setSubMessageTextColor(@ColorInt color: Int): DefaultAlertDialog {
-        tvSubMsg!!.setTextColor(color)
+        tvSubMsg.setTextColor(color)
         return this
     }
 
-    fun setSubMessageTypeface(tf: Typeface): DefaultAlertDialog {
-        tvSubMsg!!.typeface = tf
+    fun setSubMessageTypeface(tf: Typeface?): DefaultAlertDialog {
+        tvSubMsg.typeface = tf
         return this
     }
 
     fun setSubMessageTextSize(unit: Int, size: Float): DefaultAlertDialog {
-        tvSubMsg!!.setTextSize(unit, size)
+        tvSubMsg.setTextSize(unit, size)
         return this
     }
 
     fun setTextGravity(gravity: Int): DefaultAlertDialog {
-        layoutText!!.gravity = gravity
+        layoutText.gravity = gravity
         return this
     }
 
-    fun setNegativeButtonTypeface(tf: Typeface): DefaultAlertDialog {
-        tvNegative!!.typeface = tf
+    fun setNegativeButtonTypeface(tf: Typeface?): DefaultAlertDialog {
+        tvNegative.typeface = tf
         return this
     }
 
-    fun setNegativeButton(@StringRes resId: Int, listener: View.OnClickListener): DefaultAlertDialog {
+    fun setNegativeButton(@StringRes resId: Int, listener: View.OnClickListener?): DefaultAlertDialog {
         negativeVisible = true
-        tvNegative!!.setText(resId)
+        tvNegative.setText(resId)
         negativeListener = listener
         updateButtonVisible()
         return this
     }
 
-    fun setNegativeButton(text: CharSequence, listener: View.OnClickListener): DefaultAlertDialog {
+    fun setNegativeButton(text: CharSequence?, listener: View.OnClickListener?): DefaultAlertDialog {
         negativeVisible = true
-        tvNegative!!.text = text
+        tvNegative.text = text
         negativeListener = listener
         updateButtonVisible()
         return this
     }
 
     fun setNegativeButtonTextColor(@ColorInt color: Int): DefaultAlertDialog {
-        tvNegative!!.setTextColor(color)
+        tvNegative.setTextColor(color)
         return this
     }
 
     fun setNegativeButtonTextColor(normal: Int, pressed: Int): DefaultAlertDialog {
-        tvNegative!!.setTextColor(getColorStateList(normal, pressed))
+        tvNegative.setTextColor(getColorStateList(normal, pressed))
         return this
     }
 
     fun setNegativeButtonTextColor(normal: Int, pressed: Int, disabled: Int): DefaultAlertDialog {
-        tvNegative!!.setTextColor(getColorStateList(normal, pressed, disabled))
+        tvNegative.setTextColor(getColorStateList(normal, pressed, disabled))
         return this
     }
 
     fun setNegativeButtonTextSize(unit: Int, size: Float): DefaultAlertDialog {
-        tvNegative!!.setTextSize(unit, size)
+        tvNegative.setTextSize(unit, size)
         return this
     }
 
-    fun setPositiveButton(text: CharSequence, listener: View.OnClickListener): DefaultAlertDialog {
+    fun setPositiveButton(text: CharSequence?, listener: View.OnClickListener?): DefaultAlertDialog {
         positiveVisible = true
-        tvPositive!!.text = text
+        tvPositive.text = text
         positiveListener = listener
         updateButtonVisible()
         return this
     }
 
-    fun setPositiveButton(@StringRes resId: Int, listener: View.OnClickListener): DefaultAlertDialog {
+    fun setPositiveButton(@StringRes resId: Int, listener: View.OnClickListener?): DefaultAlertDialog {
         positiveVisible = true
-        tvPositive!!.setText(resId)
+        tvPositive.setText(resId)
         positiveListener = listener
         updateButtonVisible()
         return this
     }
 
     fun setPositiveButtonTextColor(@ColorInt color: Int): DefaultAlertDialog {
-        tvPositive!!.setTextColor(color)
+        tvPositive.setTextColor(color)
         return this
     }
 
     fun setPositiveButtonTextColor(normal: Int, pressed: Int): DefaultAlertDialog {
-        tvPositive!!.setTextColor(getColorStateList(normal, pressed))
+        tvPositive.setTextColor(getColorStateList(normal, pressed))
         return this
     }
 
     fun setsetPositiveButtonTextColor(normal: Int, pressed: Int, disabled: Int): DefaultAlertDialog {
-        tvPositive!!.setTextColor(getColorStateList(normal, pressed, disabled))
+        tvPositive.setTextColor(getColorStateList(normal, pressed, disabled))
         return this
     }
 
     fun setPositiveButtonTextSize(unit: Int, size: Float): DefaultAlertDialog {
-        tvPositive!!.setTextSize(unit, size)
+        tvPositive.setTextSize(unit, size)
         return this
     }
 
-    fun setPositiveButtonTypeface(tf: Typeface): DefaultAlertDialog {
-        tvPositive!!.typeface = tf
+    fun setPositiveButtonTypeface(tf: Typeface?): DefaultAlertDialog {
+        tvPositive.typeface = tf
         return this
     }
 

@@ -56,7 +56,7 @@ class ScaleValuePicker @JvmOverloads constructor(context: Context, attrs: Attrib
     /**
      * 数值变化回调
      */
-    fun setOnValueUpdateCallback(updateCallback: OnValueUpdateCallback) {
+    fun setOnValueUpdateCallback(updateCallback: OnValueUpdateCallback?) {
         this.updateCallback = updateCallback
     }
 

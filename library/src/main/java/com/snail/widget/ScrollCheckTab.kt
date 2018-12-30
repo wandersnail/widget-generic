@@ -64,7 +64,7 @@ class ScrollCheckTab(context: Context, attrs: AttributeSet?) : View(context, att
         invalidate()
     }
 
-    fun setOnCheckChangeListener(listener: OnCheckChangeListener) {
+    fun setOnCheckChangeListener(listener: OnCheckChangeListener?) {
         this.listener = listener
     }
 

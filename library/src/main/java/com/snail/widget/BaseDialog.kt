@@ -18,17 +18,12 @@ import android.view.WindowManager
  * Created by zeng on 2016/12/4.
  */
 
-open class BaseDialog : DialogInterface {
-    protected lateinit var dialog: MyDialog
-    protected var window: Window? = null
-    lateinit var view: View
-        protected set
+open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view: View, @StyleRes themeResId: Int = 0) : DialogInterface {
+    protected var dialog = MyDialog(activity, themeResId)
+    protected var window: Window? = dialog.window
 
     val context: Context
         get() = dialog.context
-
-    val activity: Activity?
-        get() = dialog.ownerActivity
 
     private val isDestroyed: Boolean
         get() {
@@ -42,30 +37,17 @@ open class BaseDialog : DialogInterface {
     val attributes: WindowManager.LayoutParams
         get() = window!!.attributes
 
-    constructor(activity: Activity, view: View) {
-        init(activity, view, 0)
-    }
+    constructor(activity: Activity, @LayoutRes redId: Int) : this(activity, View.inflate(activity, redId, null))
 
-    constructor(activity: Activity, @LayoutRes redId: Int) {
-        init(activity, View.inflate(activity, redId, null), 0)
-    }
-
-    constructor(activity: Activity, view: View, @StyleRes themeResId: Int) {
-        init(activity, view, themeResId)
-    }
-
-    private fun init(activity: Activity, view: View, @StyleRes themeResId: Int) {
-        this.view = view
-        dialog = MyDialog(activity, themeResId)
+    init {
         dialog.ownerActivity = activity
-        window = dialog.window
         window!!.requestFeature(Window.FEATURE_NO_TITLE)
         window!!.decorView.setPadding(0, 0, 0, 0)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(view)
     }
 
-    fun <T : View> findViewById(@IdRes id: Int): T {
+    fun <T : View> findViewById(@IdRes id: Int): T? {
         return view.findViewById(id)
     }
 
@@ -74,12 +56,12 @@ open class BaseDialog : DialogInterface {
         return this
     }
 
-    open fun setOnCancelListener(listener: DialogInterface.OnCancelListener): BaseDialog {
+    open fun setOnCancelListener(listener: DialogInterface.OnCancelListener?): BaseDialog {
         dialog.setOnCancelListener(listener)
         return this
     }
 
-    open fun setOnDismissListener(listener: DialogInterface.OnDismissListener): BaseDialog {
+    open fun setOnDismissListener(listener: DialogInterface.OnDismissListener?): BaseDialog {
         dialog.setOnDismissListener(listener)
         return this
     }
@@ -115,7 +97,7 @@ open class BaseDialog : DialogInterface {
     /**
      * 设置返回键按下监听
      */
-    open fun setOnBackPressedListener(listener: OnBackPressedListener): BaseDialog {
+    open fun setOnBackPressedListener(listener: OnBackPressedListener?): BaseDialog {
         dialog.setOnBackPressedListener(listener)
         return this
     }
@@ -196,12 +178,10 @@ open class BaseDialog : DialogInterface {
 
         override fun onBackPressed() {
             super.onBackPressed()
-            if (backPressedListener != null) {
-                backPressedListener!!.onBackPressed()
-            }
+            backPressedListener?.onBackPressed()
         }
 
-        internal fun setOnBackPressedListener(backPressedListener: OnBackPressedListener) {
+        internal fun setOnBackPressedListener(backPressedListener: OnBackPressedListener?) {
             this.backPressedListener = backPressedListener
         }
     }

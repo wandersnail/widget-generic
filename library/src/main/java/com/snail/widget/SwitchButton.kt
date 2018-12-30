@@ -342,10 +342,10 @@ class SwitchButton : CompoundButton {
             } catch (ignored: Exception) {
             }
 
-            if (found) {
-                mTintColor = typedValue.data
+            mTintColor = if (found) {
+                typedValue.data
             } else {
-                mTintColor = DEFAULT_TINT_COLOR
+                DEFAULT_TINT_COLOR
             }
         }
         if (!mIsThumbUseDrawable && mThumbColor == null) {

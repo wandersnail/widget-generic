@@ -339,10 +339,7 @@ class NumberProgressBar @JvmOverloads constructor(context: Context, attrs: Attri
         if (by > 0) {
             progress += by
         }
-
-        if (mListener != null) {
-            mListener!!.onProgressChange(progress, max)
-        }
+        mListener?.onProgressChange(progress, max)
     }
 
     /**
@@ -389,7 +386,7 @@ class NumberProgressBar @JvmOverloads constructor(context: Context, attrs: Attri
         super.onRestoreInstanceState(state)
     }
 
-    fun setOnProgressBarListener(listener: OnProgressBarListener) {
+    fun setOnProgressBarListener(listener: OnProgressBarListener?) {
         mListener = listener
     }
 
