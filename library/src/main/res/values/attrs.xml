@@ -46,6 +46,7 @@
         <attr name="rtvDisabledStrokeWidth" format="reference|dimension" />
         <attr name="rtvDisabledTextColor" format="reference|color" />
         <attr name="rtvDisabledFillColor" format="reference|color" />
+        <attr name="rtvRippleColor" format="reference|color" />
     </declare-styleable>
 
     <!-- 圆角背景按钮-->
@@ -69,6 +70,7 @@
         <attr name="rbDisabledStrokeWidth" format="reference|dimension" />
         <attr name="rbDisabledTextColor" format="reference|color" />
         <attr name="rbDisabledFillColor" format="reference|color" />
+        <attr name="rbRippleColor" format="reference|color" />
     </declare-styleable>
     
     <!-- 圆形图片 -->
@@ -139,5 +141,10 @@
             <enum name="SOLID" value="0"/>
             <enum name="GRADIENT" value="1"/>
         </attr>
+    </declare-styleable>
+    
+    <!-- 可旋转TextView -->
+    <declare-styleable name="RotatableTextView">
+        <attr name="rtvDegree" format="float"/>
     </declare-styleable>
 </resources>

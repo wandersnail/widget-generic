@@ -15,8 +15,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.snail.commons.utils.ImageUtils
-import com.snail.commons.utils.UiUtils
 
 
 /**
@@ -62,7 +60,7 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
         tvPositive = view.findViewById(R.id.tvPositive)
         tvNegative!!.setOnClickListener(this)
         tvPositive!!.setOnClickListener(this)
-        cornerRadii = UiUtils.dip2px(8f)
+        cornerRadii = Utils.dp2px(context, 8f).toInt()
         setBackgroundColor(backColor)
         setTitleBackgroundColor(titleBackColor)
         updateButtonVisible()
@@ -74,7 +72,7 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
     }
 
     private fun init() {
-        val width = (Math.min(UiUtils.getDisplayScreenWidth(), UiUtils.getDisplayScreenHeight()) * 0.8).toInt()
+        val width = (Math.min(Utils.getDisplayScreenWidth(context), Utils.getDisplayScreenHeight(context)) * 0.8).toInt()
         setSize(width, ViewGroup.LayoutParams.WRAP_CONTENT)
         setOnDismissListener(DialogInterface.OnDismissListener { handler!!.removeCallbacks(dismissRunnable) })
         handler = Handler(Looper.getMainLooper())
@@ -114,15 +112,15 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
 
     private fun updateButtonBackground() {
         if (negativeVisible && positiveVisible) {
-            tvNegative!!.background = ImageUtils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
+            tvNegative!!.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
                     cornerRadii.toFloat(), false, false, true, false)
-            tvPositive!!.background = ImageUtils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
+            tvPositive!!.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
                     cornerRadii.toFloat(), false, false, false, true)
         } else if (negativeVisible) {
-            tvNegative!!.background = ImageUtils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
+            tvNegative!!.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
                     cornerRadii.toFloat(), false, false, true, true)
         } else if (positiveVisible) {
-            tvPositive!!.background = ImageUtils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
+            tvPositive!!.background = Utils.createDrawableSelecor(Color.TRANSPARENT, 0x11000000,
                     cornerRadii.toFloat(), false, false, true, true)
         }
     }
@@ -159,7 +157,7 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
 
     fun setBackgroundColor(@ColorInt color: Int): DefaultAlertDialog {
         backColor = color
-        view.background = ImageUtils.createDrawable(color, cornerRadii.toFloat(), true, true, true, true)
+        view.background = Utils.createDrawable(color, cornerRadii.toFloat(), true, true, true, true)
         return this
     }
 
@@ -211,7 +209,7 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
 
     fun setTitleBackgroundColor(@ColorInt color: Int): DefaultAlertDialog {
         titleBackColor = color
-        tvTitle!!.background = ImageUtils.createDrawable(color, cornerRadii.toFloat(), true, true, false, false)
+        tvTitle!!.background = Utils.createDrawable(color, cornerRadii.toFloat(), true, true, false, false)
         return this
     }
 

@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val data = arrayListOf("倾斜TextView", "设置静态IP", "md5和sha1算法", "系统分享", "网络及位置服务状态", "解压缩")
-        val clsArr = arrayListOf()
+        val data = arrayListOf("倾斜TextView")
+        val clsArr = arrayListOf(RotatableTextViewActivity::class.java)
         lv.adapter = object : BaseListAdapter<String>(this, data) {
             override fun getHolder(position: Int): BaseHolder<String> {
                 return object : BaseHolder<String>() {
@@ -50,11 +50,13 @@ class MainActivity : AppCompatActivity() {
         list.add(Manifest.permission.ACCESS_FINE_LOCATION)
         list.add(Manifest.permission.ACCESS_NETWORK_STATE)
         requester?.check(list)
-        requester?.setOnRequestResultListener { 
-            if (!it.isEmpty()) {
-                ToastUtils.showShort("部分权限被拒绝，可能造成某些功能无法使用")
+        requester?.setOnRequestResultListener(object : PermissionsRequester.OnRequestResultListener {
+            override fun onRequestResult(refusedPermissions: List<String>) {
+                if (!refusedPermissions.isEmpty()) {
+                    ToastUtils.showShort("部分权限被拒绝，可能造成某些功能无法使用")
+                }
             }
-        }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

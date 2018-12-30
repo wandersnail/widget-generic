@@ -16,12 +16,8 @@ class LongPressView @JvmOverloads constructor(context: Context, attrs: Attribute
     private var mLastMotionX: Int = 0
     private var mLastMotionY: Int = 0
     private var longPressDuration: Long = 2000 //长按事件触发时长
-    private val longPressRunnable: LongPressRunnable
+    private val longPressRunnable = LongPressRunnable()
     private var isMoved: Boolean = false
-
-    init {
-        longPressRunnable = LongPressRunnable()
-    }
 
     /**
      * @param duration 长按事件触发时长

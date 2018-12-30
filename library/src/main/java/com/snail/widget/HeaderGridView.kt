@@ -234,7 +234,7 @@ class HeaderGridView : GridView {
             }
             // Adapter
             val adjPosition = position - numHeadersAndPlaceholders
-            var adapterCount = 0
+            val adapterCount: Int
             if (mAdapter != null) {
                 adapterCount = mAdapter.count
                 if (adjPosition < adapterCount) {
@@ -249,12 +249,12 @@ class HeaderGridView : GridView {
             val numHeadersAndPlaceholders = headersCount * mNumColumns
             if (position < numHeadersAndPlaceholders) {
                 return if (position % mNumColumns == 0) {
-                    mHeaderViewInfos.get(position / mNumColumns).data
+                    mHeaderViewInfos[position / mNumColumns].data
                 } else null
             }
             // Adapter
             val adjPosition = position - numHeadersAndPlaceholders
-            var adapterCount = 0
+            val adapterCount: Int
             if (mAdapter != null) {
                 adapterCount = mAdapter.count
                 if (adjPosition < adapterCount) {
@@ -301,7 +301,7 @@ class HeaderGridView : GridView {
             }
             // Adapter
             val adjPosition = position - numHeadersAndPlaceholders
-            var adapterCount = 0
+            val adapterCount: Int
             if (mAdapter != null) {
                 adapterCount = mAdapter.count
                 if (adjPosition < adapterCount) {

@@ -9,13 +9,12 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
-import com.snail.commons.utils.UiUtils
 import java.text.DecimalFormat
 
 /**
  * Created by daimajia on 14-4-30.
  */
-class NumberProgressBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr) {
+class NumberProgressBar @JvmOverloads constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr) {
 
     var max = 100
         set(maxProgress) {
@@ -187,15 +186,13 @@ class NumberProgressBar @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     init {
-
-        val defaultReachedBarHeight = UiUtils.dip2px(1.5f)
-        val defaultUnreachedBarHeight = UiUtils.dip2px(1.0f)
-        val defaultTextSize = UiUtils.dip2px(10f)
-        val defaultProgressTextOffset = UiUtils.dip2px(3.0f)
+        val defaultReachedBarHeight = Utils.dp2px(context, 1.5f)
+        val defaultUnreachedBarHeight = Utils.dp2px(context, 1.0f)
+        val defaultTextSize = Utils.dp2px(context, 10f)
+        val defaultProgressTextOffset = Utils.dp2px(context, 3.0f)
 
         //load styled attributes.
-        val attributes = context.theme.obtainStyledAttributes(attrs, R.styleable.NumberProgressBar,
-                defStyleAttr, 0)
+        val attributes = context.theme.obtainStyledAttributes(attrs, R.styleable.NumberProgressBar, defStyleAttr, 0)
 
         mReachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_npbReachedColor, DEFAULT_REACHED_COLOR)
         mUnreachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_npbUnreachedColor, DEFAULT_UNREACHED_COLOR)
