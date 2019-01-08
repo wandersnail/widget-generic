@@ -1097,7 +1097,7 @@ class SwitchButton : CompoundButton {
 
         fun generateBackColor(color: Int): ColorStateList {
             val states = arrayOf(intArrayOf(-SwitchButton.ENABLE_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.ENABLE_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, -SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.CHECKED_ATTR))
-            val colors = intArrayOf(color or -0x67000000, -0x333334, -0x333334, color or -0x1000000, color or -0x1000000, -0x333334)
+            val colors = intArrayOf(color and -0x66000001, -0x333334, -0x333334, color and -0x22000001, color and -0x22000001, -0x333334)
             return ColorStateList(states, colors)
         }
         
