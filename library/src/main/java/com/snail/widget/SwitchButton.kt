@@ -1095,17 +1095,27 @@ class SwitchButton : CompoundButton {
                 return ColorStateList(states, colors)
             }
 
-        //改变此处各状态颜色，可以改变滑动块颜色
+        fun generateBackColor(color: Int): ColorStateList {
+            val states = arrayOf(intArrayOf(-SwitchButton.ENABLE_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.ENABLE_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, -SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.CHECKED_ATTR))
+            val colors = intArrayOf(color or -0x67000000, -0x333334, -0x333334, color or -0x1000000, color or -0x1000000, -0x333334)
+            return ColorStateList(states, colors)
+        }
+        
+        /**
+         * 改变此处各状态颜色，可以改变滑动块颜色
+         */
         fun generateThumbColorWithTintColor(tintColor: Int): ColorStateList {
             val states = arrayOf(intArrayOf(-ENABLE_ATTR, CHECKED_ATTR), intArrayOf(-ENABLE_ATTR), intArrayOf(PRESSED_ATTR, -CHECKED_ATTR), intArrayOf(PRESSED_ATTR, CHECKED_ATTR), intArrayOf(CHECKED_ATTR), intArrayOf(-CHECKED_ATTR))
             val colors = intArrayOf(tintColor - -0x56000000, -0x454546, tintColor - -0x67000000, tintColor - -0x67000000, tintColor or -0x1000000, -0x111112)
             return ColorStateList(states, colors)
         }
 
-        //改变此处各状态颜色，可以改变背景颜色
+        /**
+         * 改变此处各状态颜色，可以改变背景颜色
+         */
         fun generateBackColorWithTintColor(tintColor: Int): ColorStateList {
             val states = arrayOf(intArrayOf(-ENABLE_ATTR, CHECKED_ATTR), intArrayOf(-ENABLE_ATTR), intArrayOf(CHECKED_ATTR, PRESSED_ATTR), intArrayOf(-CHECKED_ATTR, PRESSED_ATTR), intArrayOf(CHECKED_ATTR), intArrayOf(-CHECKED_ATTR))
-            val colors = intArrayOf(tintColor - -0x1f000000, 0x10000000, tintColor - -0x30000000, 0x20000000, tintColor - -0x30000000, 0x20000000)
+            val colors = intArrayOf(tintColor and 0x20ffffff, 0x10000000, tintColor and 0x60ffffff, 0x20000000, tintColor and 0x60ffffff, 0x20000000)
             return ColorStateList(states, colors)
         }
     }
