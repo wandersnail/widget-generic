@@ -35,7 +35,7 @@
         app:rbRippleColor="#8000"
         app:rbCornerRadius="4dp"
         app:rbNormalFillColor="@color/colorPrimary"
-        app:rbPressedFillColor="#00998A"
+        app:rbPressedFillColor="@color/colorPrimary"
         app:layout_constraintTop_toBottomOf="@id/et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

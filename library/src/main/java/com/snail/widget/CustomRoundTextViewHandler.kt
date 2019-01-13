@@ -2,6 +2,7 @@ package com.snail.widget
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Build
 import android.view.View
@@ -53,12 +54,14 @@ internal class CustomRoundTextViewHandler<T : TextView>(private val textView: T)
     
     //修改了参数后，调用此方法生效
     fun updateBackground() {
-        textView.background = Utils.createStateListDrawable(Utils.createDrawable(normalFillColor, if (normalStrokeWidth == -1) strokeWidth else normalStrokeWidth, normalStrokeColor, cornerRadius),
+        val drawable: Drawable = Utils.createStateListDrawable(Utils.createDrawable(normalFillColor, if (normalStrokeWidth == -1) strokeWidth else normalStrokeWidth, normalStrokeColor, cornerRadius),
                 Utils.createDrawable(pressedFillColor, if (pressedStrokeWidth == -1) strokeWidth else pressedStrokeWidth, pressedStrokeColor, cornerRadius),
                 Utils.createDrawable(selectedFillColor, if (selectedStrokeWidth == -1) strokeWidth else selectedStrokeWidth, selectedStrokeColor, cornerRadius),
                 Utils.createDrawable(disabledFillColor, if (disabledStrokeWidth == -1) strokeWidth else disabledStrokeWidth, disabledStrokeColor, cornerRadius))
         if (rippleColor != Color.TRANSPARENT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            textView.background = RippleDrawable(ColorStateList.valueOf(rippleColor), textView.background, textView.background)
+            textView.background = RippleDrawable(ColorStateList.valueOf(rippleColor), drawable, null)
+        } else {
+            textView.background = drawable
         }
     }
 
