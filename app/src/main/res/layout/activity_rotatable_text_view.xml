@@ -7,6 +7,8 @@
 
     <ImageView
         android:id="@+id/ivFavor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/ic_favor"
         android:layout_width="60dp"
         android:layout_height="60dp"/>
