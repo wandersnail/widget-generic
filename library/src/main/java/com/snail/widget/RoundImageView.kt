@@ -9,7 +9,7 @@ import android.util.AttributeSet
  * 时间: 2018/9/10 22:09
  * 作者: zengfansheng
  */
-class RoundImageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : android.support.v7.widget.AppCompatImageView(context, attrs, defStyleAttr) {
+class RoundImageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr) {
     private val paint: Paint
     private var cornerRadius = 16
     private val paint2: Paint

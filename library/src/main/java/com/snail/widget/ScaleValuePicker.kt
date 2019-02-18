@@ -2,7 +2,7 @@ package com.snail.widget
 
 import android.content.Context
 import android.graphics.*
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View

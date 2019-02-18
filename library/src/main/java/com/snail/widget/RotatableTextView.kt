@@ -12,7 +12,7 @@ import android.view.Gravity
  * author: zengfansheng
  */
 class RotatableTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.textViewStyle) :
-        android.support.v7.widget.AppCompatTextView(context, attrs, defStyleAttr) {
+        androidx.appcompat.widget.AppCompatTextView(context, attrs, defStyleAttr) {
     var degree: Float = 0f
         set(value) {
             field = value

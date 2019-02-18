@@ -6,7 +6,7 @@ import android.util.AttributeSet
 /**
  * 圆角背景文字
  */
-class RoundTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet?, defStyle: Int = android.R.attr.textViewStyle) : android.support.v7.widget.AppCompatTextView(context, attrs, defStyle) {
+class RoundTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet?, defStyle: Int = android.R.attr.textViewStyle) : androidx.appcompat.widget.AppCompatTextView(context, attrs, defStyle) {
     private val textViewHandler: CustomRoundTextViewHandler<RoundTextView> = CustomRoundTextViewHandler(this)
 
     val cornerRadius: Int

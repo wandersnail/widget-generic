@@ -1,7 +1,7 @@
 package com.snail.widget
 
 import android.content.Context
-import android.support.v4.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.widget.AdapterView
@@ -11,7 +11,7 @@ import android.widget.AdapterView
  * 时间: 2018/6/8 09:20
  * 作者: zengfansheng
  */
-class PullRefreshLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : SwipeRefreshLayout(context, attrs) {
+class PullRefreshLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : androidx.swiperefreshlayout.widget.SwipeRefreshLayout(context, attrs) {
     private var lv: AdapterView<*>? = null
 
     private val isListViewNotAtTop: Boolean

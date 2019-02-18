@@ -1,7 +1,7 @@
 package cn.zfs.widgetdemo
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.snail.widget.SwitchButton
 import kotlinx.android.synthetic.main.activity_switch_button.*
 

@@ -7,8 +7,8 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Handler
 import android.os.Looper
-import android.support.annotation.ColorInt
-import android.support.annotation.StringRes
+import androidx.annotation.ColorInt
+import androidx.annotation.StringRes
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup

@@ -2,7 +2,7 @@ package com.snail.widget
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -13,7 +13,7 @@ import android.view.View
  * Created by zeng on 2016/4/9.
  * 带可清除的EditText
  */
-class ClearEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = android.R.attr.editTextStyle) : android.support.v7.widget.AppCompatEditText(context, attrs, defStyle), View.OnFocusChangeListener, TextWatcher {
+class ClearEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = android.R.attr.editTextStyle) : androidx.appcompat.widget.AppCompatEditText(context, attrs, defStyle), View.OnFocusChangeListener, TextWatcher {
     //EditText右侧的删除按钮  
     private var mClearDrawable: Drawable? = null
     private var hasFoucs: Boolean = false

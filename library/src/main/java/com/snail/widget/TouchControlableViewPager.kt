@@ -1,7 +1,7 @@
 package com.snail.widget
 
 import android.content.Context
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.animation.Interpolator
@@ -12,7 +12,7 @@ import android.widget.Scroller
  * Created by zengfs on 2016/2/2.
  * 可控制是否能滑动
  */
-class TouchControlableViewPager @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : ViewPager(context, attrs) {
+class TouchControlableViewPager @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : androidx.viewpager.widget.ViewPager(context, attrs) {
 
     private var isTouchEnabled = true
 
@@ -40,7 +40,7 @@ class TouchControlableViewPager @JvmOverloads constructor(context: Context, attr
     /**设置切换动画时长 */
     fun setScrollDuration(duration: Int) {
         try {
-            val field = ViewPager::class.java.getDeclaredField("mScroller")
+            val field = androidx.viewpager.widget.ViewPager::class.java.getDeclaredField("mScroller")
             field.isAccessible = true
             val viewPagerScroller = ViewPagerScroller(context, OvershootInterpolator(0.6f))
             field.set(this, viewPagerScroller)

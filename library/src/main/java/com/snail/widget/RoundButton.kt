@@ -7,7 +7,7 @@ import android.util.AttributeSet
  * Created by zeng on 2017/1/6.
  * 圆角背景按钮
  */
-class RoundButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int = android.R.attr.buttonStyle) : android.support.v7.widget.AppCompatButton(context, attrs, defStyleAttr) {
+class RoundButton @JvmOverloads constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int = android.R.attr.buttonStyle) : androidx.appcompat.widget.AppCompatButton(context, attrs, defStyleAttr) {
     private val textViewHandler: CustomRoundTextViewHandler<RoundButton> = CustomRoundTextViewHandler(this)
 
     val cornerRadius: Int

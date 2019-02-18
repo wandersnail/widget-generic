@@ -7,9 +7,9 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Looper
-import android.support.annotation.IdRes
-import android.support.annotation.LayoutRes
-import android.support.annotation.StyleRes
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.StyleRes
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
