@@ -3,9 +3,9 @@ package cn.zfs.widgetdemo
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.snail.commons.base.BaseHolder
 import com.snail.commons.base.BaseListAdapter
 import com.snail.commons.entity.PermissionsRequester
@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val data = arrayListOf("倾斜TextView", "SwitchButton")
-        val clsArr = arrayListOf(RotatableTextViewActivity::class.java, SwitchButtonActivity::class.java)
+        val data = arrayListOf("倾斜TextView", "SwitchButton", "可滑动标签选择")
+        val clsArr = arrayListOf(RotatableTextViewActivity::class.java, SwitchButtonActivity::class.java, HorizontalLabelPickerActivity::class.java)
         lv.adapter = object : BaseListAdapter<String>(this, data) {
             override fun getHolder(position: Int): BaseHolder<String> {
                 return object : BaseHolder<String>() {

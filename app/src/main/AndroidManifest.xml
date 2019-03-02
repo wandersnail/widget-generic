@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".RotatableTextViewActivity"/>
         <activity android:name=".SwitchButtonActivity"/>
+        <activity android:name=".HorizontalLabelPickerActivity"/>
     </application>
 
 </manifest>
