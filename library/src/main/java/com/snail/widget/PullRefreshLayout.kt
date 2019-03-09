@@ -1,7 +1,6 @@
 package com.snail.widget
 
 import android.content.Context
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.widget.AdapterView

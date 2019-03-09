@@ -1,12 +1,12 @@
 package com.snail.widget
 
 import android.content.Context
-import androidx.viewpager.widget.ViewPager
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.animation.Interpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.Scroller
+import androidx.viewpager.widget.ViewPager
 
 /**
  * Created by zengfs on 2016/2/2.
