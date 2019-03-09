@@ -23,6 +23,7 @@
         <activity android:name=".RotatableTextViewActivity"/>
         <activity android:name=".SwitchButtonActivity"/>
         <activity android:name=".HorizontalLabelPickerActivity"/>
+        <activity android:name=".DragSwipeItemActivity"/>
     </application>
 
 </manifest>

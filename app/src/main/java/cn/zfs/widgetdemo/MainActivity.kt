@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.snail.commons.base.BaseHolder
 import com.snail.commons.base.BaseListAdapter
-import com.snail.commons.entity.PermissionsRequester
+import com.snail.commons.base.BaseViewHolder
+import com.snail.commons.helper.PermissionsRequester
 import com.snail.commons.utils.Logger
 import com.snail.commons.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,15 +20,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val data = arrayListOf("倾斜TextView", "SwitchButton", "可滑动标签选择")
-        val clsArr = arrayListOf(RotatableTextViewActivity::class.java, SwitchButtonActivity::class.java, HorizontalLabelPickerActivity::class.java)
+        val data = arrayListOf("倾斜TextView", "SwitchButton", "可滑动标签选择", "可拖拽条目列表")
+        val clsArr = arrayListOf(RotatableTextViewActivity::class.java, SwitchButtonActivity::class.java, HorizontalLabelPickerActivity::class.java,
+                DragSwipeItemActivity::class.java)
         lv.adapter = object : BaseListAdapter<String>(this, data) {
-            override fun getHolder(position: Int): BaseHolder<String> {
-                return object : BaseHolder<String>() {
+            override fun createViewHolder(position: Int): BaseViewHolder<String> {
+                return object : BaseViewHolder<String>() {
                     private var tv: TextView? = null
 
-                    override fun setData(data: String, position: Int) {
-                        tv?.text = data
+                    override fun onBind(item: String, position: Int) {
+                        tv?.text = item
                     }
 
                     override fun createConvertView(): View {

@@ -27,7 +27,7 @@ class HeaderGridView : GridView {
         /** The view to add to the grid  */
         var view: View? = null
         var viewContainer: ViewGroup? = null
-        /** The data backing the view. This is returned from [ListAdapter.getItem].  */
+        /** The items backing the view. This is returned from [ListAdapter.getItem].  */
         var data: Any? = null
         /** `true` if the fixed view should be selectable in the grid  */
         var isSelectable: Boolean = false
@@ -152,7 +152,7 @@ class HeaderGridView : GridView {
     /**
      * ListAdapter used when a HeaderGridView has header views. This ListAdapter
      * wraps another one and also keeps track of the header views and their
-     * associated data objects.
+     * associated items objects.
      *
      * This is intended as a base class; you will probably not need to
      * use this class directly in your own code.
