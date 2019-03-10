@@ -194,22 +194,22 @@ class NumberProgressBar @JvmOverloads constructor(context: Context, attrs: Attri
         //load styled attributes.
         val attributes = context.theme.obtainStyledAttributes(attrs, R.styleable.NumberProgressBar, defStyleAttr, 0)
 
-        mReachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_npbReachedColor, DEFAULT_REACHED_COLOR)
-        mUnreachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_npbUnreachedColor, DEFAULT_UNREACHED_COLOR)
-        textColor = attributes.getColor(R.styleable.NumberProgressBar_npbTextColor, DEFAULT_TEXT_COLOR)
-        mTextSize = attributes.getDimension(R.styleable.NumberProgressBar_npbTextSize, defaultTextSize)
+        mReachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_wswReachedColor, DEFAULT_REACHED_COLOR)
+        mUnreachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_wswUnreachedColor, DEFAULT_UNREACHED_COLOR)
+        textColor = attributes.getColor(R.styleable.NumberProgressBar_wswTextColor, DEFAULT_TEXT_COLOR)
+        mTextSize = attributes.getDimension(R.styleable.NumberProgressBar_wswTextSize, defaultTextSize)
 
-        reachedBarHeight = attributes.getDimension(R.styleable.NumberProgressBar_npbReachedBarHeight, defaultReachedBarHeight)
-        unreachedBarHeight = attributes.getDimension(R.styleable.NumberProgressBar_npbUnreachedBarHeight, defaultUnreachedBarHeight)
-        mOffset = attributes.getDimension(R.styleable.NumberProgressBar_npbTextOffset, defaultProgressTextOffset)
+        reachedBarHeight = attributes.getDimension(R.styleable.NumberProgressBar_wswReachedBarHeight, defaultReachedBarHeight)
+        unreachedBarHeight = attributes.getDimension(R.styleable.NumberProgressBar_wswUnreachedBarHeight, defaultUnreachedBarHeight)
+        mOffset = attributes.getDimension(R.styleable.NumberProgressBar_wswTextOffset, defaultProgressTextOffset)
 
-        val textVisible = attributes.getInt(R.styleable.NumberProgressBar_npbTextVisibility, PROGRESS_TEXT_VISIBLE)
+        val textVisible = attributes.getInt(R.styleable.NumberProgressBar_wswTextVisibility, PROGRESS_TEXT_VISIBLE)
         if (textVisible != PROGRESS_TEXT_VISIBLE) {
             mIfDrawText = false
         }
 
-        progress = attributes.getInt(R.styleable.NumberProgressBar_npbProgress, 0)
-        max = attributes.getInt(R.styleable.NumberProgressBar_npbMax, 100)
+        progress = attributes.getInt(R.styleable.NumberProgressBar_wswProgress, 0)
+        max = attributes.getInt(R.styleable.NumberProgressBar_wswMax, 100)
 
         attributes.recycle()
         initializePainters()

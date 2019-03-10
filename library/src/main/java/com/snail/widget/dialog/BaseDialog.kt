@@ -1,4 +1,4 @@
-package com.snail.widget
+package com.snail.widget.dialog
 
 import android.app.Activity
 import android.app.Dialog
@@ -7,12 +7,12 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Looper
-import androidx.annotation.IdRes
-import androidx.annotation.LayoutRes
-import androidx.annotation.StyleRes
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.StyleRes
 
 /**
  * Created by zeng on 2016/12/4.

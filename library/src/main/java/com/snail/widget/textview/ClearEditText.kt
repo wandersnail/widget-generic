@@ -1,19 +1,21 @@
-package com.snail.widget
+package com.snail.widget.textview
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import androidx.core.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
+import com.snail.widget.R
 
 /**
  * Created by zeng on 2016/4/9.
  * 带可清除的EditText
  */
-class ClearEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = android.R.attr.editTextStyle) : androidx.appcompat.widget.AppCompatEditText(context, attrs, defStyle), View.OnFocusChangeListener, TextWatcher {
+open class ClearEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = android.R.attr.editTextStyle) : AppCompatEditText(context, attrs, defStyle), View.OnFocusChangeListener, TextWatcher {
     //EditText右侧的删除按钮  
     private var mClearDrawable: Drawable? = null
     private var hasFoucs: Boolean = false

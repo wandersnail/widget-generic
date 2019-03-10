@@ -1,4 +1,4 @@
-package com.snail.widget
+package com.snail.widget.listview
 
 import android.content.Context
 import android.database.DataSetObservable
@@ -158,7 +158,7 @@ class HeaderGridView : GridView {
      * use this class directly in your own code.
      */
     private class HeaderViewGridAdapter( // This ArrayList is assumed to NOT be null.
-            internal var mHeaderViewInfos: ArrayList<FixedViewInfo>, private val mAdapter: ListAdapter?) : WrapperListAdapter, Filterable {
+        internal var mHeaderViewInfos: ArrayList<FixedViewInfo>, private val mAdapter: ListAdapter?) : WrapperListAdapter, Filterable {
         // This is used to notify the container of updates relating to number of columns
         // or headers changing, which changes the number of placeholders needed
         private val mDataSetObservable = DataSetObservable()

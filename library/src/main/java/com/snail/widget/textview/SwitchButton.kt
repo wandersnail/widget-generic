@@ -1,4 +1,4 @@
-package com.snail.widget
+package com.snail.widget.textview
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.core.content.ContextCompat
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
@@ -23,6 +22,8 @@ import android.view.View
 import android.view.ViewConfiguration
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.CompoundButton
+import androidx.core.content.ContextCompat
+import com.snail.widget.R
 
 /**
  * 开关，有过渡动画，可设置颜色
@@ -279,28 +280,28 @@ class SwitchButton : CompoundButton {
 
         var ta: TypedArray? = if (attrs == null) null else context.obtainStyledAttributes(attrs, R.styleable.SwitchButton)
         if (ta != null) {
-            thumbDrawable = ta.getDrawable(R.styleable.SwitchButton_kswThumbDrawable)
-            thumbColor = ta.getColorStateList(R.styleable.SwitchButton_kswThumbColor)
-            margin = ta.getDimension(R.styleable.SwitchButton_kswThumbMargin, margin)
-            marginLeft = ta.getDimension(R.styleable.SwitchButton_kswThumbMarginLeft, margin)
-            marginRight = ta.getDimension(R.styleable.SwitchButton_kswThumbMarginRight, margin)
-            marginTop = ta.getDimension(R.styleable.SwitchButton_kswThumbMarginTop, margin)
-            marginBottom = ta.getDimension(R.styleable.SwitchButton_kswThumbMarginBottom, margin)
-            thumbWidth = ta.getDimension(R.styleable.SwitchButton_kswThumbWidth, thumbWidth)
-            thumbHeight = ta.getDimension(R.styleable.SwitchButton_kswThumbHeight, thumbHeight)
-            thumbRadius = ta.getDimension(R.styleable.SwitchButton_kswThumbRadius, thumbRadius)
-            backRadius = ta.getDimension(R.styleable.SwitchButton_kswBackRadius, backRadius)
-            backDrawable = ta.getDrawable(R.styleable.SwitchButton_kswBackDrawable)
-            backColor = ta.getColorStateList(R.styleable.SwitchButton_kswBackColor)
-            thumbRangeRatio = ta.getFloat(R.styleable.SwitchButton_kswThumbRangeRatio, thumbRangeRatio)
-            animationDuration = ta.getInteger(R.styleable.SwitchButton_kswAnimationDuration, animationDuration)
-            fadeBack = ta.getBoolean(R.styleable.SwitchButton_kswFadeBack, true)
-            tintColor = ta.getColor(R.styleable.SwitchButton_kswTintColor, tintColor)
-            textOn = ta.getString(R.styleable.SwitchButton_kswTextOn)
-            textOff = ta.getString(R.styleable.SwitchButton_kswTextOff)
-            textThumbInset = ta.getDimensionPixelSize(R.styleable.SwitchButton_kswTextThumbInset, 0)
-            textExtra = ta.getDimensionPixelSize(R.styleable.SwitchButton_kswTextExtra, 0)
-            textAdjust = ta.getDimensionPixelSize(R.styleable.SwitchButton_kswTextAdjust, 0)
+            thumbDrawable = ta.getDrawable(R.styleable.SwitchButton_wswThumbDrawable)
+            thumbColor = ta.getColorStateList(R.styleable.SwitchButton_wswThumbColor)
+            margin = ta.getDimension(R.styleable.SwitchButton_wswThumbMargin, margin)
+            marginLeft = ta.getDimension(R.styleable.SwitchButton_wswThumbMarginLeft, margin)
+            marginRight = ta.getDimension(R.styleable.SwitchButton_wswThumbMarginRight, margin)
+            marginTop = ta.getDimension(R.styleable.SwitchButton_wswThumbMarginTop, margin)
+            marginBottom = ta.getDimension(R.styleable.SwitchButton_wswThumbMarginBottom, margin)
+            thumbWidth = ta.getDimension(R.styleable.SwitchButton_wswThumbWidth, thumbWidth)
+            thumbHeight = ta.getDimension(R.styleable.SwitchButton_wswThumbHeight, thumbHeight)
+            thumbRadius = ta.getDimension(R.styleable.SwitchButton_wswThumbRadius, thumbRadius)
+            backRadius = ta.getDimension(R.styleable.SwitchButton_wswBackRadius, backRadius)
+            backDrawable = ta.getDrawable(R.styleable.SwitchButton_wswBackDrawable)
+            backColor = ta.getColorStateList(R.styleable.SwitchButton_wswBackColor)
+            thumbRangeRatio = ta.getFloat(R.styleable.SwitchButton_wswThumbRangeRatio, thumbRangeRatio)
+            animationDuration = ta.getInteger(R.styleable.SwitchButton_wswAnimationDuration, animationDuration)
+            fadeBack = ta.getBoolean(R.styleable.SwitchButton_wswFadeBack, true)
+            tintColor = ta.getColor(R.styleable.SwitchButton_wswTintColor, tintColor)
+            textOn = ta.getString(R.styleable.SwitchButton_wswTextOn)
+            textOff = ta.getString(R.styleable.SwitchButton_wswTextOff)
+            textThumbInset = ta.getDimensionPixelSize(R.styleable.SwitchButton_wswTextThumbInset, 0)
+            textExtra = ta.getDimensionPixelSize(R.styleable.SwitchButton_wswTextExtra, 0)
+            textAdjust = ta.getDimensionPixelSize(R.styleable.SwitchButton_wswTextAdjust, 0)
             ta.recycle()
         }
 
@@ -1083,20 +1084,20 @@ class SwitchButton : CompoundButton {
 
         val defaultThumbColor: ColorStateList
             get() {
-                val states = arrayOf(intArrayOf(-SwitchButton.ENABLE_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.ENABLE_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, -SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.CHECKED_ATTR))
+                val states = arrayOf(intArrayOf(-ENABLE_ATTR, CHECKED_ATTR), intArrayOf(-ENABLE_ATTR), intArrayOf(PRESSED_ATTR, -CHECKED_ATTR), intArrayOf(PRESSED_ATTR, CHECKED_ATTR), intArrayOf(CHECKED_ATTR), intArrayOf(-CHECKED_ATTR))
                 val colors = intArrayOf(-0x1, -0x1, -0x1, -0x1, -0x1, -0x1)
                 return ColorStateList(states, colors)
             }
 
         val defaultBackColor: ColorStateList
             get() {
-                val states = arrayOf(intArrayOf(-SwitchButton.ENABLE_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.ENABLE_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, -SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.CHECKED_ATTR))
+                val states = arrayOf(intArrayOf(-ENABLE_ATTR, CHECKED_ATTR), intArrayOf(-ENABLE_ATTR), intArrayOf(PRESSED_ATTR, -CHECKED_ATTR), intArrayOf(PRESSED_ATTR, CHECKED_ATTR), intArrayOf(CHECKED_ATTR), intArrayOf(-CHECKED_ATTR))
                 val colors = intArrayOf(-0x66bb24a2, -0x333334, -0x333334, -0xbb24a2, -0xbb24a2, -0x333334)
                 return ColorStateList(states, colors)
             }
 
         fun generateBackColor(color: Int): ColorStateList {
-            val states = arrayOf(intArrayOf(-SwitchButton.ENABLE_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.ENABLE_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, -SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.PRESSED_ATTR, SwitchButton.CHECKED_ATTR), intArrayOf(SwitchButton.CHECKED_ATTR), intArrayOf(-SwitchButton.CHECKED_ATTR))
+            val states = arrayOf(intArrayOf(-ENABLE_ATTR, CHECKED_ATTR), intArrayOf(-ENABLE_ATTR), intArrayOf(PRESSED_ATTR, -CHECKED_ATTR), intArrayOf(PRESSED_ATTR, CHECKED_ATTR), intArrayOf(CHECKED_ATTR), intArrayOf(-CHECKED_ATTR))
             val colors = intArrayOf(color and -0x66000001, -0x333334, -0x333334, color and -0x22000001, color and -0x22000001, -0x333334)
             return ColorStateList(states, colors)
         }

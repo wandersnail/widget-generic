@@ -1,4 +1,4 @@
-package com.snail.widget.helper
+package com.snail.widget.recyclerview
 
 import androidx.recyclerview.widget.RecyclerView
 

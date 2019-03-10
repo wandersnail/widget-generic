@@ -1,4 +1,4 @@
-package com.snail.widget.helper
+package com.snail.widget.recyclerview
 
 import android.graphics.Canvas
 import androidx.recyclerview.widget.GridLayoutManager

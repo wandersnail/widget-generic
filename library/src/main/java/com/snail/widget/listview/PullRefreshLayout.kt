@@ -1,16 +1,17 @@
-package com.snail.widget
+package com.snail.widget.listview
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.widget.AdapterView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 /**
  * 描述: 下拉刷新，控制在顶部才拦截触摸事件
  * 时间: 2018/6/8 09:20
  * 作者: zengfansheng
  */
-class PullRefreshLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : androidx.swiperefreshlayout.widget.SwipeRefreshLayout(context, attrs) {
+open class PullRefreshLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : SwipeRefreshLayout(context, attrs) {
     private var lv: AdapterView<*>? = null
 
     private val isListViewNotAtTop: Boolean

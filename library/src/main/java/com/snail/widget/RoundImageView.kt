@@ -3,13 +3,15 @@ package com.snail.widget
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatImageView
 
 /**
  * 描述: 圆角图片
  * 时间: 2018/9/10 22:09
  * 作者: zengfansheng
  */
-class RoundImageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr) {
+class RoundImageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : 
+        AppCompatImageView(context, attrs, defStyleAttr) {
     private val paint: Paint
     private var cornerRadius = 16
     private val paint2: Paint
@@ -18,8 +20,8 @@ class RoundImageView @JvmOverloads constructor(context: Context, attrs: Attribut
     init {
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.RoundImageView)
-            cornerRadius = ta.getDimensionPixelSize(R.styleable.RoundImageView_rivCornerRadius, cornerRadius)
-            needFlags = ta.getInt(R.styleable.RoundImageView_rivRound, 0x0f)
+            cornerRadius = ta.getDimensionPixelSize(R.styleable.RoundImageView_wswCornerRadius, cornerRadius)
+            needFlags = ta.getInt(R.styleable.RoundImageView_wswRound, 0x0f)
             ta.recycle()
         }
         paint = Paint()

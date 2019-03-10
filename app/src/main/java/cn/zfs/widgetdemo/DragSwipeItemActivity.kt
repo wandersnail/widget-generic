@@ -9,9 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.snail.widget.helper.BaseItemTouchAdapter
-import com.snail.widget.helper.BaseItemTouchViewHolder
-import com.snail.widget.helper.SimpleItemTouchCallback
+import com.snail.widget.recyclerview.BaseItemTouchAdapter
+import com.snail.widget.recyclerview.BaseItemTouchViewHolder
+import com.snail.widget.recyclerview.SimpleItemTouchCallback
 import kotlinx.android.synthetic.main.activity_draggable_item.*
 
 /**

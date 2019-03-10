@@ -3,104 +3,104 @@
     <style name="NumberProgressBar_Default">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="npbMax">100</item>
-        <item name="npbProgress">0</item>
-        <item name="npbUnreachedColor">#CCCCCC</item>
-        <item name="npbReachedColor">#3498DB</item>
-        <item name="npbTextSize">10sp</item>
-        <item name="npbTextColor">#3498DB</item>
-        <item name="npbReachedBarHeight">1.5dp</item>
-        <item name="npbUnreachedBarHeight">0.75dp</item>
+        <item name="wswMax">100</item>
+        <item name="wswProgress">0</item>
+        <item name="wswUnreachedColor">#CCCCCC</item>
+        <item name="wswReachedColor">#3498DB</item>
+        <item name="wswTextSize">10sp</item>
+        <item name="wswTextColor">#3498DB</item>
+        <item name="wswReachedBarHeight">1.5dp</item>
+        <item name="wswUnreachedBarHeight">0.75dp</item>
     </style>
 
     <style name="NumberProgressBar_Passing_Green">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="npbMax">100</item>
-        <item name="npbProgress">0</item>
-        <item name="npbUnreachedColor">#CCCCCC</item>
-        <item name="npbReachedColor">#70A800</item>
-        <item name="npbTextSize">10sp</item>
-        <item name="npbTextColor">#70A800</item>
-        <item name="npbReachedBarHeight">1.5dp</item>
-        <item name="npbUnreachedBarHeight">0.75dp</item>
+        <item name="wswMax">100</item>
+        <item name="wswProgress">0</item>
+        <item name="wswUnreachedColor">#CCCCCC</item>
+        <item name="wswReachedColor">#70A800</item>
+        <item name="wswTextSize">10sp</item>
+        <item name="wswTextColor">#70A800</item>
+        <item name="wswReachedBarHeight">1.5dp</item>
+        <item name="wswUnreachedBarHeight">0.75dp</item>
     </style>
 
     <style name="NumberProgressBar_Beauty_Red">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="npbMax">100</item>
-        <item name="npbProgress">0</item>
-        <item name="npbUnreachedColor">#CCCCCC</item>
-        <item name="npbReachedColor">#FF3D7F</item>
-        <item name="npbTextSize">10sp</item>
-        <item name="npbTextColor">#FF3D7F</item>
-        <item name="npbReachedBarHeight">1.5dp</item>
-        <item name="npbUnreachedBarHeight">0.75dp</item>
+        <item name="wswMax">100</item>
+        <item name="wswProgress">0</item>
+        <item name="wswUnreachedColor">#CCCCCC</item>
+        <item name="wswReachedColor">#FF3D7F</item>
+        <item name="wswTextSize">10sp</item>
+        <item name="wswTextColor">#FF3D7F</item>
+        <item name="wswReachedBarHeight">1.5dp</item>
+        <item name="wswUnreachedBarHeight">0.75dp</item>
     </style>
 
     <style name="NumberProgressBar_Warning_Red">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="npbMax">100</item>
-        <item name="npbProgress">0</item>
-        <item name="npbUnreachedColor">#CCCCCC</item>
-        <item name="npbReachedColor">#E74C3C</item>
-        <item name="npbTextSize">10sp</item>
-        <item name="npbTextColor">#E74C3C</item>
-        <item name="npbReachedBarHeight">1.5dp</item>
-        <item name="npbUnreachedBarHeight">0.75dp</item>
+        <item name="wswMax">100</item>
+        <item name="wswProgress">0</item>
+        <item name="wswUnreachedColor">#CCCCCC</item>
+        <item name="wswReachedColor">#E74C3C</item>
+        <item name="wswTextSize">10sp</item>
+        <item name="wswTextColor">#E74C3C</item>
+        <item name="wswReachedBarHeight">1.5dp</item>
+        <item name="wswUnreachedBarHeight">0.75dp</item>
     </style>
 
     <style name="NumberProgressBar_Relax_Blue">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="npbMax">100</item>
-        <item name="npbProgress">0</item>
-        <item name="npbUnreachedColor">#CCCCCC</item>
-        <item name="npbReachedColor">#6DBCDB</item>
-        <item name="npbTextSize">10sp</item>
-        <item name="npbTextColor">#6DBCDB</item>
-        <item name="npbReachedBarHeight">1.5dp</item>
-        <item name="npbUnreachedBarHeight">0.75dp</item>
+        <item name="wswMax">100</item>
+        <item name="wswProgress">0</item>
+        <item name="wswUnreachedColor">#CCCCCC</item>
+        <item name="wswReachedColor">#6DBCDB</item>
+        <item name="wswTextSize">10sp</item>
+        <item name="wswTextColor">#6DBCDB</item>
+        <item name="wswReachedBarHeight">1.5dp</item>
+        <item name="wswUnreachedBarHeight">0.75dp</item>
     </style>
 
     <style name="NumberProgressBar_Grace_Yellow">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="npbMax">100</item>
-        <item name="npbProgress">0</item>
-        <item name="npbUnreachedColor">#CCCCCC</item>
-        <item name="npbReachedColor">#FFC73B</item>
-        <item name="npbTextSize">10sp</item>
-        <item name="npbTextColor">#FFC73B</item>
-        <item name="npbReachedBarHeight">1.5dp</item>
-        <item name="npbUnreachedBarHeight">0.75dp</item>
+        <item name="wswMax">100</item>
+        <item name="wswProgress">0</item>
+        <item name="wswUnreachedColor">#CCCCCC</item>
+        <item name="wswReachedColor">#FFC73B</item>
+        <item name="wswTextSize">10sp</item>
+        <item name="wswTextColor">#FFC73B</item>
+        <item name="wswReachedBarHeight">1.5dp</item>
+        <item name="wswUnreachedBarHeight">0.75dp</item>
     </style>
 
     <style name="NumberProgressBar_Funny_Orange">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="npbMax">100</item>
-        <item name="npbProgress">0</item>
-        <item name="npbUnreachedColor">#CCCCCC</item>
-        <item name="npbReachedColor">#FF530D</item>
-        <item name="npbTextSize">10sp</item>
-        <item name="npbTextColor">#FF530D</item>
-        <item name="npbReachedBarHeight">1.5dp</item>
-        <item name="npbUnreachedBarHeight">0.75dp</item>
+        <item name="wswMax">100</item>
+        <item name="wswProgress">0</item>
+        <item name="wswUnreachedColor">#CCCCCC</item>
+        <item name="wswReachedColor">#FF530D</item>
+        <item name="wswTextSize">10sp</item>
+        <item name="wswTextColor">#FF530D</item>
+        <item name="wswReachedBarHeight">1.5dp</item>
+        <item name="wswUnreachedBarHeight">0.75dp</item>
     </style>
 
     <style name="NumberProgressBar_Twinkle_Night">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="npbMax">100</item>
-        <item name="npbProgress">0</item>
-        <item name="npbUnreachedColor">#CCCCCC</item>
-        <item name="npbReachedColor">#ECF0F1</item>
-        <item name="npbTextSize">10sp</item>
-        <item name="npbTextColor">#ECF0F1</item>
-        <item name="npbReachedBarHeight">1.5dp</item>
-        <item name="npbUnreachedBarHeight">0.75dp</item>
+        <item name="wswMax">100</item>
+        <item name="wswProgress">0</item>
+        <item name="wswUnreachedColor">#CCCCCC</item>
+        <item name="wswReachedColor">#ECF0F1</item>
+        <item name="wswTextSize">10sp</item>
+        <item name="wswTextColor">#ECF0F1</item>
+        <item name="wswReachedBarHeight">1.5dp</item>
+        <item name="wswUnreachedBarHeight">0.75dp</item>
     </style>
 </resources>
