@@ -37,7 +37,7 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
     val attributes: WindowManager.LayoutParams
         get() = window!!.attributes
 
-    constructor(activity: Activity, @LayoutRes redId: Int) : this(activity, View.inflate(activity, redId, null))
+    constructor(activity: Activity, @LayoutRes resId: Int) : this(activity, View.inflate(activity, resId, null))
 
     init {
         dialog.ownerActivity = activity
