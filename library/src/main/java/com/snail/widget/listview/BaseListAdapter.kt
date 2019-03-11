@@ -5,11 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import java.util.*
-import kotlin.collections.HashMap
 
 abstract class BaseListAdapter<T> @JvmOverloads constructor(val context: Context, list: MutableList<T> = ArrayList()) : BaseAdapter() {
-    private val holders = HashMap<View, BaseViewHolder<T>>()
-    
+    private val tagKey = 1098237452
     var items: MutableList<T> = list
         set(value) {
             field = value
@@ -20,11 +18,6 @@ abstract class BaseListAdapter<T> @JvmOverloads constructor(val context: Context
         items.clear()
         items.addAll(list)
         notifyDataSetChanged()
-    }
-
-    override fun notifyDataSetChanged() {
-        holders.clear()
-        super.notifyDataSetChanged()
     }
     
     override fun getCount(): Int {
@@ -39,16 +32,19 @@ abstract class BaseListAdapter<T> @JvmOverloads constructor(val context: Context
         return position.toLong()
     }
 
+    @Suppress("unchecked_cast")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var view = convertView
         val viewHolder: BaseViewHolder<T> = if (convertView == null) {
             val h = createViewHolder(position)
-            holders[h.convertView] = h
+            view = h.createView()
+            view.setTag(tagKey, h)
             h
         } else {
-            holders[convertView]!!
+            convertView.getTag(tagKey) as BaseViewHolder<T>
         }
         viewHolder.onBind(items[position], position)
-        return viewHolder.convertView
+        return view!!
     }
 
     protected abstract fun createViewHolder(position: Int): BaseViewHolder<T>

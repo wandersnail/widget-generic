@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                         tv?.text = item
                     }
 
-                    override fun createConvertView(): View {
+                    override fun createView(): View {
                         val view = View.inflate(this@MainActivity, android.R.layout.simple_list_item_1, null)
                         tv = view.findViewById(android.R.id.text1)
                         return view
