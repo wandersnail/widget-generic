@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Build
 import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.widget.AppCompatButton
 import com.snail.widget.R
 import com.snail.widget.Utils
@@ -93,7 +92,7 @@ open class RoundButton @JvmOverloads constructor(context: Context, attrs: Attrib
     
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val height = View.MeasureSpec.getSize(heightMeasureSpec)
+        val height = MeasureSpec.getSize(heightMeasureSpec)
         if (cornerRadius == -1) {
             cornerRadius = height
         }
