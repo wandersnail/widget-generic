@@ -65,14 +65,12 @@ constructor(context: Context, interpolator: Interpolator? = null) : OverScroller
                         lastY = scroller.currY
                     }                   
                 }
-                if (scroller.flingMode) {
-                    if (scroller.isFinished) {
+                if (scroller.isFinished) {
+                    if (scroller.flingMode) {
                         scroller.scrollListener?.onFlingFinish(scroller)
                     } else {
-                        sendEmptyMessageDelayed(0, 10)
+                        scroller.scrollListener?.onScrollFinish(scroller)
                     }
-                } else if (scroller.isFinished) {
-                    scroller.scrollListener?.onScrollFinish(scroller)
                 } else {
                     sendEmptyMessageDelayed(0, 10)
                 }

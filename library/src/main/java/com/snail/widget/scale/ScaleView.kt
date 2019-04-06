@@ -17,24 +17,24 @@ import com.snail.widget.Utils
  */
 class ScaleView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr), ListenableScroller.OnScrollListener {
     private var min = 0
-    private var max = 0
-    private var bigStepScaleNum = 0//隔多少个短刻度一个长刻度
-    private var twoBigStepDifValue = 0f//两个长刻度之间值的大小
-    private var labelColor = 0
-    private var indicatorColor = 0
-    private var indicatorPostion = 0
-    private var labelSize = 0f//标签字体大小
-    private var scaleSpace = 0//刻度之间间隔
-    private var labelAndScaleSpace = 0//标签与长刻度的间隔
-    private var longScaleLen = 0
-    private var scaleWidth = 0//刻度线条宽度
-    private var indicatorWidth = 0//指示器宽
-    private var shortLongtScaleRatio = 0f//短刻度与长刻度比例，短/长
-    private var orientation = 0
+    private var max = 100
+    private var bigStepScaleNum = 5//隔多少个短刻度一个长刻度
+    private var twoBigStepDifValue = 5f//两个长刻度之间值的大小
+    private var labelColor = -0x676768
+    private var indicatorColor = -0xe6bb
+    private var indicatorPostion = 50
+    private var labelSize = Utils.dp2px(context, 14f).toFloat()//标签字体大小
+    private var scaleSpace = Utils.dp2px(context, 8f)//刻度之间间隔
+    private var labelAndScaleSpace = Utils.dp2px(context, 20f)//标签与长刻度的间隔
+    private var longScaleLen = Utils.dp2px(context, 30f)
+    private var scaleWidth = Utils.dp2px(context, 1f)//刻度线条宽度
+    private var indicatorWidth = Utils.dp2px(context, 3f)//指示器宽
+    private var shortLongtScaleRatio = 2f / 3//短刻度与长刻度比例，短/长
+    private var orientation = HORIZONTAL
     private var isEdgeDim = true//两端边缘模糊
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var updateCallback: OnValueUpdateCallback? = null
     private var textFormatterCallback: TextFormatterCallback? = null
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var labelHeight = 0
     private var value = 0f
     private var start = 0
@@ -52,9 +52,7 @@ class ScaleView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         doMove(null)
     }
 
-    override fun onScrollFinish(scroller: ListenableScroller) {
-        
-    }
+    override fun onScrollFinish(scroller: ListenableScroller) {}
 
     override fun onFlingFinish(scroller: ListenableScroller) {
         autoScroll()
@@ -118,90 +116,13 @@ class ScaleView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         })
         updateScroll()
     }
-
-    /** 设置取值范围  */
-    fun setScope(min: Int, max: Int) {
-        this.min = min
-        this.max = max
-        updateParams()
-        invalidate()
+    
+    fun obtainParams(): Params {
+        return Params(this)
     }
-
-    /** 隔多少个短刻度一个长刻度  */
-    fun setBigStepScaleNum(bigStepScaleNum: Int) {
-        this.bigStepScaleNum = bigStepScaleNum
-        updateParams()
-        invalidate()
-    }
-
-    /** 两个长刻度之间值的大小  */
-    fun setTwoBigStepDifValue(twoBigStepDifValue: Float) {
-        this.twoBigStepDifValue = twoBigStepDifValue
-        updateParams()
-        invalidate()
-    }
-
-    /** 方向  */
-    fun setOrientation(orientation: Int) {
-        this.orientation = orientation
-        updateParams()
-        invalidate()
-    }
-
-    /** 标签颜色  */
-    fun setLabelColor(labelColor: Int) {
-        this.labelColor = labelColor
-    }
-
-    /** 指示器颜色  */
-    fun setIndicatorColor(indicatorColor: Int) {
-        this.indicatorColor = indicatorColor
-    }
-
-    /** 标签字体大小  */
-    fun setLabelSize(labelSize: Int) {
-        this.labelSize = labelSize.toFloat()
-    }
-
-    /** 刻度之间间隔  */
-    fun setScaleSpace(scaleSpace: Int) {
-        this.scaleSpace = scaleSpace
-        updateParams()
-        invalidate()
-    }
-
-    /** 刻度与标签之间间隔  */
-    fun setLabelAndScaleSpace(labelAndScaleSpace: Int) {
-        this.labelAndScaleSpace = labelAndScaleSpace
-    }
-
-    /** 长刻度尺寸  */
-    fun setLongScaleLen(longScaleLen: Int) {
-        this.longScaleLen = longScaleLen
-    }
-
-    /** 刻度线条宽度  */
-    fun setScaleWidth(scaleWidth: Int) {
-        this.scaleWidth = scaleWidth
-    }
-
-    /** 指示器宽  */
-    fun setIndicatorWidth(indicatorWidth: Int) {
-        this.indicatorWidth = indicatorWidth
-    }
-
-    /** 短刻度与长刻度比例，短/长  */
-    fun setShortLongtScaleRatio(shortLongtScaleRatio: Float) {
-        this.shortLongtScaleRatio = shortLongtScaleRatio
-    }
-
-    /** 两端是否边缘模糊  */
-    fun setEdgeDim(isEdgeDim: Boolean) {
-        this.isEdgeDim = isEdgeDim
-    }
-
+    
     fun setValue(value: Float) {
-        var v = value
+        var v = alignValue(value)
         if (v < min) {
             v = min.toFloat()
         } else if (v > max) {
@@ -210,30 +131,6 @@ class ScaleView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         this.value = v
         updateCallback?.onValueUpdate(value)
         updateScroll()
-    }
-
-    /**
-     * 设置指示器位置，即取哪个位置的值
-     * @param indicatorPostion 取值位置占View的百分比。水平方向从左到右：0~100；垂直方向从上到下0~100
-     */
-    fun setIndicatorPosition(indicatorPostion: Int) {
-        var postion = indicatorPostion
-        if (postion < 0) {
-            postion = 0
-        } else if (postion > 100) {
-            postion = 100
-        }
-        this.indicatorPostion = postion
-        updateParams()
-        invalidate()
-    }
-
-    fun setOnValueUpdateCallback(callback: OnValueUpdateCallback) {
-        updateCallback = callback
-    }
-
-    fun setLabelFormatter(callback: TextFormatterCallback) {
-        textFormatterCallback = callback
     }
 
     fun getValue(): Float {
@@ -246,16 +143,20 @@ class ScaleView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         } else value.toString()
     }
     
-    private fun autoScroll() {
+    private fun alignValue(value: Float): Float {
         //算最小单位
         val unit = totalValue / scales
         //求余
         val remainder = value % unit
-        val targetValue = if (Math.abs(remainder) > unit / 2) {//过半了，滚动到下一个
+        return if (Math.abs(remainder) > unit / 2) {//过半了，滚动到下一个
             value + unit - remainder
         } else {
             value - remainder
-        }        
+        }
+    }
+    
+    private fun autoScroll() {
+        val targetValue = alignValue(value)
         val dx = if (orientation == HORIZONTAL) getScrollByValue(targetValue) - scrollX else 0
         val dy = if (orientation == HORIZONTAL) 0 else getScrollByValue(targetValue) - scrollY
         scroller.startScroll(scrollX, scrollY, dx, dy)
@@ -416,6 +317,152 @@ class ScaleView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     private fun getPosition(event: MotionEvent): Int {
         return if (orientation == HORIZONTAL) event.x.toInt() else event.y.toInt()
+    }
+    
+    class Params internal constructor(private val scaleView: ScaleView) {
+        private var min = scaleView.min
+        private var max = scaleView.max
+        private var bigStepScaleNum = scaleView.bigStepScaleNum//隔多少个短刻度一个长刻度
+        private var twoBigStepDifValue = scaleView.twoBigStepDifValue//两个长刻度之间值的大小
+        private var labelColor = scaleView.labelColor
+        private var indicatorColor = scaleView.indicatorColor
+        private var indicatorPostion = scaleView.indicatorPostion
+        private var labelSize = scaleView.labelSize//标签字体大小
+        private var scaleSpace = scaleView.scaleSpace//刻度之间间隔
+        private var labelAndScaleSpace = scaleView.labelAndScaleSpace//标签与长刻度的间隔
+        private var longScaleLen = scaleView.longScaleLen
+        private var scaleWidth = scaleView.scaleWidth//刻度线条宽度
+        private var indicatorWidth = scaleView.indicatorWidth//指示器宽
+        private var shortLongtScaleRatio = scaleView.shortLongtScaleRatio//短刻度与长刻度比例，短/长
+        private var orientation = scaleView.orientation
+        private var isEdgeDim = scaleView.isEdgeDim//两端边缘模糊
+        private var updateCallback: OnValueUpdateCallback? = null
+        private var textFormatterCallback: TextFormatterCallback? = null
+
+        /** 设置取值范围  */
+        fun setScope(min: Int, max: Int) {
+            this.min = min
+            this.max = max
+        }
+
+        /** 隔多少个短刻度一个长刻度  */
+        fun setBigStepScaleNum(bigStepScaleNum: Int) {
+            if (bigStepScaleNum <= 0) {
+                throw IllegalArgumentException("bigStepScaleNum must be greater than 0")
+            }
+            this.bigStepScaleNum = bigStepScaleNum
+        }
+
+        /** 两个长刻度之间值的大小  */
+        fun setTwoBigStepDifValue(twoBigStepDifValue: Float) {
+            if (bigStepScaleNum <= 0) {
+                throw IllegalArgumentException("twoBigStepDifValue must be greater than 0")
+            }
+            this.twoBigStepDifValue = twoBigStepDifValue
+        }
+
+        /** 方向  */
+        fun setOrientation(orientation: Int) {
+            this.orientation = orientation
+        }
+
+        /** 标签颜色  */
+        fun setLabelColor(labelColor: Int) {
+            this.labelColor = labelColor
+        }
+
+        /** 指示器颜色  */
+        fun setIndicatorColor(indicatorColor: Int) {
+            this.indicatorColor = indicatorColor
+        }
+
+        /** 标签字体大小  */
+        fun setLabelSize(labelSize: Int) {
+            this.labelSize = labelSize.toFloat()
+        }
+
+        /** 刻度之间间隔  */
+        fun setScaleSpace(scaleSpace: Int) {
+            this.scaleSpace = scaleSpace
+        }
+
+        /** 刻度与标签之间间隔  */
+        fun setLabelAndScaleSpace(labelAndScaleSpace: Int) {
+            this.labelAndScaleSpace = labelAndScaleSpace
+        }
+
+        /** 长刻度尺寸  */
+        fun setLongScaleLen(longScaleLen: Int) {
+            this.longScaleLen = longScaleLen
+        }
+
+        /** 刻度线条宽度  */
+        fun setScaleWidth(scaleWidth: Int) {
+            this.scaleWidth = scaleWidth
+        }
+
+        /** 指示器宽  */
+        fun setIndicatorWidth(indicatorWidth: Int) {
+            this.indicatorWidth = indicatorWidth
+        }
+
+        /** 短刻度与长刻度比例，短/长  */
+        fun setShortLongtScaleRatio(shortLongtScaleRatio: Float) {
+            this.shortLongtScaleRatio = shortLongtScaleRatio
+        }
+
+        /** 两端是否边缘模糊  */
+        fun setEdgeDim(isEdgeDim: Boolean) {
+            this.isEdgeDim = isEdgeDim
+        }
+
+        /**
+         * 设置指示器位置，即取哪个位置的值
+         * @param indicatorPostion 取值位置占View的百分比。水平方向从左到右：0~100；垂直方向从上到下0~100
+         */
+        fun setIndicatorPosition(indicatorPostion: Int) {
+            var postion = indicatorPostion
+            if (postion < 0) {
+                postion = 0
+            } else if (postion > 100) {
+                postion = 100
+            }
+            this.indicatorPostion = postion
+        }
+
+        fun setOnValueUpdateCallback(callback: OnValueUpdateCallback) {
+            updateCallback = callback
+        }
+
+        fun setLabelFormatter(callback: TextFormatterCallback) {
+            textFormatterCallback = callback
+        }
+
+        /**
+         * 应用参数
+         */
+        fun apply() {
+            scaleView.textFormatterCallback = textFormatterCallback
+            scaleView.updateCallback = updateCallback
+            scaleView.indicatorPostion = indicatorPostion
+            scaleView.isEdgeDim = isEdgeDim
+            scaleView.shortLongtScaleRatio = shortLongtScaleRatio
+            scaleView.indicatorWidth = indicatorWidth
+            scaleView.scaleWidth = scaleWidth
+            scaleView.longScaleLen = longScaleLen
+            scaleView.labelAndScaleSpace = labelAndScaleSpace
+            scaleView.scaleSpace = scaleSpace
+            scaleView.labelSize = labelSize            
+            scaleView.indicatorColor = indicatorColor            
+            scaleView.labelColor = labelColor            
+            scaleView.orientation = orientation            
+            scaleView.twoBigStepDifValue = twoBigStepDifValue            
+            scaleView.bigStepScaleNum = bigStepScaleNum            
+            scaleView.min = min            
+            scaleView.max = max    
+            scaleView.updateParams()
+            scaleView.invalidate()
+        }
     }
 
     companion object {

@@ -16,30 +16,35 @@ class ScaleViewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scale_view)
-        scaleView.setScope(20, 1700)
-        scaleView.setLabelFormatter(object : ScaleView.TextFormatterCallback {
+        val params = scaleView.obtainParams()
+        params.setScope(0, 1700)
+        params.setLabelFormatter(object : ScaleView.TextFormatterCallback {
             override fun format(value: Float): String {
                 return DecimalFormat("0.00").format((value / 100.0f).toDouble())
             }
         })
-        scaleView.setOnValueUpdateCallback(object : ScaleView.OnValueUpdateCallback {
+        params.setOnValueUpdateCallback(object : ScaleView.OnValueUpdateCallback {
             override fun onValueUpdate(value: Float) {
                 tv.text = value.toString()
             }
         })
-        scaleView.setValue(80f)
-        scaleView1.setScope(0, 10)
-        scaleView1.setShortLongtScaleRatio(1f)
-        scaleView1.setScaleSpace(UiUtils.dp2px(30f))
-        scaleView1.setLabelFormatter(object : ScaleView.TextFormatterCallback {
+        params.apply()
+        scaleView.setValue(800f)
+        
+        val params1 = scaleView1.obtainParams()
+        params1.setScope(0, 100)
+        params1.setShortLongtScaleRatio(1f)
+        params1.setScaleSpace(UiUtils.dp2px(30f))
+        params1.setLabelFormatter(object : ScaleView.TextFormatterCallback {
             override fun format(value: Float): String {
                 return value.toInt().toString()
             }
         })
-        scaleView1.setOnValueUpdateCallback(object : ScaleView.OnValueUpdateCallback {
+        params1.setOnValueUpdateCallback(object : ScaleView.OnValueUpdateCallback {
             override fun onValueUpdate(value: Float) {
                 tv.text = value.toString()
             }
         })
+        scaleView1.setValue(50f)
     }
 }
