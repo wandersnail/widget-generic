@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val data = arrayListOf("倾斜TextView", "SwitchButton", "可滑动标签选择", "可拖拽条目列表")
+        val data = arrayListOf("倾斜TextView", "SwitchButton", "可滑动标签选择", "可拖拽条目列表", "圆角图片", "圆角按钮", "刻度尺")
         val clsArr = arrayListOf(RotatableTextViewActivity::class.java, SwitchButtonActivity::class.java, HorizontalLabelPickerActivity::class.java,
-                DragSwipeItemActivity::class.java)
+                DragSwipeItemActivity::class.java, RoundImageActivity::class.java, RoundButtonActivity::class.java, ScaleViewActivity::class.java)
         lv.adapter = object : BaseListAdapter<String>(this, data) {
             override fun createViewHolder(position: Int): BaseViewHolder<String> {
                 return object : BaseViewHolder<String>() {
@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
         lv.setOnItemClickListener { _, _, position, _ ->
-            startActivity(Intent(this, clsArr[position]))
+            val intent = Intent(this, clsArr[position])
+            intent.putExtra("title", data[position])
+            startActivity(intent)
         }
         Logger.setPrintLevel(Logger.ALL)
         requester = PermissionsRequester(this)

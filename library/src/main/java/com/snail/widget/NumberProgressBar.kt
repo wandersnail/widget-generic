@@ -186,10 +186,10 @@ class NumberProgressBar @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     init {
-        val defaultReachedBarHeight = Utils.dp2px(context, 1.5f)
-        val defaultUnreachedBarHeight = Utils.dp2px(context, 1.0f)
-        val defaultTextSize = Utils.dp2px(context, 10f)
-        val defaultProgressTextOffset = Utils.dp2px(context, 3.0f)
+        val defaultReachedBarHeight = Utils.dp2pxF(context, 1.5f)
+        val defaultUnreachedBarHeight = Utils.dp2pxF(context, 1.0f)
+        val defaultTextSize = Utils.dp2pxF(context, 10f)
+        val defaultProgressTextOffset = Utils.dp2pxF(context, 3.0f)
 
         //load styled attributes.
         val attributes = context.theme.obtainStyledAttributes(attrs, R.styleable.NumberProgressBar, defStyleAttr, 0)

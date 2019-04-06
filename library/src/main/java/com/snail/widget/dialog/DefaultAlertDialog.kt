@@ -52,7 +52,7 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
     private fun initViews() {
         tvNegative.setOnClickListener(this)
         tvPositive.setOnClickListener(this)
-        cornerRadii = Utils.dp2px(context, 8f).toInt()
+        cornerRadii = Utils.dp2pxF(context, 8f).toInt()
         setBackgroundColor(backColor)
         setTitleBackgroundColor(titleBackColor)
         updateButtonVisible()

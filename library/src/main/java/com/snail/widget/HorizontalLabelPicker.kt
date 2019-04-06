@@ -46,10 +46,11 @@ class HorizontalLabelPicker(context: Context, attrs: AttributeSet?) : View(conte
      */
     val checkedLabel: ILabel?
         get() = if (builder == null || builder!!.labels == null || checkedPosition <= builder!!.labels!!.size ||
-                checkedPosition >= builder!!.labels!!.size)
+                checkedPosition >= builder!!.labels!!.size) {
             null
-        else
+        } else {
             builder!!.labels!![checkedPosition]
+        }
 
     fun setBuidler(builder: Builder) {
         this.builder = builder

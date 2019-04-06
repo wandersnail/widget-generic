@@ -22,6 +22,7 @@
     <attr name="wswTextColor" format="color|reference"/>
     <attr name="wswTextSize" format="dimension|reference"/>
     <attr name="wswMax" format="integer"/>
+    <attr name="wswMin" format="integer" />
     <attr name="wswProgress" format="integer"/>
 
     <!-- 开关 -->
@@ -162,5 +163,29 @@
     <!-- 可旋转TextView -->
     <declare-styleable name="RotatableTextView">
         <attr name="wswDegree" format="float"/>
+    </declare-styleable>
+
+    <!-- 刻度尺 -->
+    <declare-styleable name="ScaleView">
+        <attr name="wswOrientation" format="enum">
+            <enum name="horizontal" value="0"/>
+            <enum name="vertical" value="1"/>
+        </attr>
+        <attr name="wswMax"/>
+        <attr name="wswMin"/>
+        <attr name="wswValue" format="float" />
+        <attr name="wswBigStepScaleNum" format="integer" />
+        <attr name="wswTwoBigStepDifValue" format="float" />
+        <attr name="wswLabelColor" format="color|reference" />
+        <attr name="wswIndicatorColor" format="color|reference" />
+        <attr name="wswIndicatorPostion" format="integer" />
+        <attr name="wswLabelSize" format="dimension" />
+        <attr name="wswScaleSpace" format="dimension" />
+        <attr name="wswLabelAndScaleSpace" format="dimension" />
+        <attr name="wswLongScaleLen" format="dimension" />
+        <attr name="wswScaleWidth" format="dimension" />
+        <attr name="wswIndicatorWidth" format="dimension" />
+        <attr name="wswShortLongScaleRatio" format="float" />
+        <attr name="wswEdgeDim" format="boolean" />
     </declare-styleable>
 </resources>

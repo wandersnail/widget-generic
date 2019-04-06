@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.snail.widget.scale.ScaleView
+        android:id="@+id/scaleView"
+        app:wswOrientation="vertical"
+        app:wswMax="230"
+        app:wswMin="50"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"/>
+
+    <com.snail.widget.scale.ScaleView
+        android:id="@+id/scaleView1"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/scaleView"
+        android:layout_marginStart="50dp"
+        app:wswOrientation="horizontal"
+        android:layout_width="250dp"
+        android:layout_height="100dp"/>
+    
+    <TextView
+        android:id="@+id/tv"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

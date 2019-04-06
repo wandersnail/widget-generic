@@ -6,7 +6,7 @@ import com.snail.widget.textview.SwitchButton
 import kotlinx.android.synthetic.main.activity_switch_button.*
 
 /**
- *
+ * 开关
  *
  * date: 2019/1/8 23:14
  * author: zengfansheng

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:padding="20dp"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.snail.widget.textview.RoundButton
+        android:textColor="@color/white"
+        android:text="圆角按钮，颜色可自定义"
+        app:wswCornerRadius="8dp"
+        app:wswNormalFillColor="@color/colorPrimary"
+        app:wswPressedFillColor="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <com.snail.widget.textview.RoundButton
+        android:textColor="@color/white"
+        android:text="圆角按钮，颜色可自定义"
+        app:wswCornerRadius="50dp"
+        android:layout_marginTop="10dp"
+        app:wswNormalFillColor="@color/colorPrimary"
+        app:wswPressedFillColor="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <com.snail.widget.textview.RoundButton
+        android:text="圆角按钮，颜色可自定义"
+        app:wswCornerRadius="8dp"
+        android:layout_marginTop="10dp"
+        app:wswStrokeWidth="1dp"
+        app:wswNormalTextColor="@color/colorPrimary"
+        app:wswNormalFillColor="@color/transparent"
+        app:wswNormalStrokeColor="@color/colorPrimary"
+        app:wswPressedFillColor="@color/colorPrimary"
+        app:wswPressedTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <com.snail.widget.textview.RoundButton
+        android:text="圆角按钮，颜色可自定义"
+        app:wswCornerRadius="50dp"
+        android:layout_marginTop="10dp"
+        app:wswStrokeWidth="1dp"
+        app:wswNormalTextColor="@color/colorPrimary"
+        app:wswNormalFillColor="@color/transparent"
+        app:wswNormalStrokeColor="@color/colorPrimary"
+        app:wswPressedFillColor="@color/colorPrimary"
+        app:wswPressedTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <com.snail.widget.textview.RoundButton
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:text="圆角按钮，颜色可自定义"
+        app:wswCornerRadius="8dp"
+        app:wswNormalFillColor="@color/colorAccent"
+        app:wswPressedFillColor="@color/colorAccentDark"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <com.snail.widget.textview.RoundButton
+        android:text="圆角按钮，颜色可自定义"
+        app:wswCornerRadius="50dp"
+        android:layout_marginTop="10dp"
+        app:wswStrokeWidth="1dp"
+        app:wswNormalTextColor="@color/colorAccent"
+        app:wswNormalFillColor="@color/transparent"
+        app:wswNormalStrokeColor="@color/colorAccent"
+        app:wswPressedFillColor="@color/colorAccentDark"
+        app:wswPressedTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+</LinearLayout>
