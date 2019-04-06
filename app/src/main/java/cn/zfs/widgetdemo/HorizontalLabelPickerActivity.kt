@@ -1,6 +1,7 @@
 package cn.zfs.widgetdemo
 
 import android.os.Bundle
+import com.snail.commons.utils.UiUtils
 import com.snail.widget.HorizontalLabelPicker
 import kotlinx.android.synthetic.main.activity_horizontal_label_picker.*
 
@@ -16,6 +17,7 @@ class HorizontalLabelPickerActivity : BaseActivity() {
         setContentView(R.layout.activity_horizontal_label_picker)        
         val builder = HorizontalLabelPicker.Builder()
                 .setLabels(listOf(Label("Java"), Label("Kotlin"), Label("Html5"), Label("Python")))
+                .setTextSize(UiUtils.dp2px(16f))
         labelPicker.setBuidler(builder)
     }
     

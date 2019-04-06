@@ -1,5 +1,6 @@
 package cn.zfs.widgetdemo
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.snail.widget.textview.SwitchButton
@@ -16,5 +17,9 @@ class SwitchButtonActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_switch_button)
         sb1.backColor = SwitchButton.generateBackColorWithTintColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        sb2.setText("On", "Off")
+        sb3.tintColor = Color.MAGENTA
+        sb4.backColor = SwitchButton.generateBackColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        sb4.thumbColor = SwitchButton.defaultThumbColor
     }
 }

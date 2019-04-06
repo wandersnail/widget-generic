@@ -20,7 +20,7 @@ class ScaleViewActivity : BaseActivity() {
         params.setScope(0, 1700)
         params.setLabelFormatter(object : ScaleView.TextFormatterCallback {
             override fun format(value: Float): String {
-                return DecimalFormat("0.00").format((value / 100.0f).toDouble())
+                return DecimalFormat("0.00").format(value)
             }
         })
         params.setOnValueUpdateCallback(object : ScaleView.OnValueUpdateCallback {
@@ -45,6 +45,7 @@ class ScaleViewActivity : BaseActivity() {
                 tv.text = value.toString()
             }
         })
+        params1.apply()
         scaleView1.setValue(50f)
     }
 }

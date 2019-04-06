@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:padding="8dp"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
         <com.snail.widget.textview.SwitchButton
             android:id="@+id/sb1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <com.snail.widget.textview.SwitchButton
+            android:id="@+id/sb2"
+            android:layout_width="50dp"
+            app:wswThumbHeight="20dp"
+            app:wswThumbWidth="20dp"
+            app:wswThumbRangeRatio="2.5"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"/>
+
+        <com.snail.widget.textview.SwitchButton
+            android:id="@+id/sb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"/>
+
+        <com.snail.widget.textview.SwitchButton
+            android:id="@+id/sb4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"/>
     </LinearLayout>
 </LinearLayout>
