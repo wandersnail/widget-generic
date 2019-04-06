@@ -301,12 +301,6 @@ class ScaleView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         updateCallback?.onValueUpdate(value)
     }
 
-    override fun computeScroll() {
-        if (scroller.computeScrollOffset()) {
-            doMove(null)
-        }
-    }
-
     private fun scrollToTarget(scroll: Int) {
         if (orientation == HORIZONTAL) {
             scrollTo(scroll, 0)

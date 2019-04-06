@@ -82,8 +82,9 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         // 根据index绘制view
-        if (isInit)
+        if (isInit) {
             drawData(canvas)
+        }
     }
 
     override fun computeScroll() {
@@ -101,21 +102,21 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
         selectListener = listener
     }
 
-    fun setTextColor(selectedTextColor: Int, unselectTextColor: Int) {
+    fun setTextColor(unselectTextColor: Int, selectedTextColor: Int) {
         this.selectedTextColor = selectedTextColor
         this.unselectTextColor = unselectTextColor
         invalidate()
     }
 
-    fun setTextSize(selectedTextSize: Float, unselectTextSize: Float) {
+    fun setTextSize(unselectTextSize: Float, selectedTextSize: Float) {
         this.selectedTextSize = selectedTextSize
         this.unselectTextSize = unselectTextSize
         invalidate()
     }
 
-    /**字体间距，指未选中字体间距 */
+    /** 字体间距，指未选中字体间距 */
     fun setTextSpace(space: Float) {
-        textSpace = space
+        textSpace = space + unselectTextSize
     }
 
     fun setTypeface(typeface: Typeface) {
@@ -180,10 +181,9 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
     private fun drawData(canvas: Canvas) {
         if (dataList.isEmpty()) return
         // 先绘制选中的text再往上往下绘制其余的text
-        val scale = parabola(height / 4.0f, moveLen)
-        val size = (selectedTextSize - unselectTextSize) * scale + unselectTextSize
-        paint!!.textSize = size
-        paint!!.color = selectedTextColor
+        val scale = getScale(moveLen)
+        paint!!.textSize = (selectedTextSize - unselectTextSize) * scale + unselectTextSize
+        paint!!.color = getColor(scale)
         // text居中绘制，注意baseline的计算才能达到居中，y值是text中心坐标
         val x = width / 2f
         val y = height / 2f + moveLen
@@ -216,17 +216,16 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
      */
     private fun drawOtherText(canvas: Canvas, position: Int, type: Int) {
         val d = textSpace * position + type * moveLen
-        val scale = parabola(height / 4.0f, d)
-        val size = (selectedTextSize - unselectTextSize) * scale + unselectTextSize
-        paint!!.textSize = size
+        val scale = getScale(type * d)
+        paint!!.textSize = (selectedTextSize - unselectTextSize) * scale + unselectTextSize
         paint!!.color = getColor(scale)
-        val y = (height / 2.0 + type * d).toFloat()
+        val y = height / 2f + type * d
         val fmi = paint!!.fontMetricsInt
-        val baseline = (y - (fmi.bottom / 2.0 + fmi.top / 2.0)).toFloat()
+        val baseline = y - (fmi.bottom / 2f + fmi.top / 2f)
 
         val indexs = currentSelected + type * position
         val textData = dataList[indexs]
-        canvas.drawText(textData, (width / 2.0).toFloat(), baseline, paint!!)
+        canvas.drawText(textData, width / 2f, baseline, paint!!)
     }
 
     private fun getColor(scale: Float): Int {
@@ -234,10 +233,10 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
         val ra = unselectTextColor and 0x20000000 shr 16 and 0xff
         val ga = unselectTextColor and 0x20000000 shr 8 and 0xff
         val ba = unselectTextColor and 0x20000000 and 0xff
-        val ab = unselectTextColor shr 24 and 0xff
-        val rb = unselectTextColor shr 16 and 0xff
-        val gb = unselectTextColor shr 8 and 0xff
-        val bb = unselectTextColor and 0xff
+        val ab = selectedTextColor shr 24 and 0xff
+        val rb = selectedTextColor shr 16 and 0xff
+        val gb = selectedTextColor shr 8 and 0xff
+        val bb = selectedTextColor and 0xff
         val a = (aa + (ab - aa) * scale).toInt()
         val r = (ra + (rb - ra) * scale).toInt()
         val g = (ga + (gb - ga) * scale).toInt()
@@ -246,13 +245,12 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
     }
 
     /**
-     * 抛物线
-     * @param zero 零点坐标
      * @param x 偏移量
      */
-    private fun parabola(zero: Float, x: Float): Float {
-        val f = (1 - Math.pow((x / zero).toDouble(), 2.0)).toFloat()
-        return if (f < 0) 0f else f
+    private fun getScale(x: Float): Float {
+        val d = 1 - Math.abs(x) * 3 / textSpace
+        val percent = 1 - Math.abs(x) * (1 + if (d < 0) 0f else d) / (3 * textSpace)
+        return if (percent < 0) 0f else percent
     }
 
     private fun moveHeadToTail() {
@@ -297,12 +295,7 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
     }
 
     private fun doMove(event: MotionEvent?) {
-        val currY: Float
-        if (event == null) {
-            currY = scroller!!.currY.toFloat()
-        } else {
-            currY = event.y
-        }
+        val currY: Float = event?.y ?: scroller!!.currY.toFloat()
         if (currentSelected >= dataList.size - 1 && currY - lastDownY < 0 || currentSelected <= 0 && currY - lastDownY > 0) {
             if (!loop) {
                 if (!scroller!!.isFinished) {
@@ -382,9 +375,10 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
                         picker.task = null
                         picker.performSelect()
                     }
-                } else
-                // 这里mMoveLen / Math.abs(mMoveLen)是为了保有mMoveLen的正负号，以实现上滚或下滚
+                } else {
+                    // 这里mMoveLen / Math.abs(mMoveLen)是为了保有mMoveLen的正负号，以实现上滚或下滚
                     picker.moveLen = picker.moveLen - picker.moveLen / Math.abs(picker.moveLen) * SPEED
+                }
                 picker.invalidate()
             }
         }

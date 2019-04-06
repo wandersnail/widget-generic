@@ -28,6 +28,7 @@
         <activity android:name=".RoundButtonActivity"/>
         <activity android:name=".RoundImageActivity"/>
         <activity android:name=".ScaleViewActivity"/>
+        <activity android:name=".StringPickerActivity"/>
     </application>
 
 </manifest>

@@ -42,3 +42,4 @@ allprojects {
 ![image](https://github.com/wandersnail/widgets/blob/master/images/device-2019-04-06-153103.gif)
 ![image](https://github.com/wandersnail/widgets/blob/master/images/ezgif-5-a93c12bb2c0f.gif)
 ![image](https://github.com/wandersnail/widgets/blob/master/images/ezgif-5-c2ce3c0fd071.gif)
+![image](https://github.com/wandersnail/widgets/blob/master/images/device-2019-04-06-224935.gif)
