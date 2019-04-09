@@ -18,9 +18,13 @@ import androidx.annotation.StyleRes
  * Created by zeng on 2016/12/4.
  */
 
-open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view: View, @StyleRes themeResId: Int = 0) : DialogInterface {
-    protected var dialog = MyDialog(activity, themeResId)
+open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view: View, @StyleRes themeResId: Int = 0) {
+    private var dialog = MyDialog(activity, themeResId)
     protected var window: Window? = dialog.window
+    var onCancelListener: DialogInterface.OnCancelListener? = null
+    var onDismissListener: DialogInterface.OnDismissListener? = null
+    /** 返回键按下监听 */
+    var onBackPressedListener: OnBackPressedListener? = null
 
     val context: Context
         get() = dialog.context
@@ -45,6 +49,23 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
         window!!.decorView.setPadding(0, 0, 0, 0)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(view)
+        dialog.setOnCancelListener {
+            onCancel()
+            onCancelListener?.onCancel(dialog)
+        }
+        dialog.setOnDismissListener { 
+            onDismiss()
+            onDismissListener?.onDismiss(dialog)
+        }
+        dialog.setOnShowListener { 
+            onShow()
+        }
+        dialog.onBackPressedListener = object : OnBackPressedListener {
+            override fun onBackPressed() {
+                this@BaseDialog.onBackPressed()
+                onBackPressedListener?.onBackPressed()
+            }
+        }
     }
 
     fun <T : View> findViewById(@IdRes id: Int): T? {
@@ -56,22 +77,12 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
         return this
     }
 
-    open fun setOnCancelListener(listener: DialogInterface.OnCancelListener?): BaseDialog {
-        dialog.setOnCancelListener(listener)
-        return this
-    }
-
-    open fun setOnDismissListener(listener: DialogInterface.OnDismissListener?): BaseDialog {
-        dialog.setOnDismissListener(listener)
-        return this
-    }
-
     open fun setCanceledOnTouchOutside(flag: Boolean): BaseDialog {
         dialog.setCanceledOnTouchOutside(flag)
         return this
     }
 
-    open fun show(): BaseDialog {
+    fun show(): BaseDialog {
         if (!isDestroyed && !dialog.isShowing) {
             if (Looper.getMainLooper() == Looper.myLooper()) {
                 dialog.show()
@@ -82,25 +93,29 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
         return this
     }
 
-    override fun cancel() {
+    fun cancel() {
         if (!isDestroyed) {
             dialog.cancel()
         }
     }
 
-    override fun dismiss() {
+    fun dismiss() {
         if (!isDestroyed) {
             dialog.dismiss()
         }
     }
+    
+    open fun onShow() {}
 
-    /**
-     * 设置返回键按下监听
-     */
-    open fun setOnBackPressedListener(listener: OnBackPressedListener?): BaseDialog {
-        dialog.setOnBackPressedListener(listener)
-        return this
-    }
+    open fun onDismiss() {}
+
+    open fun onCancel() {}
+
+    open fun onBackPressed() {}
+
+    open fun onAttachedToWindow() {}
+
+    open fun onDetachedFromWindow() {}
 
     open fun setPadding(left: Int, top: Int, right: Int, bottom: Int): BaseDialog {
         window!!.decorView.setPadding(left, top, right, bottom)
@@ -166,9 +181,16 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
     interface OnBackPressedListener {
         fun onBackPressed()
     }
+    
+    internal interface WindowCallback {
+        fun onAttachedToWindow()
 
+        fun onDetachedFromWindow()
+    }
+    
     class MyDialog : Dialog {
-        private var backPressedListener: OnBackPressedListener? = null
+        internal var onBackPressedListener: OnBackPressedListener? = null
+        internal var windowCallback: WindowCallback? = null
 
         internal constructor(context: Context) : super(context)
 
@@ -178,11 +200,15 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
 
         override fun onBackPressed() {
             super.onBackPressed()
-            backPressedListener?.onBackPressed()
+            onBackPressedListener?.onBackPressed()
         }
 
-        internal fun setOnBackPressedListener(backPressedListener: OnBackPressedListener?) {
-            this.backPressedListener = backPressedListener
+        override fun onAttachedToWindow() {
+            windowCallback?.onAttachedToWindow()
+        }
+
+        override fun onDetachedFromWindow() {
+            windowCallback?.onDetachedFromWindow()
         }
     }
 }

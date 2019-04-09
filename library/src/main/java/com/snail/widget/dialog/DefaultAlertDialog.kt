@@ -1,7 +1,6 @@
 package com.snail.widget.dialog
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
@@ -62,18 +61,19 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
         initViews()
         val width = (Math.min(Utils.getDisplayScreenWidth(context), Utils.getDisplayScreenHeight(context)) * 0.8).toInt()
         setSize(width, ViewGroup.LayoutParams.WRAP_CONTENT)
-        setOnDismissListener(DialogInterface.OnDismissListener { handler.removeCallbacks(dismissRunnable) })
     }
 
-    override fun show(): DefaultAlertDialog {
-        super.show()
+    override fun onShow() {
         if (autoDismiss) {
             handler.removeCallbacks(dismissRunnable)
             handler.postDelayed(dismissRunnable, autoDismissDelayMillis.toLong())
         }
-        return this
     }
 
+    override fun onDismiss() {
+        handler.removeCallbacks(dismissRunnable)
+    }
+    
     override fun onClick(v: View) {
         if (clickDismiss) {
             dismiss()
