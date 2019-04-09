@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:paddingStart="20dp"
+              android:paddingEnd="20dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.snail.widget.textview.RoundButton
+        android:id="@+id/btnWidthTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:text="带标题和确认取消按钮"
+        app:wswCornerRadius="8dp"
+        app:wswNormalFillColor="@color/transparent"
+        app:wswNormalStrokeColor="@color/colorPrimary"
+        app:wswNormalTextColor="@color/colorPrimary"
+        app:wswPressedFillColor="@color/colorPrimary"
+        app:wswPressedTextColor="@color/white"
+        app:wswStrokeWidth="1dp"/>
+
+    <com.snail.widget.textview.RoundButton
+        android:id="@+id/btnSingleNoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:text="不带标题和单按钮"
+        app:wswCornerRadius="8dp"
+        app:wswNormalFillColor="@color/transparent"
+        app:wswNormalStrokeColor="@color/colorPrimary"
+        app:wswNormalTextColor="@color/colorPrimary"
+        app:wswPressedFillColor="@color/colorPrimary"
+        app:wswPressedTextColor="@color/white"
+        app:wswStrokeWidth="1dp"/>
+
+    <com.snail.widget.textview.RoundButton
+        android:id="@+id/btnAutoDismiss"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:text="定时自动消失"
+        app:wswCornerRadius="8dp"
+        app:wswNormalFillColor="@color/transparent"
+        app:wswNormalStrokeColor="@color/colorPrimary"
+        app:wswNormalTextColor="@color/colorPrimary"
+        app:wswPressedFillColor="@color/colorPrimary"
+        app:wswPressedTextColor="@color/white"
+        app:wswStrokeWidth="1dp"/>
+</LinearLayout>

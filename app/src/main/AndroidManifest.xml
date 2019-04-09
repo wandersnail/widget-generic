@@ -29,6 +29,7 @@
         <activity android:name=".RoundImageActivity"/>
         <activity android:name=".ScaleViewActivity"/>
         <activity android:name=".StringPickerActivity"/>
+        <activity android:name=".DefaultAlertDialogActivity"/>
     </application>
 
 </manifest>
