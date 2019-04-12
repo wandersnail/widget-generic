@@ -7,8 +7,7 @@ import android.view.View
 
 /**
  * 时间: 2017/6/27 11:17
- * 作者: 曾繁盛
- * 邮箱: 43068145@qq.com
+ * 作者: zengfansheng
  * 功能: 可自定义长按事件的长按时长的按钮
  */
 
