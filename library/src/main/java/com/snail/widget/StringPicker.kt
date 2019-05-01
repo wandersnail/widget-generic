@@ -92,7 +92,7 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
             if (isFling) doMove(null)
         } else {
             if (isFling) {
-                doUp(null)
+                doUp()
                 isFling = false
             }
         }
@@ -276,7 +276,7 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
             when (event.actionMasked) {
                 MotionEvent.ACTION_DOWN -> doDown(event)
                 MotionEvent.ACTION_MOVE -> doMove(event)
-                MotionEvent.ACTION_UP -> doUp(event)
+                MotionEvent.ACTION_UP -> doUp()
             }
             return true
         }
@@ -336,7 +336,7 @@ class StringPicker @JvmOverloads constructor(context: Context, attrs: AttributeS
         }
     }
 
-    private fun doUp(event: MotionEvent?) {
+    private fun doUp() {
         // 抬起手后mCurrentSelected的位置由当前位置move到中间选中位置
         if (Math.abs(moveLen) < 0.0001) {
             moveLen = 0f

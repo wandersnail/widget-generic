@@ -3,7 +3,6 @@ package cn.zfs.widgetdemo
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.snail.commons.helper.PermissionsRequester
@@ -11,6 +10,7 @@ import com.snail.commons.utils.Logger
 import com.snail.commons.utils.ToastUtils
 import com.snail.widget.listview.BaseListAdapter
 import com.snail.widget.listview.BaseViewHolder
+import com.snail.widget.listview.InflatedViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -26,17 +26,11 @@ class MainActivity : AppCompatActivity() {
                 StringPickerActivity::class.java, DefaultAlertDialogActivity::class.java)
         lv.adapter = object : BaseListAdapter<String>(this, data) {
             override fun createViewHolder(position: Int): BaseViewHolder<String> {
-                return object : BaseViewHolder<String>() {
-                    private var tv: TextView? = null
+                return object : InflatedViewHolder<String>(context, android.R.layout.simple_list_item_1) {
+                    private var tv: TextView = getView(android.R.id.text1)
 
                     override fun onBind(item: String, position: Int) {
-                        tv?.text = item
-                    }
-
-                    override fun createView(): View {
-                        val view = View.inflate(this@MainActivity, android.R.layout.simple_list_item_1, null)
-                        tv = view.findViewById(android.R.id.text1)
-                        return view
+                        tv.text = item
                     }
                 }
             }
@@ -56,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         requester?.checkAndRequest(list)
         requester?.setOnRequestResultListener(object : PermissionsRequester.OnRequestResultListener {
             override fun onRequestResult(refusedPermissions: MutableList<String>) {
-                if (!refusedPermissions.isEmpty()) {
+                if (refusedPermissions.isNotEmpty()) {
                     ToastUtils.showShort("部分权限被拒绝，可能造成某些功能无法使用")
                 }
             }

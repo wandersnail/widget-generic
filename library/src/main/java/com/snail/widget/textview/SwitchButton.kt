@@ -8,6 +8,7 @@ import android.content.res.TypedArray
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
+import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import android.text.Layout
@@ -389,7 +390,15 @@ class SwitchButton : CompoundButton {
 
 
     private fun makeLayout(text: CharSequence): Layout {
-        return StaticLayout(text, mTextPaint, Math.ceil(Layout.getDesiredWidth(text, mTextPaint).toDouble()).toInt(), Layout.Alignment.ALIGN_CENTER, 1f, 0f, false)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            StaticLayout.Builder.obtain(text, 0, text.length, mTextPaint!!, Math.ceil(Layout.getDesiredWidth(text, mTextPaint).toDouble()).toInt())
+                    .setAlignment(Layout.Alignment.ALIGN_CENTER)
+                    .setLineSpacing(0f, 1f)
+                    .setIncludePad(false)
+                    .build()
+        } else {
+            StaticLayout(text, mTextPaint, Math.ceil(Layout.getDesiredWidth(text, mTextPaint).toDouble()).toInt(), Layout.Alignment.ALIGN_CENTER, 1f, 0f, false)
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
