@@ -2,6 +2,7 @@
 
 ## 代码托管
 [![](https://jitpack.io/v/wandersnail/widgets.svg)](https://jitpack.io/#wandersnail/widgets)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.wandersnail/widgets/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.wandersnail/widgets)
 [![Download](https://api.bintray.com/packages/wandersnail/android/widgets/images/download.svg) ](https://bintray.com/wandersnail/android/widgets/_latestVersion)
 
 ## 使用
