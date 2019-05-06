@@ -20,10 +20,10 @@ import java.lang.ref.WeakReference
  */
 
 open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view: View, @StyleRes themeResId: Int = 0) {
-    private var dialog = MyDialog(activity, themeResId)
+    private var dialog = MyDialog(EventObserver(), activity, themeResId)
     protected var window: Window? = dialog.window
     //注册的观察者
-    private val observers = ArrayList<WeakReference<SimpleDialogEventObserver>>()
+    private val observers = ArrayList<WeakReference<DialogEventObserver>>()
 
     val context: Context
         get() = dialog.context
@@ -42,63 +42,64 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
 
     constructor(activity: Activity, @LayoutRes resId: Int) : this(activity, View.inflate(activity, resId, null))
 
+    private inner class EventObserver : DialogEventObserver {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            this@BaseDialog.onCreate(savedInstanceState)
+            getObservers().forEach { it.onCreate(savedInstanceState) }
+        }
+
+        override fun onStart() {
+            this@BaseDialog.onStart()
+            getObservers().forEach { it.onStart() }
+        }
+
+        override fun onShow() {
+            this@BaseDialog.onShow()
+            getObservers().forEach { it.onShow() }
+        }
+
+        override fun onAttachedToWindow() {
+            this@BaseDialog.onAttachedToWindow()
+            getObservers().forEach { it.onAttachedToWindow() }
+        }
+
+        override fun onStop() {
+            this@BaseDialog.onStop()
+            getObservers().forEach { it.onStop() }
+        }
+
+        override fun onBackPressed() {
+            this@BaseDialog.onBackPressed()
+            getObservers().forEach { it.onBackPressed() }
+        }
+
+        override fun onCancel() {
+            this@BaseDialog.onCancel()
+            getObservers().forEach { it.onCancel() }
+        }
+
+        override fun onDismiss() {
+            this@BaseDialog.onDismiss()
+            getObservers().forEach { it.onDismiss() }
+        }
+
+        override fun onDetachedFromWindow() {
+            this@BaseDialog.onDetachedFromWindow()
+            getObservers().forEach { it.onDetachedFromWindow() }
+        }
+    }
+
     init {
         dialog.ownerActivity = activity
         window!!.requestFeature(Window.FEATURE_NO_TITLE)
         window!!.decorView.setPadding(0, 0, 0, 0)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(view)
-        dialog.observer = object : SimpleDialogEventObserver() {
-            override fun onCreate(savedInstanceState: Bundle?) {
-                this@BaseDialog.onCreate(savedInstanceState)
-                getObservers().forEach { it.onCreate(savedInstanceState) }
-            }
-
-            override fun onStart() {
-                this@BaseDialog.onStart()
-                getObservers().forEach { it.onStart() }
-            }
-
-            override fun onShow() {
-                this@BaseDialog.onShow()
-                getObservers().forEach { it.onShow() }
-            }
-
-            override fun onAttachedToWindow() {
-                this@BaseDialog.onAttachedToWindow()
-                getObservers().forEach { it.onAttachedToWindow() }
-            }
-
-            override fun onStop() {
-                this@BaseDialog.onStop()
-                getObservers().forEach { it.onStop() }
-            }
-
-            override fun onBackPressed() {
-                this@BaseDialog.onBackPressed()
-                getObservers().forEach { it.onBackPressed() }
-            }
-
-            override fun onCancel() {
-                this@BaseDialog.onCancel()
-                getObservers().forEach { it.onCancel() }
-            }
-
-            override fun onDismiss() {
-                this@BaseDialog.onDismiss()
-                getObservers().forEach { it.onDismiss() }
-            }
-
-            override fun onDetachedFromWindow() {
-                this@BaseDialog.onDetachedFromWindow()
-                getObservers().forEach { it.onDetachedFromWindow() }
-            }
-        }
     }
 
-    private fun getObservers(): Array<SimpleDialogEventObserver> {
+    private fun getObservers(): Array<DialogEventObserver> {
         synchronized(observers) {
-            val obs = java.util.ArrayList<SimpleDialogEventObserver>()
+            val obs = java.util.ArrayList<DialogEventObserver>()
             val iterator = observers.iterator()
             while (iterator.hasNext()) {
                 val observer = iterator.next().get()
@@ -117,7 +118,7 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
      *
      * @param observer 需要注册的观察者
      */
-    fun registerEventObserver(observer: SimpleDialogEventObserver) {
+    fun registerEventObserver(observer: DialogEventObserver) {
         synchronized(observers) {
             observers.forEach {
                 if (it.get() == observer) {
@@ -133,7 +134,7 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
      *
      * @param observer 需要取消注册的观察者
      */
-    fun unregisterEventObserver(observer: SimpleDialogEventObserver) {
+    fun unregisterEventObserver(observer: DialogEventObserver) {
         synchronized(observers) {
             val iterator = observers.iterator()
             while (iterator.hasNext()) {
@@ -270,8 +271,7 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
         return this
     }
         
-    private class MyDialog(context: Context, themeResId: Int) : Dialog(context, themeResId) {
-        var observer: SimpleDialogEventObserver? = null
+    private class MyDialog(val observer: DialogEventObserver?, context: Context, themeResId: Int) : Dialog(context, themeResId) {
 
         init {
             setOnCancelListener { observer?.onCancel() }

@@ -8,22 +8,22 @@ import android.os.Bundle
  * date: 2019/5/5 20:24
  * author: zengfansheng
  */
-open class SimpleDialogEventObserver {
-    open fun onCreate(savedInstanceState: Bundle?) {}
+open class SimpleDialogEventObserver : DialogEventObserver {
+    override fun onCreate(savedInstanceState: Bundle?) {}
 
-    open fun onStart() {}
+    override fun onStart() {}
 
-    open fun onStop() {}
+    override fun onStop() {}
 
-    open fun onShow() {}
+    override fun onShow() {}
 
-    open fun onDismiss() {}
+    override fun onDismiss() {}
 
-    open fun onCancel() {}
+    override fun onCancel() {}
 
-    open fun onBackPressed() {}
+    override fun onBackPressed() {}
 
-    open fun onAttachedToWindow() {}
+    override fun onAttachedToWindow() {}
 
-    open fun onDetachedFromWindow() {}
+    override fun onDetachedFromWindow() {}
 }
