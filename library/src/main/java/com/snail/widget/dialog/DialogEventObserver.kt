@@ -26,4 +26,8 @@ interface DialogEventObserver {
     fun onAttachedToWindow()
 
     fun onDetachedFromWindow()
+
+    fun onContentChanged()
+
+    fun onWindowFocusChanged(hasFocus: Boolean)
 }

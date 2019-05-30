@@ -43,6 +43,16 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
     constructor(activity: Activity, @LayoutRes resId: Int) : this(activity, View.inflate(activity, resId, null))
 
     private inner class EventObserver : DialogEventObserver {
+        override fun onContentChanged() {
+            this@BaseDialog.onContentChanged()
+            getObservers().forEach { it.onContentChanged() }
+        }
+
+        override fun onWindowFocusChanged(hasFocus: Boolean) {
+            this@BaseDialog.onWindowFocusChanged(hasFocus)
+            getObservers().forEach { it.onWindowFocusChanged(hasFocus) }
+        }
+
         override fun onCreate(savedInstanceState: Bundle?) {
             this@BaseDialog.onCreate(savedInstanceState)
             getObservers().forEach { it.onCreate(savedInstanceState) }
@@ -210,6 +220,10 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
 
     open fun onDetachedFromWindow() {}
 
+    open fun onContentChanged() {}
+
+    open fun onWindowFocusChanged(hasFocus: Boolean) {}
+
     open fun setPadding(left: Int, top: Int, right: Int, bottom: Int): BaseDialog {
         window!!.decorView.setPadding(left, top, right, bottom)
         return this
@@ -304,6 +318,14 @@ open class BaseDialog @JvmOverloads constructor(val activity: Activity, val view
         override fun onStop() {
             super.onStop()
             observer?.onStop()
+        }
+
+        override fun onContentChanged() {
+            observer?.onContentChanged()
+        }
+
+        override fun onWindowFocusChanged(hasFocus: Boolean) {
+            observer?.onWindowFocusChanged(hasFocus)
         }
     }
 }
