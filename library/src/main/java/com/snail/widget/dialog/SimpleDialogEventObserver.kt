@@ -9,6 +9,10 @@ import android.os.Bundle
  * author: zengfansheng
  */
 open class SimpleDialogEventObserver : DialogEventObserver {
+    override fun onContentChanged() {}
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {}
+
     override fun onCreate(savedInstanceState: Bundle?) {}
 
     override fun onStart() {}
