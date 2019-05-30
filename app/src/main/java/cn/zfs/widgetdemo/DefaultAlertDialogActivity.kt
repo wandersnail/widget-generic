@@ -60,6 +60,14 @@ class DefaultAlertDialogActivity : BaseActivity() {
     }
     
     private val observer = object : DialogEventObserver {
+        override fun onContentChanged() {
+            Log.d("DialogEventObserver", "onContentChanged")
+        }
+
+        override fun onWindowFocusChanged(hasFocus: Boolean) {
+            Log.d("DialogEventObserver", "onWindowFocusChanged: $hasFocus")
+        }
+
         override fun onCreate(savedInstanceState: Bundle?) {
             Log.d("DialogEventObserver", "onCreate")
         }
