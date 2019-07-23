@@ -16,6 +16,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import com.snail.widget.R
 import com.snail.widget.Utils
+import kotlin.math.min
 
 
 /**
@@ -23,7 +24,7 @@ import com.snail.widget.Utils
  * 时间: 2018/5/15 08:43
  * 作者: zengfansheng
  */
-class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dialog_default_alert), View.OnClickListener {
+open class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dialog_default_alert), View.OnClickListener {
     private var tvTitle: TextView = view.findViewById(R.id.tvTitle)
     private var tvMsg: TextView = view.findViewById(R.id.tvMsg)
     private var tvSubMsg: TextView = view.findViewById(R.id.tvSubMsg)
@@ -59,8 +60,8 @@ class DefaultAlertDialog(activity: Activity) : BaseDialog(activity, R.layout.dia
 
     init {
         initViews()
-        val width = (Math.min(Utils.getDisplayScreenWidth(context), Utils.getDisplayScreenHeight(context)) * 0.8).toInt()
-        setSize(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val width = (min(Utils.getDisplayScreenWidth(context), Utils.getDisplayScreenHeight(context)) * 0.8).toInt()
+        this.setSize(width, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
     override fun onShow() {
