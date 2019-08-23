@@ -1,8 +1,8 @@
 package cn.zfs.widgetdemo
 
 import android.os.Bundle
+import cn.wandersnail.widget.scale.ScaleView
 import com.snail.commons.utils.UiUtils
-import com.snail.widget.scale.ScaleView
 import kotlinx.android.synthetic.main.activity_scale_view.*
 import java.text.DecimalFormat
 

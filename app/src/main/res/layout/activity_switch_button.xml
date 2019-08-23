@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.snail.widget.textview.SwitchButton
+        <cn.wandersnail.widget.textview.SwitchButton
             android:id="@+id/sb1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <com.snail.widget.textview.SwitchButton
+        <cn.wandersnail.widget.textview.SwitchButton
             android:id="@+id/sb2"
             android:layout_width="50dp"
             app:wswThumbHeight="20dp"
@@ -24,13 +24,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"/>
 
-        <com.snail.widget.textview.SwitchButton
+        <cn.wandersnail.widget.textview.SwitchButton
             android:id="@+id/sb3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"/>
 
-        <com.snail.widget.textview.SwitchButton
+        <cn.wandersnail.widget.textview.SwitchButton
             android:id="@+id/sb4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

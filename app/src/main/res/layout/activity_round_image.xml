@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="all"
             app:wswCornerRadius="8dp"
             android:src="@drawable/img"
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="all"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"
@@ -25,7 +25,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="left_top|left_bottom|right_top"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"
@@ -33,7 +33,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="left_top|left_bottom|right_bottom"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"
@@ -48,14 +48,14 @@
         android:layout_height="wrap_content">
         
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="left_top"
             app:wswCornerRadius="30dp"
             android:src="@drawable/img"
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="right_top"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"
@@ -63,7 +63,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="left_bottom"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"
@@ -71,7 +71,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="right_bottom"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"
@@ -86,14 +86,14 @@
         android:layout_height="wrap_content">
 
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="left_top|right_bottom"
             app:wswCornerRadius="30dp"
             android:src="@drawable/img"
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="right_top|left_top"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"
@@ -101,7 +101,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="left_bottom|right_top"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"
@@ -109,7 +109,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
-        <com.snail.widget.RoundImageView
+        <cn.wandersnail.widget.RoundImageView
             app:wswRound="right_bottom|left_bottom"
             android:layout_marginStart="10dp"
             app:wswCornerRadius="30dp"

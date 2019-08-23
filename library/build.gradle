@@ -1,11 +1,15 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'maven'
 
-def lib_version = '1.2.2'
-group = "com.github.wandersnail"
+def lib_version = '1.0.0'
+def user_name = 'wandersnail'
+def lib_group = 'cn.wandersnail'
+def lib_artifact = 'widget-generic'
+def lib_packaging = 'aar'
+def lib_description = '常用的一些自定义控件'
+def lib_website = 'https://github.com/wandersnail/widget-generic'
+group = lib_group
 version = lib_version
 
 android {
@@ -26,23 +30,45 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    compileOnly "androidx.appcompat:appcompat:$appcompat_version"
+    compileOnly "androidx.recyclerview:recyclerview:$recyclerview_version"
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }
 
 publish {
-    repoName="android"//仓库名
-    userOrg = 'wandersnail' //bintray.com用户名  
-    groupId = 'com.github.wandersnail' //jcenter上的路径  
-    artifactId = 'widgets' //项目名称  
-    publishVersion = "$lib_version" //版本号  
-    desc = '自定义控件'
-    website = 'https://github.com/wandersnail'
+    repoName="androidx"//仓库名
+    userOrg = user_name //bintray.com用户名  
+    groupId = lib_group //jcenter上的路径  
+    artifactId = lib_artifact //项目名称  
+    publishVersion = lib_version //版本号  
+    desc = lib_description
+    website = lib_website
 }
 
 if (project.getGradle().startParameter.taskNames.any { it.contains('bintrayUpload') }) {
@@ -55,17 +81,17 @@ if (project.getGradle().startParameter.taskNames.any { it.contains('bintrayUploa
             pom {
                 //noinspection GroovyAssignabilityCheck
                 project {
-                    name "widgets"
-                    artifactId 'widgets'
-                    packaging 'aar'
-                    description 'Android自定义控件库'
-                    url 'https://github.com/wandersnail'
+                    name lib_artifact
+                    artifactId lib_artifact
+                    packaging lib_packaging
+                    description lib_description
                     version lib_version
+                    url lib_website
 
                     scm {
-                        url 'https://github.com/wandersnail/widgets'
-                        connection 'scm:git:https://github.com/wandersnail/widgets.git'
-                        developerConnection 'scm:git:https://github.com/wandersnail/widgets.git'
+                        url lib_website
+                        connection "scm:git:${lib_website}.git"
+                        developerConnection "scm:git:${lib_website}.git"
                     }
 
                     licenses {
@@ -77,7 +103,7 @@ if (project.getGradle().startParameter.taskNames.any { it.contains('bintrayUploa
 
                     developers {
                         developer {
-                            id 'wandersnail'
+                            id user_name
                             name 'Zeng Fansheng'
                             email 'bingmo977@qq.com'
                         }

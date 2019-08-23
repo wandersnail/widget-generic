@@ -3,8 +3,8 @@ package cn.zfs.widgetdemo
 import android.graphics.Color
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import cn.wandersnail.widget.StringPicker
 import com.snail.commons.utils.UiUtils
-import com.snail.widget.StringPicker
 import kotlinx.android.synthetic.main.activity_string_picker.*
 
 

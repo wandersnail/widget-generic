@@ -5,12 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import cn.wandersnail.widget.listview.BaseListAdapter
+import cn.wandersnail.widget.listview.BaseViewHolder
+import cn.wandersnail.widget.listview.InflatedViewHolder
 import com.snail.commons.helper.PermissionsRequester
 import com.snail.commons.utils.Logger
 import com.snail.commons.utils.ToastUtils
-import com.snail.widget.listview.BaseListAdapter
-import com.snail.widget.listview.BaseViewHolder
-import com.snail.widget.listview.InflatedViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 

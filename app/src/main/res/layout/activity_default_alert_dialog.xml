@@ -7,7 +7,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.snail.widget.textview.RoundButton
+    <cn.wandersnail.widget.textview.RoundButton
         android:id="@+id/btnWidthTitle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -21,7 +21,7 @@
         app:wswPressedTextColor="@color/white"
         app:wswStrokeWidth="1dp"/>
 
-    <com.snail.widget.textview.RoundButton
+    <cn.wandersnail.widget.textview.RoundButton
         android:id="@+id/btnSingleNoTitle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -35,7 +35,7 @@
         app:wswPressedTextColor="@color/white"
         app:wswStrokeWidth="1dp"/>
 
-    <com.snail.widget.textview.RoundButton
+    <cn.wandersnail.widget.textview.RoundButton
         android:id="@+id/btnAutoDismiss"
         android:layout_width="match_parent"
         android:layout_height="50dp"

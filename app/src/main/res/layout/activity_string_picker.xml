@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.snail.widget.StringPicker
+    <cn.wandersnail.widget.StringPicker
         android:id="@+id/picker"
         android:layout_width="match_parent"
         android:layout_height="400dp"/>

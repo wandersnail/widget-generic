@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.snail.widget.scale.ScaleView
+    <cn.wandersnail.widget.scale.ScaleView
         android:id="@+id/scaleView"
         app:wswOrientation="vertical"
         app:wswMax="230"
@@ -13,7 +13,7 @@
         android:layout_width="100dp"
         android:layout_height="match_parent"/>
 
-    <com.snail.widget.scale.ScaleView
+    <cn.wandersnail.widget.scale.ScaleView
         android:id="@+id/scaleView1"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/scaleView"

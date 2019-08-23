@@ -3,10 +3,10 @@ package cn.zfs.widgetdemo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import cn.wandersnail.widget.dialog.BaseDialog
+import cn.wandersnail.widget.dialog.DefaultAlertDialog
+import cn.wandersnail.widget.dialog.DialogEventObserver
 import com.snail.commons.utils.ToastUtils
-import com.snail.widget.dialog.BaseDialog
-import com.snail.widget.dialog.DefaultAlertDialog
-import com.snail.widget.dialog.DialogEventObserver
 import kotlinx.android.synthetic.main.activity_default_alert_dialog.*
 
 /**
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_default_alert_dialog.*
  * author: zengfansheng
  */
 class DefaultAlertDialogActivity : BaseActivity() {
-    private var dialog: BaseDialog? = null
+    private var dialog: BaseDialog<DefaultAlertDialog>? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

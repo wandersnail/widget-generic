@@ -1,9 +1,8 @@
 # 自定义控件
 
 ## 代码托管
-[![](https://jitpack.io/v/wandersnail/widgets.svg)](https://jitpack.io/#wandersnail/widgets)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.wandersnail/widgets/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.wandersnail/widgets)
-[![Download](https://api.bintray.com/packages/wandersnail/android/widgets/images/download.svg) ](https://bintray.com/wandersnail/android/widgets/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.wandersnail/widget-generic/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.wandersnail/widget-generic)
+[![Download](https://api.bintray.com/packages/wandersnail/androidx/widget-generic/images/download.svg) ](https://bintray.com/wandersnail/androidx/widget-generic/_latestVersion)
 
 ## 使用
 
@@ -11,17 +10,18 @@
 ```
 dependencies {
 	...
-	implementation 'com.github.wandersnail:widgets:1.0.0'
+	implementation 'cn.wandersnail:widget-generic:latestVersion'
+	implementation 'androidx.recyclerview:recyclerview:latestVersion'
 }
 ```
 
-2. 如果从jcenter下载失败。在project的build.gradle里的repositories添加内容，最好两个都加上，有时jitpack会抽风，同步不下来。添加完再次同步即可。
+2. 如果从jcenter下载失败。在project的build.gradle里的repositories添加内容，最好两个都加上，添加完再次同步即可。
 ```
 allprojects {
 	repositories {
 		...
-		maven { url 'https://jitpack.io' }
-		maven { url 'https://dl.bintray.com/wandersnail/android/' }
+		mavenCentral()
+		maven { url 'https://dl.bintray.com/wandersnail/androidx/' }
 	}
 }
 ```
@@ -36,11 +36,11 @@ allprojects {
 - 带动画开关
 - 滑动文本选择器
 
-![image](https://github.com/wandersnail/widgets/blob/master/images/device-2019-04-06-152951.png)
-![image](https://github.com/wandersnail/widgets/blob/master/images/device-2019-04-06-152423.gif)
-![image](https://github.com/wandersnail/widgets/blob/master/images/device-2019-04-06-152607.gif)
-![image](https://github.com/wandersnail/widgets/blob/master/images/device-2019-04-06-152652.gif)
-![image](https://github.com/wandersnail/widgets/blob/master/images/device-2019-04-06-153103.gif)
-![image](https://github.com/wandersnail/widgets/blob/master/images/ezgif-5-a93c12bb2c0f.gif)
-![image](https://github.com/wandersnail/widgets/blob/master/images/ezgif-5-c2ce3c0fd071.gif)
-![image](https://github.com/wandersnail/widgets/blob/master/images/device-2019-04-06-224935.gif)
+![image](https://github.com/wandersnail/widget-generic/blob/master/images/device-2019-04-06-152951.png)
+![image](https://github.com/wandersnail/widget-generic/blob/master/images/device-2019-04-06-152423.gif)
+![image](https://github.com/wandersnail/widget-generic/blob/master/images/device-2019-04-06-152607.gif)
+![image](https://github.com/wandersnail/widget-generic/blob/master/images/device-2019-04-06-152652.gif)
+![image](https://github.com/wandersnail/widget-generic/blob/master/images/device-2019-04-06-153103.gif)
+![image](https://github.com/wandersnail/widget-generic/blob/master/images/ezgif-5-a93c12bb2c0f.gif)
+![image](https://github.com/wandersnail/widget-generic/blob/master/images/ezgif-5-c2ce3c0fd071.gif)
+![image](https://github.com/wandersnail/widget-generic/blob/master/images/device-2019-04-06-224935.gif)

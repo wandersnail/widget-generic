@@ -3,7 +3,7 @@ package cn.zfs.widgetdemo
 import android.graphics.Color
 import android.os.Bundle
 import androidx.core.content.ContextCompat
-import com.snail.widget.textview.SwitchButton
+import cn.wandersnail.widget.textview.SwitchButton
 import kotlinx.android.synthetic.main.activity_switch_button.*
 
 /**
@@ -20,6 +20,6 @@ class SwitchButtonActivity : BaseActivity() {
         sb2.setText("On", "Off")
         sb3.tintColor = Color.MAGENTA
         sb4.backColor = SwitchButton.generateBackColor(ContextCompat.getColor(this, R.color.colorPrimary))
-        sb4.thumbColor = SwitchButton.defaultThumbColor
+        sb4.thumbColor = SwitchButton.getDefaultThumbColor()
     }
 }
