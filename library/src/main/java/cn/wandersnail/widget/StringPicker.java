@@ -52,9 +52,23 @@ public class StringPicker extends View {
     private boolean enableLoop;
     private boolean isEdge;
     private MyHandler updateHandler = new MyHandler(this);
-            
+
+    public StringPicker(Context context) {
+        super(context);
+        init(context);
+    }
+
     public StringPicker(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init(context);
+    }
+
+    public StringPicker(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context);
+    }
+
+    private void init(Context context) {
         timer = new Timer();
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setStyle(Paint.Style.FILL);
@@ -69,7 +83,7 @@ public class StringPicker extends View {
         });
         scroller = new Scroller(context);
     }
-    
+
     private class MyTimerTask extends TimerTask {        
         @Override
         public void run() {

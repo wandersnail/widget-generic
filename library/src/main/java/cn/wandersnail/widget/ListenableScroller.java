@@ -15,18 +15,17 @@ import java.lang.ref.WeakReference;
  */
 public class ListenableScroller extends OverScroller {
     private OnScrollListener listener;
-    private Handler handler;
+    private Handler handler = new ScrollEventHandler(this);
     private boolean flingMode;
-    
+
     public ListenableScroller(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public ListenableScroller(Context context, Interpolator interpolator) {
         super(context, interpolator);
-        handler = new ScrollEventHandler(this);
     }
-    
+
     public void setOnScrollListener(OnScrollListener listener) {
         this.listener = listener;
     }

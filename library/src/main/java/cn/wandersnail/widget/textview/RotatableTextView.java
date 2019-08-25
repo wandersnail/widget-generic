@@ -20,18 +20,23 @@ public class RotatableTextView extends AppCompatTextView {
     private float degree;
 
     public RotatableTextView(Context context) {
-        this(context, null);
+        super(context);
+        init(null);
     }
 
     public RotatableTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context.obtainStyledAttributes(attrs, R.styleable.RotatableTextView));
     }
 
     public RotatableTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context.obtainStyledAttributes(attrs, R.styleable.RotatableTextView, defStyleAttr, 0));
+    }
+
+    private void init(TypedArray a) {
         setGravity(Gravity.CENTER);
-        if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RotatableTextView);
+        if (a != null) {
             degree = a.getFloat(R.styleable.RotatableTextView_wswDegree, degree);
             a.recycle();
         }

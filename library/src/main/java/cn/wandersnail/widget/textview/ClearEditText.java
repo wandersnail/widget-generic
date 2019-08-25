@@ -30,15 +30,21 @@ public class ClearEditText extends AppCompatEditText implements View.OnFocusChan
     }
 
     public ClearEditText(Context context) {
-        this(context, null);
+        super(context);
+        init(context);
     }
 
     public ClearEditText(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context);
     }
 
     public ClearEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context);
+    }
+
+    private void init(Context context) {
         // 获取EditText的DrawableRight,假如没有设置我们就使用默认的图片,获取图片的顺序是左上右下（0,1,2,3）  
         clearDrawable = getCompoundDrawables()[2];
         if (clearDrawable == null) {

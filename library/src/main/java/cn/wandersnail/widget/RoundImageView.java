@@ -27,17 +27,22 @@ public class RoundImageView extends AppCompatImageView {
     private int needFlags = 0x0f;
 
     public RoundImageView(Context context) {
-        this(context, null);
+        super(context);
+        init(null);
     }
 
     public RoundImageView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context.obtainStyledAttributes(attrs, R.styleable.RoundImageView));
     }
 
     public RoundImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        if (attrs != null) {
-            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RoundImageView);
+        init(context.obtainStyledAttributes(attrs, R.styleable.RoundImageView, defStyleAttr, 0));
+    }
+
+    private void init(TypedArray ta) {
+        if (ta != null) {
             cornerRadius = ta.getDimensionPixelSize(R.styleable.RoundImageView_wswCornerRadius, cornerRadius);
             needFlags = ta.getInt(R.styleable.RoundImageView_wswRound, 0x0f);
             ta.recycle();

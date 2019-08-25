@@ -48,17 +48,17 @@ public class HorizontalLabelPicker extends View {
     }
 
     public HorizontalLabelPicker(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public HorizontalLabelPicker(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public HorizontalLabelPicker(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-
+    
     /**
      * 获取当前选择label位置
      */

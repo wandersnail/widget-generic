@@ -24,7 +24,7 @@ class ScaleViewActivity : BaseActivity() {
         
         val params1 = scaleView1.obtainParams()
         params1.setScope(0, 100)
-        params1.setShortLongtScaleRatio(1f)
+        params1.setShortLongScaleRatio(1f)
         params1.setScaleSpace(UiUtils.dp2px(30f))
         params1.setLabelFormatter { value -> value.toInt().toString() }
         params1.setOnValueUpdateCallback { value -> tv.text = value.toString() }

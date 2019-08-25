@@ -152,39 +152,42 @@ public class NumberProgressBar extends View {
     }
     
     public NumberProgressBar(Context context) {
-        this(context, null);
+        super(context);
+        init(null);
     }
 
     public NumberProgressBar(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context.obtainStyledAttributes(attrs, R.styleable.NumberProgressBar));
     }
 
     public NumberProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context.obtainStyledAttributes(attrs, R.styleable.NumberProgressBar, defStyleAttr, 0));
+    }
+    
+    private void init(TypedArray attributes) {
+        if (attributes != null) {
+            mReachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_wswReachedColor, Color.rgb(66, 145, 241));
+            mUnreachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_wswUnreachedColor, Color.rgb(204, 204, 204));
+            mTextColor = attributes.getColor(R.styleable.NumberProgressBar_wswTextColor, Color.rgb(66, 145, 241));
+            mTextSize = attributes.getDimension(R.styleable.NumberProgressBar_wswTextSize, sp2px(10));
 
-        //load styled attributes.
-        final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.NumberProgressBar,
-                defStyleAttr, 0);
+            mReachedBarHeight = attributes.getDimension(R.styleable.NumberProgressBar_wswReachedBarHeight, dp2px(1.5f));
+            mUnreachedBarHeight = attributes.getDimension(R.styleable.NumberProgressBar_wswUnreachedBarHeight, dp2px(1.0f));
+            mOffset = attributes.getDimension(R.styleable.NumberProgressBar_wswTextOffset, dp2px(3.0f));
 
-        mReachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_wswReachedColor, Color.rgb(66, 145, 241));
-        mUnreachedBarColor = attributes.getColor(R.styleable.NumberProgressBar_wswUnreachedColor, Color.rgb(204, 204, 204));
-        mTextColor = attributes.getColor(R.styleable.NumberProgressBar_wswTextColor, Color.rgb(66, 145, 241));
-        mTextSize = attributes.getDimension(R.styleable.NumberProgressBar_wswTextSize, sp2px(10));
+            int textVisible = attributes.getInt(R.styleable.NumberProgressBar_wswTextVisibility, PROGRESS_TEXT_VISIBLE);
+            if (textVisible != PROGRESS_TEXT_VISIBLE) {
+                mIfDrawText = false;
+            }
 
-        mReachedBarHeight = attributes.getDimension(R.styleable.NumberProgressBar_wswReachedBarHeight, dp2px(1.5f));
-        mUnreachedBarHeight = attributes.getDimension(R.styleable.NumberProgressBar_wswUnreachedBarHeight, dp2px(1.0f));
-        mOffset = attributes.getDimension(R.styleable.NumberProgressBar_wswTextOffset, dp2px(3.0f));
+            setProgress(attributes.getInt(R.styleable.NumberProgressBar_wswProgress, 0));
+            setMax(attributes.getInt(R.styleable.NumberProgressBar_wswMax, 100));
 
-        int textVisible = attributes.getInt(R.styleable.NumberProgressBar_wswTextVisibility, PROGRESS_TEXT_VISIBLE);
-        if (textVisible != PROGRESS_TEXT_VISIBLE) {
-            mIfDrawText = false;
+            attributes.recycle();
+            initializePainters();
         }
-
-        setProgress(attributes.getInt(R.styleable.NumberProgressBar_wswProgress, 0));
-        setMax(attributes.getInt(R.styleable.NumberProgressBar_wswMax, 100));
-
-        attributes.recycle();
-        initializePainters();
     }
 
     @Override

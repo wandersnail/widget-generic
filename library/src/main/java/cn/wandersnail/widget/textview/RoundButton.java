@@ -39,23 +39,28 @@ public class RoundButton extends AppCompatButton {
     private int selectedFillColor = normalFillColor;
 
     private int rippleColor = Color.TRANSPARENT;
-    
+
     public RoundButton(Context context) {
-        this(context, null);
+        super(context);
+        init(null);
     }
 
     public RoundButton(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context.obtainStyledAttributes(attrs, R.styleable.RoundButton));
     }
 
     public RoundButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context.obtainStyledAttributes(attrs, R.styleable.RoundButton, defStyleAttr, 0));
+    }
+
+    private void init(TypedArray a) {
         normalTextColor = getCurrentTextColor();
         pressedTextColor = normalTextColor;
         disabledTextColor = normalTextColor;
         selectedTextColor = normalTextColor;
-        if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundButton);
+        if (a != null) {
             strokeWidth = a.getDimensionPixelOffset(R.styleable.RoundButton_wswStrokeWidth, strokeWidth);
             normalStrokeWidth = a.getDimensionPixelOffset(R.styleable.RoundButton_wswNormalStrokeWidth, normalStrokeWidth);
             pressedStrokeWidth = a.getDimensionPixelOffset(R.styleable.RoundButton_wswPressedStrokeWidth, pressedStrokeWidth);

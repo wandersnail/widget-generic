@@ -29,14 +29,14 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
     private float twoBigStepDifValue = 5f;//两个长刻度之间值的大小
     private int labelColor = -0x676768;
     private int indicatorColor = -0xe6bb;
-    private int indicatorPostion = 50;
+    private int indicatorPosition = 50;
     private float labelSize;//标签字体大小
     private int scaleSpace;//刻度之间间隔
     private int labelAndScaleSpace;//标签与长刻度的间隔
     private int longScaleLen;
     private int scaleWidth;//刻度线条宽度
     private int indicatorWidth;//指示器宽
-    private float shortLongtScaleRatio;//短刻度与长刻度比例，短/长
+    private float shortLongScaleRatio;//短刻度与长刻度比例，短/长
     private int orientation = HORIZONTAL;
     private boolean isEdgeDim = true;//两端边缘模糊
     private OnValueUpdateCallback updateCallback;
@@ -53,37 +53,18 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
     private boolean onFling;
 
     public ScaleView(Context context) {
-        this(context, null);
+        super(context);
+        init(context, null);
     }
 
     public ScaleView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context, context.obtainStyledAttributes(attrs, R.styleable.ScaleView));
     }
 
     public ScaleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ScaleView);
-        min = typedArray.getInt(R.styleable.ScaleView_wswMin, 0);
-        max = typedArray.getInt(R.styleable.ScaleView_wswMax, 100);
-        bigStepScaleNum = typedArray.getInt(R.styleable.ScaleView_wswBigStepScaleNum, 5);
-        twoBigStepDifValue = typedArray.getFloat(R.styleable.ScaleView_wswTwoBigStepDifValue, 5f);
-        labelColor = typedArray.getColor(R.styleable.ScaleView_wswLabelColor, -0x676768);
-        indicatorColor = typedArray.getColor(R.styleable.ScaleView_wswIndicatorColor, -0xe6bb);
-        indicatorPostion = typedArray.getInt(R.styleable.ScaleView_wswIndicatorPostion, 50);
-        labelSize = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswLabelSize, WidgetUtils.dp2px(context, 14f));
-        scaleSpace = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswScaleSpace, WidgetUtils.dp2px(context, 8f));
-        labelAndScaleSpace = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswLabelAndScaleSpace, WidgetUtils.dp2px(context, 20f));
-        longScaleLen = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswLongScaleLen, WidgetUtils.dp2px(context, 30f));
-        scaleWidth = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswScaleWidth, WidgetUtils.dp2px(context, 1f));
-        indicatorWidth = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswIndicatorWidth, WidgetUtils.dp2px(context, 3f));
-        shortLongtScaleRatio = typedArray.getFloat(R.styleable.ScaleView_wswShortLongScaleRatio, 2f / 3);
-        isEdgeDim = typedArray.getBoolean(R.styleable.ScaleView_wswEdgeDim, true);
-        value = typedArray.getFloat(R.styleable.ScaleView_wswValue, min);
-        orientation = typedArray.getInt(R.styleable.ScaleView_wswOrientation, HORIZONTAL);
-        typedArray.recycle();
-        init();
-        updateParams();
-        setValue(value);
+        super(context, attrs, defStyleAttr);        
+        init(context, context.obtainStyledAttributes(attrs, R.styleable.ScaleView, defStyleAttr, 0));        
     }
 
     public interface OnValueUpdateCallback {
@@ -97,7 +78,27 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
         String format(float value);
     }
 
-    private void init() {
+    private void init(Context context, TypedArray typedArray) {
+        if (typedArray != null) {
+            min = typedArray.getInt(R.styleable.ScaleView_wswMin, 0);
+            max = typedArray.getInt(R.styleable.ScaleView_wswMax, 100);
+            bigStepScaleNum = typedArray.getInt(R.styleable.ScaleView_wswBigStepScaleNum, 5);
+            twoBigStepDifValue = typedArray.getFloat(R.styleable.ScaleView_wswTwoBigStepDifValue, 5f);
+            labelColor = typedArray.getColor(R.styleable.ScaleView_wswLabelColor, -0x676768);
+            indicatorColor = typedArray.getColor(R.styleable.ScaleView_wswIndicatorColor, -0xe6bb);
+            indicatorPosition = typedArray.getInt(R.styleable.ScaleView_wswIndicatorPostion, 50);
+            labelSize = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswLabelSize, WidgetUtils.dp2px(context, 14f));
+            scaleSpace = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswScaleSpace, WidgetUtils.dp2px(context, 8f));
+            labelAndScaleSpace = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswLabelAndScaleSpace, WidgetUtils.dp2px(context, 20f));
+            longScaleLen = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswLongScaleLen, WidgetUtils.dp2px(context, 30f));
+            scaleWidth = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswScaleWidth, WidgetUtils.dp2px(context, 1f));
+            indicatorWidth = typedArray.getDimensionPixelOffset(R.styleable.ScaleView_wswIndicatorWidth, WidgetUtils.dp2px(context, 3f));
+            shortLongScaleRatio = typedArray.getFloat(R.styleable.ScaleView_wswShortLongScaleRatio, 2f / 3);
+            isEdgeDim = typedArray.getBoolean(R.styleable.ScaleView_wswEdgeDim, true);
+            value = typedArray.getFloat(R.styleable.ScaleView_wswValue, min);
+            orientation = typedArray.getInt(R.styleable.ScaleView_wswOrientation, HORIZONTAL);
+            typedArray.recycle();
+        }
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setTextSize(labelSize);
         String text = "0.00";
@@ -106,6 +107,8 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
         labelHeight = rect.bottom - rect.top;
         scroller = new ListenableScroller(getContext());
         scroller.setOnScrollListener(this);
+        updateParams();
+        setValue(value);
     }
 
     @Override
@@ -198,7 +201,7 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
         //不画标签部分长度
         float blank;
         if (orientation == HORIZONTAL) {
-            blank = getWidth() * indicatorPostion / 100f;
+            blank = getWidth() * indicatorPosition / 100f;
             int extraScales = (int) (blank / scaleSpace);
             float startX = blank - extraScales * scaleSpace;
             int extra = extraScales % bigStepScaleNum;
@@ -220,7 +223,7 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
                         canvas.drawText(label, scaleX - textWidth / 2, longScaleLen + labelAndScaleSpace + labelHeight, paint);
                     }
                 } else {
-                    canvas.drawLine(scaleX, 0f, scaleX, longScaleLen * shortLongtScaleRatio, paint);
+                    canvas.drawLine(scaleX, 0f, scaleX, longScaleLen * shortLongScaleRatio, paint);
                 }
             }
             //指示线
@@ -229,7 +232,7 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
             paint.setColor(indicatorColor);
             canvas.drawLine(getScrollX() + blank, 0f, getScrollX() + blank, labelAndScaleSpace / 2 + longScaleLen, paint);
         } else {
-            blank = getHeight() * indicatorPostion / 100f;
+            blank = getHeight() * indicatorPosition / 100f;
             int extraScales = (int) (blank / scaleSpace);
             float startY = blank - extraScales * scaleSpace;
             int extra = extraScales % bigStepScaleNum;
@@ -251,7 +254,7 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
                         canvas.drawText(label, getWidth() - labelAndScaleSpace - longScaleLen - textWidth, scaleY + labelHeight / 2f, paint);
                     }
                 } else {
-                    canvas.drawLine(getWidth() - longScaleLen * shortLongtScaleRatio, scaleY, getWidth(), scaleY, paint);
+                    canvas.drawLine(getWidth() - longScaleLen * shortLongScaleRatio, scaleY, getWidth(), scaleY, paint);
                 }
             }
             //指示线
@@ -336,14 +339,14 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
         private float twoBigStepDifValue;//两个长刻度之间值的大小
         private int labelColor;
         private int indicatorColor;
-        private int indicatorPostion;
+        private int indicatorPosition;
         private float labelSize;//标签字体大小
         private int scaleSpace;//刻度之间间隔
         private int labelAndScaleSpace;//标签与长刻度的间隔
         private int longScaleLen;
         private int scaleWidth;//刻度线条宽度
         private int indicatorWidth;//指示器宽
-        private float shortLongtScaleRatio;//短刻度与长刻度比例，短/长
+        private float shortLongScaleRatio;//短刻度与长刻度比例，短/长
         private int orientation;
         private boolean isEdgeDim;//两端边缘模糊
         private OnValueUpdateCallback updateCallback;
@@ -357,14 +360,14 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
             float twoBigStepDifValue = scaleView.twoBigStepDifValue;//两个长刻度之间值的大小
             int labelColor = scaleView.labelColor;
             int indicatorColor = scaleView.indicatorColor;
-            int indicatorPostion = scaleView.indicatorPostion;
+            int indicatorPostion = scaleView.indicatorPosition;
             float labelSize = scaleView.labelSize;//标签字体大小
             int scaleSpace = scaleView.scaleSpace;//刻度之间间隔
             int labelAndScaleSpace = scaleView.labelAndScaleSpace;//标签与长刻度的间隔
             int longScaleLen = scaleView.longScaleLen;
             int scaleWidth = scaleView.scaleWidth;//刻度线条宽度
             int indicatorWidth = scaleView.indicatorWidth;//指示器宽
-            float shortLongtScaleRatio = scaleView.shortLongtScaleRatio;//短刻度与长刻度比例，短/长
+            float shortLongtScaleRatio = scaleView.shortLongScaleRatio;//短刻度与长刻度比例，短/长
             int orientation = scaleView.orientation;
             boolean isEdgeDim = scaleView.isEdgeDim;//两端边缘模糊
         }
@@ -463,8 +466,8 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
         /**
          * 短刻度与长刻度比例，短/长
          */
-        public void setShortLongtScaleRatio(float shortLongtScaleRatio) {
-            this.shortLongtScaleRatio = shortLongtScaleRatio;
+        public void setShortLongScaleRatio(float shortLongScaleRatio) {
+            this.shortLongScaleRatio = shortLongScaleRatio;
         }
 
         /**
@@ -485,7 +488,7 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
             } else if (postion > 100) {
                 postion = 100;
             }
-            this.indicatorPostion = postion;
+            this.indicatorPosition = postion;
         }
 
         public void setOnValueUpdateCallback(OnValueUpdateCallback callback) {
@@ -502,9 +505,9 @@ public class ScaleView extends View implements ListenableScroller.OnScrollListen
         public void apply() {
             scaleView.textFormatterCallback = textFormatterCallback;
             scaleView.updateCallback = updateCallback;
-            scaleView.indicatorPostion = indicatorPostion;
+            scaleView.indicatorPosition = indicatorPosition;
             scaleView.isEdgeDim = isEdgeDim;
-            scaleView.shortLongtScaleRatio = shortLongtScaleRatio;
+            scaleView.shortLongScaleRatio = shortLongScaleRatio;
             scaleView.indicatorWidth = indicatorWidth;
             scaleView.scaleWidth = scaleWidth;
             scaleView.longScaleLen = longScaleLen;

@@ -39,23 +39,28 @@ public class RoundTextView extends AppCompatTextView {
     private int selectedFillColor = normalFillColor;
 
     private int rippleColor = Color.TRANSPARENT;
-    
+
     public RoundTextView(Context context) {
-        this(context, null);
+        super(context);
+        init(null);
     }
 
     public RoundTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context.obtainStyledAttributes(attrs, R.styleable.RoundTextView));
     }
 
     public RoundTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context.obtainStyledAttributes(attrs, R.styleable.RoundTextView, defStyleAttr, 0));
+    }
+
+    private void init(TypedArray a) {
         normalTextColor = getCurrentTextColor();
         pressedTextColor = normalTextColor;
         disabledTextColor = normalTextColor;
         selectedTextColor = normalTextColor;
-        if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundTextView);
+        if (a != null) {
             strokeWidth = a.getDimensionPixelOffset(R.styleable.RoundTextView_wswStrokeWidth, strokeWidth);
             normalStrokeWidth = a.getDimensionPixelOffset(R.styleable.RoundTextView_wswNormalStrokeWidth, normalStrokeWidth);
             pressedStrokeWidth = a.getDimensionPixelOffset(R.styleable.RoundTextView_wswPressedStrokeWidth, pressedStrokeWidth);

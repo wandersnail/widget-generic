@@ -41,17 +41,22 @@ public class CircleProgressBar extends View {
     private Builder builder = new Builder(this);
 
     public CircleProgressBar(Context context) {
-        this(context, null);
+        super(context);
+        init(null);
     }
 
     public CircleProgressBar(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar));
     }
 
     public CircleProgressBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        if (attrs != null) {
-            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
+        init(context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar, defStyleAttr, 0));
+    }
+
+    private void init(TypedArray typedArray) {
+        if (typedArray != null) {
             builder.isTextVisible = typedArray.getBoolean(R.styleable.CircleProgressBar_wswTextVisible, true);
             builder.textSize = typedArray.getDimension(R.styleable.CircleProgressBar_wswTextSize, 24f);
             builder.backgroundCircleWidth = typedArray.getDimension(R.styleable.CircleProgressBar_wswBackgroundCircleWidth, 5f);
