@@ -77,7 +77,7 @@ public class DefaultAlertDialog extends BaseDialog<DefaultAlertDialog> {
             }
         };
         tvNegative.setOnClickListener(clickListener);
-        tvPositive.setOnClickListener(positiveListener);
+        tvPositive.setOnClickListener(clickListener);
         cornerRadii = WidgetUtils.dp2px(activity, 8f);
         setBackgroundColor(backColor);
         setTitleBackgroundColor(titleBackColor);
