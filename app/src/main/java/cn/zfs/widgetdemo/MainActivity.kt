@@ -5,12 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import cn.wandersnail.commons.helper.PermissionsRequester
+import cn.wandersnail.commons.util.Logger
+import cn.wandersnail.commons.util.ToastUtils
 import cn.wandersnail.widget.listview.BaseListAdapter
 import cn.wandersnail.widget.listview.BaseViewHolder
 import cn.wandersnail.widget.listview.InflatedViewHolder
-import com.snail.commons.helper.PermissionsRequester
-import com.snail.commons.utils.Logger
-import com.snail.commons.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -49,18 +49,16 @@ class MainActivity : AppCompatActivity() {
         list.add(Manifest.permission.ACCESS_FINE_LOCATION)
         list.add(Manifest.permission.ACCESS_NETWORK_STATE)
         requester?.checkAndRequest(list)
-        requester?.setOnRequestResultListener(object : PermissionsRequester.OnRequestResultListener {
-            override fun onRequestResult(refusedPermissions: MutableList<String>) {
-                if (refusedPermissions.isNotEmpty()) {
-                    ToastUtils.showShort("部分权限被拒绝，可能造成某些功能无法使用")
-                }
+        requester?.setCallback { refusedPermissions ->
+            if (refusedPermissions.isNotEmpty()) {
+                ToastUtils.showShort("部分权限被拒绝，可能造成某些功能无法使用")
             }
-        })
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        requester?.onActivityResult(requestCode, resultCode, data)
+        requester?.onActivityResult(requestCode)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

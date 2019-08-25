@@ -1,8 +1,8 @@
 package cn.zfs.widgetdemo
 
 import android.os.Bundle
+import cn.wandersnail.commons.util.UiUtils
 import cn.wandersnail.widget.HorizontalLabelPicker
-import com.snail.commons.utils.UiUtils
 import kotlinx.android.synthetic.main.activity_horizontal_label_picker.*
 
 /**

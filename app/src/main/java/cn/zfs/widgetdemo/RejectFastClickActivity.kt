@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import cn.wandersnail.commons.util.ToastUtils
 import cn.wandersnail.widget.listener.RejectFastViewClickListener
 import cn.wandersnail.widget.listener.RejectableViewClickCallback
-import com.snail.commons.utils.ToastUtils
 
 /**
  *

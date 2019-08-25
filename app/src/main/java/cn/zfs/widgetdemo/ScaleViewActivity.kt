@@ -1,8 +1,7 @@
 package cn.zfs.widgetdemo
 
 import android.os.Bundle
-import cn.wandersnail.widget.scale.ScaleView
-import com.snail.commons.utils.UiUtils
+import cn.wandersnail.commons.util.UiUtils
 import kotlinx.android.synthetic.main.activity_scale_view.*
 import java.text.DecimalFormat
 
@@ -18,34 +17,18 @@ class ScaleViewActivity : BaseActivity() {
         setContentView(R.layout.activity_scale_view)
         val params = scaleView.obtainParams()
         params.setScope(0, 1700)
-        params.setLabelFormatter(object : ScaleView.TextFormatterCallback {
-            override fun format(value: Float): String {
-                return DecimalFormat("0.00").format(value)
-            }
-        })
-        params.setOnValueUpdateCallback(object : ScaleView.OnValueUpdateCallback {
-            override fun onValueUpdate(value: Float) {
-                tv.text = value.toString()
-            }
-        })
+        params.setLabelFormatter { value -> DecimalFormat("0.00").format(value) }
+        params.setOnValueUpdateCallback { value -> tv.text = value.toString() }
         params.apply()
-        scaleView.setValue(800f)
+        scaleView.value = 800f
         
         val params1 = scaleView1.obtainParams()
         params1.setScope(0, 100)
         params1.setShortLongtScaleRatio(1f)
         params1.setScaleSpace(UiUtils.dp2px(30f))
-        params1.setLabelFormatter(object : ScaleView.TextFormatterCallback {
-            override fun format(value: Float): String {
-                return value.toInt().toString()
-            }
-        })
-        params1.setOnValueUpdateCallback(object : ScaleView.OnValueUpdateCallback {
-            override fun onValueUpdate(value: Float) {
-                tv.text = value.toString()
-            }
-        })
+        params1.setLabelFormatter { value -> value.toInt().toString() }
+        params1.setOnValueUpdateCallback { value -> tv.text = value.toString() }
         params1.apply()
-        scaleView1.setValue(50f)
+        scaleView1.value = 50f
     }
 }

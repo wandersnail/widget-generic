@@ -11,14 +11,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * date: 2019/8/22 14:12
@@ -145,9 +145,13 @@ public class BaseDialog<T extends BaseDialog> {
         return dialog.getContext();
     }
     
-    private boolean isDestroyed() {
+    public Activity getActivity() {
+        return dialog.getOwnerActivity();
+    }
+    
+    private boolean isActive() {
         Activity activity = dialog.getOwnerActivity();
-        return activity != null && (activity.isDestroyed() || activity.isFinishing());
+        return activity != null && !activity.isDestroyed() && !activity.isFinishing();
     }
 
     private List<DialogEventObserver> getObservers() {
@@ -228,21 +232,21 @@ public class BaseDialog<T extends BaseDialog> {
     
     @CallSuper
     public void cancel() {
-        if (!isDestroyed()) {
+        if (isActive()) {
             dialog.cancel();
         }
     }
     
     @CallSuper
     public void dismiss() {
-        if (!isDestroyed()) {
+        if (isActive()) {
             dialog.dismiss();
         }
     }
     
     @CallSuper
     public T show() {
-        if (!isDestroyed() && !dialog.isShowing()) {
+        if (isActive() && !dialog.isShowing()) {
             if (Looper.getMainLooper() == Looper.myLooper()) {
                 dialog.show();
             } else {

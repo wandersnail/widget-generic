@@ -24,7 +24,6 @@ import cn.wandersnail.widget.WidgetUtils;
  * author: zengfansheng
  */
 public class DefaultAlertDialog extends BaseDialog<DefaultAlertDialog> {
-    private LinearLayout dialogRootView;
     private TextView tvTitle;
     private View titleDivider;
     private FrameLayout layoutContent;
@@ -47,7 +46,6 @@ public class DefaultAlertDialog extends BaseDialog<DefaultAlertDialog> {
     private boolean clickDismiss = true;
 
     private void assignViews() {
-        dialogRootView = view.findViewById(R.id.dialogRootView);
         tvTitle = view.findViewById(R.id.tvTitle);
         titleDivider = view.findViewById(R.id.titleDivider);
         layoutContent = view.findViewById(R.id.layoutContent);

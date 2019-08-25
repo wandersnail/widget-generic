@@ -2,11 +2,10 @@ package cn.zfs.widgetdemo
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import cn.wandersnail.commons.util.ToastUtils
 import cn.wandersnail.widget.dialog.BaseDialog
 import cn.wandersnail.widget.dialog.DefaultAlertDialog
 import cn.wandersnail.widget.dialog.DialogEventObserver
-import com.snail.commons.utils.ToastUtils
 import kotlinx.android.synthetic.main.activity_default_alert_dialog.*
 
 /**
@@ -25,12 +24,12 @@ class DefaultAlertDialogActivity : BaseActivity() {
             if (dialog == null) {
                 dialog = DefaultAlertDialog(this).setTitle("标题")
                         .setMessage("这是消息内容")
-                        .setNegativeButton("Cancel", View.OnClickListener {
+                        .setNegativeButton("Cancel") {
                             ToastUtils.showShort("点击了Cancel")
-                        })
-                        .setPositiveButton("Ok", View.OnClickListener { 
-                            ToastUtils.showShort("点击了Ok")
-                        })
+                        }
+                    .setPositiveButton("Ok") {
+                        ToastUtils.showShort("点击了Ok")
+                    }
                 dialog!!.registerEventObserver(observer)
             }
             dialog!!.show()
@@ -38,10 +37,10 @@ class DefaultAlertDialogActivity : BaseActivity() {
         btnSingleNoTitle.setOnClickListener {
             DefaultAlertDialog(this)
                     .setMessage("这是消息内容")
-                    .setPositiveButton("Ok", View.OnClickListener {
+                    .setPositiveButton("Ok") {
                         ToastUtils.showShort("点击了Ok")
-                    })
-                    .setCancelable(false)
+                    }
+                .setCancelable(false)
                     .show()
         }
         btnAutoDismiss.setOnClickListener {
