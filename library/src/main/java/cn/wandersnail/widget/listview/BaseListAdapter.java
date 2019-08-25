@@ -83,7 +83,7 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
         if (view == null) {
             holder = createViewHolder(position);
             view = holder.createView();
-            view.setTag(TAG_KEY);
+            view.setTag(TAG_KEY, holder);
         } else {
             holder = (BaseViewHolder<T>) view.getTag(TAG_KEY);
         }
