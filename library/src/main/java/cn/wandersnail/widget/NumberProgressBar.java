@@ -11,7 +11,7 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import java.util.Locale;
+import java.text.DecimalFormat;
 
 
 /**
@@ -146,6 +146,7 @@ public class NumberProgressBar extends View {
      * Listener
      */
     private OnProgressBarListener mListener;
+    private DecimalFormat textFormat = new DecimalFormat("#");
 
     public interface OnProgressBarListener {
         void onProgressChange(int current, int max);
@@ -272,8 +273,7 @@ public class NumberProgressBar extends View {
     }
 
     private void calculateDrawRectF() {
-
-        mCurrentDrawText = String.format(Locale.ENGLISH, "%d", getProgress() * 100 / getMax());
+        mCurrentDrawText = textFormat.format(getProgress() * 100f / getMax());
         mCurrentDrawText = mPrefix + mCurrentDrawText + mSuffix;
         mDrawTextWidth = mTextPaint.measureText(mCurrentDrawText);
 
@@ -380,6 +380,13 @@ public class NumberProgressBar extends View {
 
     public void setUnreachedBarHeight(float height) {
         mUnreachedBarHeight = height;
+    }
+
+    /**
+     * 设置百分比文字格式
+     */
+    public void setTextFormat(DecimalFormat textFormat) {
+        this.textFormat = textFormat;
     }
 
     public void setMax(int maxProgress) {

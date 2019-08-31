@@ -94,7 +94,7 @@ public class HorizontalLabelPicker extends View {
     }
 
     @Nullable
-    public List<ILabel> getLabels() {
+    public List<? extends ILabel> getLabels() {
         return builder.labels;
     }
 
@@ -317,7 +317,7 @@ public class HorizontalLabelPicker extends View {
     }
 
     public static class Builder {
-        List<ILabel> labels;
+        List<? extends ILabel> labels;
         int checkColor = -0xaf8e1a;
         int normalColor = Color.GRAY;
         int textSize = 30;
@@ -329,7 +329,7 @@ public class HorizontalLabelPicker extends View {
         /**
          * 设置标签
          */
-        public Builder setLabels(@NonNull List<ILabel> labels) {
+        public Builder setLabels(@NonNull List<? extends ILabel> labels) {
             this.labels = labels;
             return this;
         }
@@ -390,7 +390,7 @@ public class HorizontalLabelPicker extends View {
             return this;
         }
 
-        public List<ILabel> getLabels() {
+        public List<? extends ILabel> getLabels() {
             return labels;
         }
     }

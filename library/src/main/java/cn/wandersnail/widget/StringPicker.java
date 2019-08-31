@@ -357,15 +357,15 @@ public class StringPicker extends View {
         selectListener = listener;
     }
 
-    public void setTextColor(int unselectTextColor, int selectedTextColor) {
+    public void setTextColor(int unselectedTextColor, int selectedTextColor) {
         this.selectedTextColor = selectedTextColor;
-        this.unselectedTextColor = unselectTextColor;
+        this.unselectedTextColor = unselectedTextColor;
         invalidate();
     }
 
-    public void setTextSize(float unselectTextSize, float selectedTextSize) {
+    public void setTextSize(float unselectedTextSize, float selectedTextSize) {
         this.selectedTextSize = selectedTextSize;
-        this.unselectedTextSize = unselectTextSize;
+        this.unselectedTextSize = unselectedTextSize;
         invalidate();
     }
 
