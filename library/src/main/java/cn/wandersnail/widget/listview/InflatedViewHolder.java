@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
  * author: zengfansheng
  */
 public abstract class InflatedViewHolder<T> implements BaseViewHolder<T> {
-    private final View rootView;
+    protected final View rootView;
 
     public InflatedViewHolder(@NonNull Context context, @LayoutRes int resId) {
         rootView = View.inflate(context, resId, null);
