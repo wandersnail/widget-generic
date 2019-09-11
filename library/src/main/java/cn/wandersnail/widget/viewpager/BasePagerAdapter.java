@@ -13,9 +13,9 @@ import java.util.List;
  * author: zengfansheng
  */
 public class BasePagerAdapter extends PagerAdapter {
-    private List<Pager> pagers;
+    private List<? extends Pager> pagers;
 
-    public BasePagerAdapter(@NonNull List<Pager> pagers) {
+    public BasePagerAdapter(@NonNull List<? extends Pager> pagers) {
         this.pagers = pagers;
     }
 
