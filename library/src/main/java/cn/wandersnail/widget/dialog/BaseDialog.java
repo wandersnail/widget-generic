@@ -71,7 +71,7 @@ public class BaseDialog<T extends BaseDialog> {
 
             @Override
             public void onShow() {
-                BaseDialog.this.onDetachedFromWindow();
+                BaseDialog.this.onShow();
                 for (DialogEventObserver observer : getObservers()) {
                     observer.onDetachedFromWindow();
                 }
