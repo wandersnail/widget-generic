@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Looper;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -44,7 +45,7 @@ public class BaseDialog<T extends BaseDialog> {
     
     public BaseDialog(@NonNull Activity activity, @NonNull View view, @StyleRes int themeResId) {
         this.view = view;
-        dialog = new MyDialog(new DialogEventObserver() {
+        dialog = new MyDialog(this, new DialogEventObserver() {
             @Override
             public void onCreate(Bundle savedInstanceState) {
                 BaseDialog.this.onCreate(savedInstanceState);
@@ -293,6 +294,22 @@ public class BaseDialog<T extends BaseDialog> {
 
     public void onWindowFocusChanged(boolean hasFocus) {}
     
+    protected boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
+        return false;
+    }
+
+    protected boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
+        return false;
+    }
+
+    protected boolean onKeyLongPress(int keyCode, @NonNull KeyEvent event) {
+        return false;
+    }
+
+    protected boolean onKeyMultiple(int keyCode, int repeatCount, @NonNull KeyEvent event) {
+        return false;
+    }
+    
     /**
      * 设置偏移
      */
@@ -341,10 +358,12 @@ public class BaseDialog<T extends BaseDialog> {
     
     private static class MyDialog extends Dialog {
         private final DialogEventObserver observer;
+        private final BaseDialog<?> baseDialog;
 
-        MyDialog(DialogEventObserver observer, @NonNull Context context, int themeResId) {
+        MyDialog(BaseDialog<?> baseDialog, DialogEventObserver observer, @NonNull Context context, int themeResId) {
             super(context, themeResId);
             this.observer = observer;
+            this.baseDialog = baseDialog;
             setOnCancelListener(dialog -> observer.onCancel());
             setOnDismissListener(dialog -> observer.onDismiss());
             setOnShowListener(dialog -> observer.onShow());
@@ -391,6 +410,26 @@ public class BaseDialog<T extends BaseDialog> {
         @Override
         public void onWindowFocusChanged(boolean hasFocus) {
             observer.onWindowFocusChanged(hasFocus);
+        }
+
+        @Override
+        public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
+            return baseDialog.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
+        }
+
+        @Override
+        public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
+            return baseDialog.onKeyUp(keyCode, event) || super.onKeyUp(keyCode, event);
+        }
+
+        @Override
+        public boolean onKeyLongPress(int keyCode, @NonNull KeyEvent event) {
+            return baseDialog.onKeyLongPress(keyCode, event) || super.onKeyLongPress(keyCode, event);
+        }
+
+        @Override
+        public boolean onKeyMultiple(int keyCode, int repeatCount, @NonNull KeyEvent event) {
+            return baseDialog.onKeyMultiple(keyCode, repeatCount, event) || super.onKeyMultiple(keyCode, repeatCount, event);
         }
     }
 }

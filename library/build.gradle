@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'maven'
 
-def lib_version = '1.0.6'
+def lib_version = '1.0.7'
 def user_name = 'wandersnail'
 def lib_group = 'cn.wandersnail'
 def lib_artifact = 'widget-generic'
@@ -39,6 +39,7 @@ android {
 dependencies {
     compileOnly "androidx.appcompat:appcompat:$appcompat_version"
     compileOnly "androidx.recyclerview:recyclerview:$recyclerview_version"
+    compileOnly "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 }
 
 task sourcesJar(type: Jar) {
@@ -48,7 +49,7 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    setClasspath(classpath + project.files(android.getBootClasspath().join(File.pathSeparator)))
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
