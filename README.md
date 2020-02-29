@@ -36,11 +36,11 @@ allprojects {
 - 带动画开关
 - 滑动文本选择器
 
-![image](https://gitee.com/fszeng/widget-generic/raw/master/images/device-2019-04-06-152951.png)
-![image](https://gitee.com/fszeng/widget-generic/raw/master/images/device-2019-04-06-152423.gif)
-![image](https://images.gitee.com/uploads/images/2020/0229/120750_216d1e79_543181.gif)
-![image](https://gitee.com/fszeng/widget-generic/raw/master/images/device-2019-04-06-152652.gif)
-![image](https://images.gitee.com/uploads/images/2020/0229/120748_340b52df_543181.gif)
-![image](https://images.gitee.com/uploads/images/2020/0229/120752_8ad136e6_543181.gif)
-![image](https://images.gitee.com/uploads/images/2020/0229/120753_084111be_543181.gif)
-![image](https://gitee.com/fszeng/widget-generic/raw/master/images/device-2019-04-06-224935.gif)
+![image](https://s2.ax1x.com/2020/02/29/3shmWD.png)
+![image](https://s2.ax1x.com/2020/02/29/3shalQ.gif)
+![image](https://s2.ax1x.com/2020/02/29/3shKQH.gif)
+![image](https://s2.ax1x.com/2020/02/29/3shYY8.gif)
+![image](https://s2.ax1x.com/2020/02/29/3shQOA.gif)
+![image](https://s2.ax1x.com/2020/02/29/3sh3wt.gif)
+![image](https://s2.ax1x.com/2020/02/29/3shdyj.gif)
+![image](https://s2.ax1x.com/2020/02/29/3sIMy4.gif)
