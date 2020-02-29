@@ -3,7 +3,8 @@
 ## 代码托管
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.wandersnail/widget-generic/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.wandersnail/widget-generic)
 [![Download](https://api.bintray.com/packages/wandersnail/androidx/widget-generic/images/download.svg) ](https://bintray.com/wandersnail/androidx/widget-generic/_latestVersion)
-
+[![](https://img.shields.io/badge/源码-github-blue.svg)](https://github.com/wandersnail/widget-generic)
+[![](https://img.shields.io/badge/源码-码云-blue.svg)](https://gitee.com/fszeng/widget-generic)
 ## 使用
 
 1. module的build.gradle中的添加依赖，自行修改为最新版本，同步后通常就可以用了：
