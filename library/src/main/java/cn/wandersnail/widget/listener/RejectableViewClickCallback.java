@@ -7,7 +7,7 @@ import android.view.View;
  * author: zengfansheng
  */
 public interface RejectableViewClickCallback {
-    void onReject(View view);
+    default void onReject(View view) {}
 
     void onAccept(View view);
 }

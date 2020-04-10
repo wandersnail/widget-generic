@@ -10,7 +10,7 @@ import android.widget.AdapterView;
  * author: zengfansheng
  */
 public interface RejectableItemClickCallback {
-    void onReject(AdapterView<?> parent, View view, int position, long id);
+    default void onReject(AdapterView<?> parent, View view, int position, long id) {}
     
     void onAccept(AdapterView<?> parent, View view, int position, long id);
 }

@@ -30,6 +30,7 @@ public class BaseDialog<T extends BaseDialog> {
     private final List<DialogEventObserver> observers = new ArrayList<>();
     protected Window window;
     protected View view;
+    private boolean autoUnregisterObserver = true;
     
     public BaseDialog(@NonNull Activity activity, @NonNull View view) {
         this(activity, view, 0);
@@ -83,6 +84,9 @@ public class BaseDialog<T extends BaseDialog> {
                 BaseDialog.this.onDismiss();
                 for (DialogEventObserver observer : getObservers()) {
                     observer.onDismiss();
+                }
+                if (autoUnregisterObserver) {
+                    unregisterAllEventObserver();
                 }
             }
 
@@ -207,10 +211,17 @@ public class BaseDialog<T extends BaseDialog> {
     /**
      * 将所有观察者从注册集合中移除
      */
-    public void unregisterEventAll() {
+    public void unregisterAllEventObserver() {
         synchronized(observers) {
             observers.clear();
         }
+    }
+
+    /**
+     * 默认是在dismiss后自动移除事件观察者
+     */
+    public void disableAutoUnregisterObserver() {
+        autoUnregisterObserver = false;
     }
     
     public boolean isShowing() {

@@ -54,7 +54,7 @@ class DefaultAlertDialogActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
-        dialog?.unregisterEventAll()
+        dialog?.unregisterAllEventObserver()
         super.onDestroy()
     }
     
