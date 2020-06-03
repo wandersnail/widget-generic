@@ -48,7 +48,7 @@ public class ClearEditText extends AppCompatEditText implements View.OnFocusChan
         // 获取EditText的DrawableRight,假如没有设置我们就使用默认的图片,获取图片的顺序是左上右下（0,1,2,3）  
         clearDrawable = getCompoundDrawables()[2];
         if (clearDrawable == null) {
-            clearDrawable = ContextCompat.getDrawable(context, R.drawable.ic_clear);
+            clearDrawable = ContextCompat.getDrawable(context, R.drawable.ic_wsw_clear);
         }
         // 默认设置隐藏图标  
         setClearIconVisible(false);
