@@ -39,7 +39,7 @@ android {
 dependencies {
     compileOnly "androidx.appcompat:appcompat:$appcompat_version"
     compileOnly "androidx.recyclerview:recyclerview:$recyclerview_version"
-    compileOnly "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    compileOnly "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
 
 task sourcesJar(type: Jar) {

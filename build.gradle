@@ -13,6 +13,7 @@ buildscript {
 
     repositories {
         google()
+        maven { url 'https://maven.aliyun.com/repository/public' }
         jcenter()
     }
     dependencies {
@@ -27,6 +28,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+        maven { url 'https://maven.aliyun.com/repository/public' }
         jcenter()
         mavenCentral()
         maven { url 'https://dl.bintray.com/wandersnail/androidx' }
