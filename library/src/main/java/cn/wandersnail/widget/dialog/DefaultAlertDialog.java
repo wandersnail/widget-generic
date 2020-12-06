@@ -270,6 +270,10 @@ public class DefaultAlertDialog extends BaseDialog<DefaultAlertDialog> {
         return this;
     }
 
+    public TextView getMessageView() {
+        return tvMsg;
+    }
+
     public DefaultAlertDialog setSubMessage(CharSequence text) {
         tvSubMsg.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
         tvSubMsg.setText(text);
@@ -277,7 +281,7 @@ public class DefaultAlertDialog extends BaseDialog<DefaultAlertDialog> {
     }
 
     public DefaultAlertDialog setSubMessage(@StringRes int resId) {
-
+        tvSubMsg.setVisibility(resId != 0 ? View.GONE : View.VISIBLE);
         tvSubMsg.setText(resId);
         return this;
     }
@@ -295,6 +299,10 @@ public class DefaultAlertDialog extends BaseDialog<DefaultAlertDialog> {
     public DefaultAlertDialog setSubMessageTextSize(int unit, float size) {
         tvSubMsg.setTextSize(unit, size);
         return this;
+    }
+    
+    public TextView getSubMessageView() {
+        return tvSubMsg;
     }
 
     public DefaultAlertDialog setTextGravity(int gravity) {
