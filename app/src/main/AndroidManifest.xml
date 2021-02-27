@@ -31,6 +31,7 @@
         <activity android:name=".StringPickerActivity"/>
         <activity android:name=".DefaultAlertDialogActivity"/>
         <activity android:name=".RejectFastClickActivity"/>
+        <activity android:name=".ExpandableViewActivity"/>
     </application>
 
 </manifest>

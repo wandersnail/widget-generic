@@ -21,10 +21,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val data = arrayListOf("倾斜TextView", "SwitchButton", "可滑动标签选择", "可拖拽条目列表", "圆角图片", "圆角按钮", "刻度尺", "文本选择器", "对话框",
-            "防止快速点击")
+            "防止快速点击", "可展开View")
         val clsArr = arrayListOf(RotatableTextViewActivity::class.java, SwitchButtonActivity::class.java, HorizontalLabelPickerActivity::class.java,
                 DragSwipeItemActivity::class.java, RoundImageActivity::class.java, RoundButtonActivity::class.java, ScaleViewActivity::class.java,
-                StringPickerActivity::class.java, DefaultAlertDialogActivity::class.java, RejectFastClickActivity::class.java)
+                StringPickerActivity::class.java, DefaultAlertDialogActivity::class.java, RejectFastClickActivity::class.java,
+        ExpandableViewActivity::class.java)
         lv.adapter = object : BaseListAdapter<String>(this, data) {
             override fun createViewHolder(position: Int): BaseViewHolder<String> {
                 return object : InflatedViewHolder<String>(context, android.R.layout.simple_list_item_1) {

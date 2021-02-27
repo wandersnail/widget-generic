@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:text="爱干净来看"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentContainer"        
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn1"
+            android:text="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn2"
+            android:text="2"
+            app:layout_constraintTop_toBottomOf="@id/btn1"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn6"
+            android:text="6"
+            app:layout_constraintTop_toTopOf="@id/btn2"
+            app:layout_constraintStart_toEndOf="@id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn3"
+            android:text="3"
+            app:layout_constraintTop_toBottomOf="@id/btn2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn4"
+            android:text="4"
+            app:layout_constraintTop_toTopOf="@id/btn3"
+            app:layout_constraintStart_toEndOf="@id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn5"
+            android:text="5"
+            app:layout_constraintTop_toTopOf="@id/btn3"
+            app:layout_constraintStart_toEndOf="@id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
