@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'maven'
+apply plugin: 'signing'
+
+signing {
+    sign configurations.archives
+}
 
 def lib_version = '1.1.0'
 def user_name = 'wandersnail'
@@ -9,8 +13,10 @@ def lib_artifact = 'widget-generic'
 def lib_packaging = 'aar'
 def lib_description = 'Some customized views commonly used'
 def lib_website = 'https://github.com/wandersnail/widget-generic'
+
 group = lib_group
 version = lib_version
+archivesBaseName = "widget-generic"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -62,26 +68,19 @@ artifacts {
     archives javadocJar
 }
 
-publish {
-    repoName="androidx"//仓库名
-    userOrg = user_name //bintray.com用户名  
-    groupId = lib_group //jcenter上的路径  
-    artifactId = lib_artifact //项目名称  
-    publishVersion = lib_version //版本号  
-    desc = lib_description
-    website = lib_website
-}
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
 
-if (project.getGradle().startParameter.taskNames.any { it.contains('bintrayUpload') }) {
-    gradle.taskGraph.whenReady { taskGraph ->
-        taskGraph.getAllTasks().find {
-            it.path == ":$project.name:generatePomFileForReleasePublication"
-        }.doLast {
-            file("build/publications/release/pom-default.xml").delete()
-            println 'Overriding pom-file to make sure we can sync to maven central!'
-            pom {
-                //noinspection GroovyAssignabilityCheck
-                project {
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                pom.project {
                     name lib_artifact
                     artifactId lib_artifact
                     packaging lib_packaging
@@ -110,7 +109,7 @@ if (project.getGradle().startParameter.taskNames.any { it.contains('bintrayUploa
                         }
                     }
                 }
-            }.writeTo("build/publications/release/pom-default.xml")
+            }
         }
     }
 }

@@ -5,5 +5,5 @@
 *.iml
 
 build
-
+secring.gpg
 /local.properties
