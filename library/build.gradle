@@ -2,9 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-signing {
-    sign configurations.archives
-}
+//signing {
+//    sign configurations.archives
+//}
 
 def lib_version = '1.1.0'
 def user_name = 'wandersnail'
