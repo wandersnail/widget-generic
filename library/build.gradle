@@ -1,22 +1,18 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven'
-apply plugin: 'signing'
-
-//signing {
-//    sign configurations.archives
-//}
+plugins {
+    id 'com.android.library'
+    id 'signing'
+    id 'maven-publish'
+}
 
 def lib_version = '1.1.0'
 def user_name = 'wandersnail'
 def lib_group = 'cn.wandersnail'
 def lib_artifact = 'widget-generic'
-def lib_packaging = 'aar'
 def lib_description = 'Some customized views commonly used'
 def lib_website = 'https://github.com/wandersnail/widget-generic'
 
 group = lib_group
 version = lib_version
-archivesBaseName = "widget-generic"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -48,71 +44,89 @@ dependencies {
     compileOnly "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
 
-//task sourcesJar(type: Jar) {
-//    archiveClassifier.set('sources')
-//    from android.sourceSets.main.java.srcDirs
-//}
-//
-//task javadoc(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    setClasspath(classpath + project.files(android.getBootClasspath().join(File.pathSeparator)))
-//}
-//
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    archiveClassifier.set('javadoc')
-//    from javadoc.destinationDir
-//}
-//
-//artifacts {
-//    archives sourcesJar
-//    archives javadocJar
-//}
-//
-//afterEvaluate { project ->
-//    uploadArchives {
-//        repositories {
-//            mavenDeployer {
-//                beforeDeployment {
-//                    MavenDeployment deployment -> signing.signPom(deployment)
-//                }
-//                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-//                    authentication(userName: ossrhUsername, password: ossrhPassword)
-//                }
-//
-//                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-//                    authentication(userName: ossrhUsername, password: ossrhPassword)
-//                }
-//
-//                pom.project {
-//                    name lib_artifact
-//                    artifactId lib_artifact
-//                    packaging lib_packaging
-//                    description lib_description
-//                    version lib_version
-//                    url lib_website
-//
-//                    scm {
-//                        url lib_website
-//                        connection "scm:git:${lib_website}.git"
-//                        developerConnection "scm:git:${lib_website}.git"
-//                    }
-//
-//                    licenses {
-//                        license {
-//                            name 'The Apache License, Version 2.0'
-//                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                        }
-//                    }
-//
-//                    developers {
-//                        developer {
-//                            id user_name
-//                            name 'Zeng Fansheng'
-//                            email 'bingmo977@qq.com'
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+tasks.register('sourcesJar', Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+tasks.register('javadoc', Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+tasks.register('javadocJar', Jar) {
+    dependsOn javadoc
+    archiveClassifier.set('javadoc')
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = lib_group
+            artifactId = lib_artifact
+            version = lib_version
+            description = lib_description
+
+            artifact "$buildDir/outputs/aar/${project.name}-release.aar"
+
+            // 增加 sourcesJar、javadocJar 任务
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom {
+                name = lib_artifact
+                description = lib_description
+                url = lib_website
+
+                scm {
+                    url = lib_website
+                    connection = "scm:git:${lib_website}.git"
+                    developerConnection = "scm:git:${lib_website}.git"
+                }
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = user_name
+                        name = 'Zeng Fansheng'
+                        email = 'bingmo977@qq.com'
+                    }
+                }
+            }
+        }
+    }
+
+    Properties properties = new Properties()
+    InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream()
+    properties.load(inputStream)
+    def ossrhUsername = properties.containsKey('ossrhUsername') ? properties['ossrhUsername'] : ''
+    def ossrhPassword = properties.containsKey('ossrhPassword') ? properties['ossrhPassword'] : ''
+    if (ossrhUsername != null && ossrhPassword != null) {
+        repositories {
+            maven {
+                url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.release
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
