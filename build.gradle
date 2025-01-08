@@ -38,6 +38,7 @@ allprojects {
         options.encoding = "UTF-8"
     }
     tasks.withType(Javadoc).configureEach {
+        enabled = false
         options {
             encoding "UTF-8"
             charSet 'UTF-8'
