@@ -1,1 +1,30 @@
+pluginManagement {
+    repositories {
+//        google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://mirrors.huaweicloud.com/repository/maven/' }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+//        google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://mirrors.huaweicloud.com/repository/maven/' }
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2380691-release-F2ChLK/'
+            credentials {
+                username '65559ac8f0d965725e5068bc'
+                password '2mdTNCLF_UZP'
+            }
+        }
+        maven { url 'https://jitpack.io' }
+    }
+}
 include ':app', ':library'

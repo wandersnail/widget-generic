@@ -15,6 +15,7 @@ group = lib_group
 version = lib_version
 
 android {
+    namespace 'cn.wandersnail.widget'
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
         minSdk rootProject.ext.minSdkVersion
@@ -33,14 +34,14 @@ android {
         abortOnError false
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 }
 
 dependencies {
-    compileOnly "androidx.appcompat:appcompat:$appcompat_version"
-    compileOnly "androidx.recyclerview:recyclerview:$recyclerview_version"
+    compileOnly "androidx.appcompat:appcompat:$ver_appcompat"
+    compileOnly "androidx.recyclerview:recyclerview:$ver_recyclerview"
     compileOnly "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
 
