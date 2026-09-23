@@ -3,10 +3,10 @@
 > 涵盖广，功能丰富。生活实用、效率办公、图片处理等等，还有隐藏的VIP功能，总之很多惊喜的功能。各大应用市场搜索【蜗牛工具箱】安装即可。
 
 <div align="center">
-    <img src="https://tucdn.wpon.cn/2023/12/21/3cea99987b074.png" width=150>
-    <img src="https://tucdn.wpon.cn/2023/12/21/d46d124878a87.png" width=150>
-    <img src="https://tucdn.wpon.cn/2023/12/21/191d4b5dca4d3.png" width=150>
-    <img src="https://tucdn.wpon.cn/2023/12/21/cad80aeb12184.png" width=150>
+    <img src="https://cdn-app-screenshot.pgyer.com/e/e/9/1/1/ee911b4ea22819d4f8d94bb811da2b83?x-oss-process=image/resize,m_lfit,h_528,w_528/format,jpg" width=150>
+    <img src="https://cdn-app-screenshot.pgyer.com/d/5/d/c/f/d5dcf8ba7d21f9d7357df416680cdcf4?x-oss-process=image/resize,m_lfit,h_528,w_528/format,jpg" width=150>
+    <img src="https://cdn-app-screenshot.pgyer.com/4/9/6/1/3/496137b00e186c6142592fd395c18a61?x-oss-process=image/resize,m_lfit,h_528,w_528/format,jpg" width=150>
+    <img src="https://cdn-app-screenshot.pgyer.com/8/f/7/5/b/8f75b7822dd33d0edd5d63e9503e3c69?x-oss-process=image/resize,m_lfit,h_528,w_528/format,jpg" width=150>
 </div>
 
 **部分功能介绍**
